@@ -13,9 +13,12 @@ namespace RPG
 
         public static void Main(string[] args)
         {
+            
             bool FirstRoom = true;
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
+
+            //Character info & stats
             string Char_Name = "David";
             string Char_Voc = "Cool";
             string Command = "";
@@ -24,21 +27,25 @@ namespace RPG
             int Char_Strength = 0;
             int Char_Agility = 0;
             int Char_Intelligence = 0;
+
+            //Inventory samt Items i rum
             List<string> Char_Backpack = new List<string>();
             Char_Backpack.Add("Rusty Key");
             Char_Backpack.Add("Bread");
             List<string> FirstRoomItems = new List<string>();
             FirstRoomItems.Add("Spike");
 
+            //Går igenom välkomstrutorna och hämtar namn + klass
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
 
+            //Ger karaktärern hp och stats beroende på vilken klass du är
             Character GetClassHP = new Character();
             Char_Max_HP = GetClassHP.GetHP(Char_Max_HP, Char_Voc);
             Char_Current_HP = Char_Max_HP;
             Character Stats = new Character();
             Stats.GetStats(Char_Voc, out Char_Strength, out Char_Agility, out Char_Intelligence);
-            Character AddItem = new Character();
+            //Character AddItem = new Character();
 
 
             Console.Clear();
