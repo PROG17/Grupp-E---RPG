@@ -87,6 +87,14 @@ namespace RPG
                         Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
                         Console.WriteLine("");
                     }
+                    else if (Command == "Rum2")        //FUSK FÖR ATT HAMNA I RUM 2
+                    {
+                        FirstDoorOpen = true;
+                        FirstRoom = false;
+                        SecondRoom = true;
+                    }
+
+
                     else if (Command == "Look")
                     {
                         Console.WriteLine("You wake up in a room. It have a wooden door and one window that seems to be blocked by iron bars.");
@@ -270,7 +278,7 @@ namespace RPG
                             Console.WriteLine("You take a look at the iron bars and you notice that one of the bars is loose.");
                             Console.WriteLine("");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
-                            if (Command == "Get Iron Bar" || Command == "Pick Up Iron Bar" || Command == "Get Iron Bar" || Command == "Pull Iron Bar")
+                            if (Command == "Get Iron Bar" || Command == "Pick Up Iron Bar" || Command == "Take Iron Bar" || Command == "Pull Iron Bar")
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("You successfully pulled the iron bar from the window and put it in your backpack.");
@@ -381,6 +389,9 @@ namespace RPG
                             }
                         }
                     }
+
+
+
                     else if (Command == "Go West" || Command == "West" || Command == "Go South" || Command == "South" || Command == "Go North" || Command == "North")
                     {
                         Console.WriteLine("");
@@ -396,7 +407,12 @@ namespace RPG
                 }
                 while (SecondRoom == true)    //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
-                    Console.WriteLine("*****Second Room*****");
+                    Console.Clear();
+                        Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine("THE HALLWAY");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("The Second Room");  //ska ta bort sen
+                    Console.ReadLine();
 
                     Console.Clear();
                     Console.SetCursorPosition(0, 30);
