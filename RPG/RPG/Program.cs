@@ -488,7 +488,7 @@ List<string> backPack = Hero.GetBackPack();
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
             Console.WriteLine("Welcome to the Age of Labyrinths.");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
-            Console.WriteLine("Please select a vocation: Barbarina, Knight, Thief, Warlook");
+            Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlok");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 1);
             type = Console.ReadLine().ToLower();
             return type;
