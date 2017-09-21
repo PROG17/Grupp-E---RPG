@@ -393,7 +393,7 @@ namespace RPG
                 }
                 while (SecondRoom == true)    //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
-
+                    bool vaseBroken = false;
                     Console.Clear();
                     Console.SetCursorPosition(0, 30);
                     Console.WriteLine("You have entered a hallway. In the middle of the room you see an ancient Vase on a piedestal.");
@@ -402,17 +402,24 @@ namespace RPG
                     Console.WriteLine("");
                     Console.WriteLine("");
                     Console.WriteLine("");
+
                     Command = FirstUpperCase(Console.ReadLine().ToLower());
                     if (Command == "Vase" || Command == "Ancient Vase" || Command == "Take Vase" || Command == "Use Vase" || Command == "Use Ancient Vase")
                     {
-
-                        Random arrowRnd = new Random();
-                        int arrowDamage = arrowRnd.Next(20, 50);
-                        Console.WriteLine("\nThe Vase is a trap! ");
-                        Console.WriteLine($"You took an arrow in the face and lost {arrowDamage} HP!");
-                        Hero.Hp -= arrowDamage;
-                        Console.WriteLine("Your Current HP is " + Hero.Hp + "\n. The Vase broke in to pieces");
-                        Console.ReadKey();
+                        if (vaseBroken = false)
+                        {
+                            Random arrowRnd = new Random();
+                            int arrowDamage = arrowRnd.Next(20, 50);
+                            Console.WriteLine("\nThe Vase is a trap! ");
+                            Console.WriteLine($"You took an arrow in the face and lost {arrowDamage} HP!");
+                            Hero.Hp -= arrowDamage;
+                            Console.WriteLine("Your Current HP is " + Hero.Hp + "\n. The Vase broke in to pieces");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("The Vase is broken...");
+                        }
                     }
 
                     else if (Command == "West" || Command == "Go West")
@@ -432,7 +439,6 @@ namespace RPG
                     }
 
                 }
-
             } while (EndGame == false);
 
 
