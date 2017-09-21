@@ -20,6 +20,7 @@ namespace RPG
         public int Char_Intelligence { get; set; }
         public int Hp { get; set; }
 
+
         public Character(string Name, string Character)
         {
             this.name = Name;
@@ -30,7 +31,7 @@ namespace RPG
             SetStats(character);
         }
         
-        public void SetStats(string vocation)
+        private void SetStats(string vocation)
         {
             if (vocation == "Barbarian")
             {
@@ -79,14 +80,15 @@ namespace RPG
             Char_Backpack.Remove(item);
         }
 
-        public void CheckBackPack()
+        public bool CheckBackPack(string item)
         {
-            Console.WriteLine("Current items in your backpack");
-            foreach (var item in Char_Backpack)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+            bool Ex = Char_Backpack.Contains(item);
+            return Ex;
+        }
+
+        public List<string> GetBackPack()
+        {
+            return Char_Backpack;
         }
         
     }

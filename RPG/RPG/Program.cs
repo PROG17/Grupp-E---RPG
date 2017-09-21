@@ -10,7 +10,6 @@ namespace RPG
     class Program
     {
 
-
         public static void Main(string[] args)
         {
             bool FirstRoom = true;
@@ -22,13 +21,6 @@ namespace RPG
             string Char_Name = "David";
             string Char_Voc = "Cool";
             string Command = "";
-            int Char_Max_HP = 0;
-            int Char_Current_HP = 0;
-            int Char_Strength = 0;
-            int Char_Agility = 0;
-            int Char_Intelligence = 0;
-            List<string> Char_Backpack = new List<string>();
-            Char_Backpack.Add("Bread");
             List<string> FirstRoomItems = new List<string>();
             FirstRoomItems.Add("Rusty Key");
             string ChestItem = "Vial";
@@ -36,7 +28,7 @@ namespace RPG
             // Sätter namn om karaktär 
             // Warlock som defaul
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
-            Char_Voc = FirstUpperCase(FirstUpperCase(WelcomeVoc(Char_Voc)));
+            Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
             if (Char_Voc != "Barbarian" && Char_Voc != "Knight" && Char_Voc != "Thief" && Char_Voc != "Warlock" )
             {
                 Char_Voc = "Warlock";
@@ -48,9 +40,11 @@ namespace RPG
 
             Console.WriteLine("Strengh: " + Hero.Char_Strength + "\n" + "Agility: " +  Hero.Char_Agility + "\n" + "Intellignece: " + Hero.Char_Intelligence + "\n" + "Hp: " + Hero.Hp);
             Console.WriteLine();
-            Hero.CheckBackPack();
+
+
+           // Hero.CheckBackPack();
             Hero.AddInventory("Nail");
-            Hero.CheckBackPack();
+           // Hero.CheckBackPack();
             Console.ReadLine();
 
             Console.Clear();
@@ -66,9 +60,8 @@ namespace RPG
             Console.ReadLine();
 
 
-
-
-                    Command = FirstUpperCase(Console.ReadLine().ToLower());
+            List<string> backPack = Hero.GetBackPack();
+            Command = FirstUpperCase(Console.ReadLine().ToLower());
                     if (Command == "Help")
                     {
                         Console.WriteLine("");
@@ -91,16 +84,16 @@ namespace RPG
                     else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
                     {
                         Console.WriteLine("");
-                        if (Char_Backpack.Count == 0)
+                        if (backPack.Count == 0)
                         {
                             Console.WriteLine("You have no items in your backpack.");
                             Console.Write("");
                         }
                         else
                         {
-                            for (int i = 0; i < Char_Backpack.Count; i++)
+                            for (int i = 0; i < backPack.Count; i++)
                             {
-                                Console.WriteLine(i + 1 + ": " + Char_Backpack[i]);
+                                Console.WriteLine(i + 1 + ": " + backPack[i]);
                             }
                             Console.WriteLine("Press <Enter> to go back");
                         }
@@ -112,9 +105,9 @@ namespace RPG
                             Console.WriteLine("Which item do you want to drop?");
                             Console.WriteLine("");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
-                            if (Char_Backpack.Contains(Command))
+                            if (backPack.Contains(Command))
                             {
-                                Char_Backpack.Remove(Command);
+                                Hero.DropInventory(Command);
                                 FirstRoomItems.Add(Command);
                                 Console.WriteLine("You put the " + Command + " on the floor.");
                                 Console.WriteLine("");
@@ -126,11 +119,8 @@ namespace RPG
                                 Console.WriteLine("Could not find " + Command + " in your inventory.");
                             }
                         }
-                        else
-                        {
-
-                        }
                     }
+                    
                     else if (Command == "Chest" || Command == "Go To Chest")
                     {
                         if (CheckChestOpen == true && ChestItem.Contains("Vial"))
@@ -141,7 +131,7 @@ namespace RPG
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (Command == "Yes")
                             {
-                                Char_Backpack.Add("Vial");
+                                Hero.AddInventory("Vial");
                                 ChestItem.Replace("Vial", "");
                                 Console.WriteLine("You picked up the vial.");
                                 Console.WriteLine("");
@@ -178,7 +168,7 @@ namespace RPG
                                 Command = FirstUpperCase(Console.ReadLine().ToLower());
                                 if (Command == "Yes")
                                 {
-                                    Char_Backpack.Add("Vial");
+                                    Hero.AddInventory("Vial");
                                     ChestItem.Replace("Vial", "");
                                     Console.WriteLine("You pick up the vial.");
                                     Console.WriteLine("");
@@ -196,7 +186,7 @@ namespace RPG
                                     Console.WriteLine("");
                                 }
                             }
-                            else if (Command == "Use Iron Bar" && Char_Backpack.Contains("Iron Bar") || Command == "Iron Bar" && Char_Backpack.Contains("Iron Bar") || Command == "Iron Pipe" && Char_Backpack.Contains("Iron Bar"))
+                            else if (Command == "Use Iron Bar" && backPack.Contains("Iron Bar") || Command == "Iron Bar" && backPack.Contains("Iron Bar") || Command == "Iron Pipe" && backPack.Contains("Iron Bar"))
                             {
                                 CheckChestOpen = true;
                                 Console.WriteLine("");
@@ -206,7 +196,7 @@ namespace RPG
                                 Command = FirstUpperCase(Console.ReadLine().ToLower());
                                 if (Command == "Yes")
                                 {
-                                    Char_Backpack.Add("Vial");
+                                    Hero.AddInventory("Vial");
                                     ChestItem.Replace("Vial", "");
                                     Console.WriteLine("You pick up the vial.");
                                     Console.WriteLine("");
@@ -262,7 +252,7 @@ namespace RPG
                             if (Command == "Yes")
                             {
 
-                                Char_Backpack.Add("Rusty Key");
+                                Hero.AddInventory("Rusty Key");
                                 FirstRoomItems.Remove("Rusty Key");
 
                                 Console.WriteLine("You put the rusty key in your backpack.");
@@ -303,19 +293,19 @@ namespace RPG
                                 Console.WriteLine("");
                                 if (Command == "Use Rusty Key" || Command == "Rusty Key")
                                 {
-                                    if (Char_Backpack.Contains("Rusty Key"))
+                                    if (backPack.Contains("Rusty Key"))
                                     {
                                         Console.WriteLine("You unlocked the door");
                                         Console.WriteLine("");
                                         FirstDoorOpen = true;
                                         FirstRoom = false;
                                         SecondRoom = true;
-                                        Char_Backpack.Remove("Rusty Key");
+                                        Hero.DropInventory("Rusty Key");
                                     }
                                 }
                                 else if (Command == "Push" || Command == "Break")
                                 {
-                                    if (Char_Strength >= 10)
+                                    if (Hero.Char_Strength >= 10)
                                     {
                                         Console.WriteLine("");
                                         Console.WriteLine("You smash the door open with your unbridled power.");
@@ -359,7 +349,7 @@ namespace RPG
                         Console.WriteLine("Does not understand input. Try again.");
                         Console.WriteLine("");
                     }
-                }
+                
                 while (SecondRoom == true)
                 {
                     Console.WriteLine("");
@@ -379,7 +369,7 @@ namespace RPG
 
                 }
 
-            } while (EndGame == false);
+             while (EndGame == false);
 
 
             //Console.WriteLine("Exists in Room 1: ");
