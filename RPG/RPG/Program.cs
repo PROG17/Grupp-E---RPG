@@ -72,6 +72,10 @@ namespace RPG
                     Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
                     Console.WriteLine("");
                 }
+                else
+                {
+
+                }
                 if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
                 {
                     Console.WriteLine("");
@@ -199,11 +203,16 @@ namespace RPG
                         }
 
                     }
+                    
                     //HÄR SKA NÄSTA RUM BÖRJA
 
                 }
+                else
+                {
 
-                Console.WriteLine("");
+                }
+            }
+            Console.WriteLine("");
                 Console.WriteLine("Välkommen till nästa rum!");
                 Console.ReadLine();
 
@@ -217,7 +226,7 @@ namespace RPG
                 //}
                 //Console.WriteLine("");
 
-            }
+            
 
         }
 
