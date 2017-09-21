@@ -14,6 +14,7 @@ namespace RPG
         {
             bool FirstRoom = true;
             bool SecondRoom = false;
+            bool ThirdRoom = false;
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
             bool FirstRoomIronBarWindow = true;
@@ -402,21 +403,44 @@ List<string> backPack = Hero.GetBackPack();
                         Console.WriteLine("");
                     }
                 }
-                while (SecondRoom == true)
+                while (SecondRoom == true)    //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
+                    
+                    Console.Clear();
+                    Console.SetCursorPosition(0, 30);
+                    Console.WriteLine("You have entered a hallway. In the middle of the room you see an ancient Vase on a piedestal.");
+                    Console.WriteLine("There are walls to the South and East, but to the North you see an open door.");
+                    Console.WriteLine("To the West you see the room you woke up in.");
                     Console.WriteLine("");
-                    Console.WriteLine("Go to last room?");
+                    Console.WriteLine("");
                     Console.WriteLine("");
                     Command = FirstUpperCase(Console.ReadLine().ToLower());
-                    if (Command == "Yes")
+                    if (Command == "Vase" || Command == "Ancient Vase" || Command == "Take Vase" || Command == "Use Vase" || Command == "Use Ancient Vase")
                     {
-                        FirstRoom = true;
-                        SecondRoom = false;
 
+                        Random arrowRnd = new Random();
+                        int arrowDamage = arrowRnd.Next(20, 50);
+                        Console.WriteLine("\nThe Vase is a trap! ");
+                        Console.WriteLine($"You took an arrow in the face and lost {arrowDamage} HP!");
+                        Hero.Hp -= arrowDamage;
+                        Console.WriteLine("Your Current HP is " + Hero.Hp + "\n. The Vase broke in to pieces");
+                        Console.ReadKey();
+                    }
+
+                    else if (Command == "West" || Command == "Go West")
+                    {
+                        SecondRoom = false;
+                        FirstRoom = true;
+                    }
+                    else if (Command == "North" || Command == "Go North")
+                    {
+                        SecondRoom = false;
+                        ThirdRoom = true;
                     }
                     else
                     {
-                        Console.WriteLine("Gay");
+                        Console.WriteLine("Does not recognize action. Please try again");
+                        Console.WriteLine("");
                     }
 
                 }
