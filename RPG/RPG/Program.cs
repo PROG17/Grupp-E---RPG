@@ -14,8 +14,10 @@ namespace RPG
         public static void Main(string[] args)
         {
             bool FirstRoom = true;
+            bool SecondRoom = false;
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
+            bool EndGame = false;
             string Char_Name = "David";
             string Char_Voc = "Cool";
             string Command = "";
@@ -57,176 +59,207 @@ namespace RPG
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            while (FirstRoom == true)
+            do
             {
-                //WriteTop(Char_Name, Char_Backpack.Count, Char_Voc, Char_Current_HP, Char_Max_HP);
 
 
-                Command = FirstUpperCase(Console.ReadLine().ToLower());
-                if (Command == "Help")
+                while (FirstRoom == true)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Here is a few commands that you can write in this game.");
-                    Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
-                    Console.WriteLine("Backpack - To show current items in your backpack.");
-                    Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-                    Console.WriteLine("");
-                }
-                else
-                {
+                    //WriteTop(Char_Name, Char_Backpack.Count, Char_Voc, Char_Current_HP, Char_Max_HP);
 
-                }
-                if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
-                {
-                    Console.WriteLine("");
-                    if (Char_Backpack.Count == 0)
-                    {
-                        Console.WriteLine("You have no items in your backpack.");
-                        Console.Write("");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < Char_Backpack.Count; i++)
-                        {
-                            Console.WriteLine(i + 1 + ": " + Char_Backpack[i]);
-                        }
-                        Console.WriteLine("Press <Enter> to go back");
-                    }
-                    Console.WriteLine("");
+
                     Command = FirstUpperCase(Console.ReadLine().ToLower());
-                    if (Command == "Drop" || Command == "Remove")
+                    if (Command == "Help")
                     {
                         Console.WriteLine("");
-                        Console.WriteLine("Which item do you want to drop?");
+                        Console.WriteLine("Here is a few commands that you can write in this game.");
+                        Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
+                        Console.WriteLine("Backpack - To show current items in your backpack.");
+                        Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
                         Console.WriteLine("");
-                        Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        if (Char_Backpack.Contains(Command))
+                    }
+                    else if (Command == "Look")
+                    {
+                        Console.WriteLine("You wake up in a room. It have a wooden door and one window that seems to be blocked by iron bars.");
+                        Console.WriteLine("To the east you see a door that's shut. Besides it you see a table with some debris under it.");
+                        Console.WriteLine("It seems that someone have taken most of your belongings from your backpack.");
+                        Console.WriteLine("Maybe there's something left somewhere in this room.");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
+                    }
+                    if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
+                    {
+                        Console.WriteLine("");
+                        if (Char_Backpack.Count == 0)
                         {
-                            Char_Backpack.Remove(Command);
-                            FirstRoomItems.Add(Command);
-                            Console.WriteLine("You put the " + Command + " on the floor.");
-                            Console.WriteLine("");
+                            Console.WriteLine("You have no items in your backpack.");
+                            Console.Write("");
                         }
                         else
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("Could not find " + Command + " in your inventory.");
-                        }
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else if (Command == "Table" || Command == "Go To Table")
-                {
-                    if (FirstRoomItems.Contains("Spike") && FirstItemIsFound == false)
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("You see a 3 inch Spike under the table. Do you want to pick it up?");
-                        Console.WriteLine("");
-                        Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        Console.WriteLine("");
-                        if (Command == "Yes")
-                        {
-
-                            Char_Backpack.Add("Spike");
-                            FirstRoomItems.Remove("Spike");
-
-                            Console.WriteLine("You put the Spike in your backpack.");
-                            Console.WriteLine("");
-                            FirstItemIsFound = true;
-                        }
-                        else if (Command == "No")
-                        {
-                            Console.WriteLine("You leave the Spike under the table.");
-                            Console.WriteLine("");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Could not interpret action");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("You go to the table and check but there is nothing here.");
-                    }
-                }
-                else if (Command == "Go East" || Command == "East" || Command == "Door")
-                {
-                    while (FirstDoorOpen == false)
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("You approach the wooden door. The door is locked but the lock seems old.");
-                        Console.WriteLine("");
-                        Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        Console.WriteLine("");
-                        if (Command == "Use Rusty Key" || Command == "Rusty Key")
-                        {
-                            if (Char_Backpack.Contains("Rusty Key"))
+                            for (int i = 0; i < Char_Backpack.Count; i++)
                             {
-                                Console.WriteLine("You unlocked the door");
-                                Console.WriteLine("");
-                                FirstDoorOpen = true;
-                                FirstRoom = false;
-                                Char_Backpack.Remove("Rusty Key");
+                                Console.WriteLine(i + 1 + ": " + Char_Backpack[i]);
                             }
+                            Console.WriteLine("Press <Enter> to go back");
                         }
-                        else if (Command == "Push" || Command == "Break")
+                        Console.WriteLine("");
+                        Command = FirstUpperCase(Console.ReadLine().ToLower());
+                        if (Command == "Drop" || Command == "Remove")
                         {
-                            if (Char_Strength >= 10)
+                            Console.WriteLine("");
+                            Console.WriteLine("Which item do you want to drop?");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (Char_Backpack.Contains(Command))
                             {
+                                Char_Backpack.Remove(Command);
+                                FirstRoomItems.Add(Command);
+                                Console.WriteLine("You put the " + Command + " on the floor.");
                                 Console.WriteLine("");
-                                Console.WriteLine("You smash the door open with your unbridled power.");
-                                Console.WriteLine("");
-                                FirstDoorOpen = true;
-                                FirstRoom = false;
+
                             }
                             else
                             {
-                                Console.WriteLine("The door is old but is sturdy enough to withstand the force of your impact.");
+                                Console.WriteLine("");
+                                Console.WriteLine("Could not find " + Command + " in your inventory.");
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    }
+
+                    else if (Command == "Table" || Command == "Go To Table")
+                    {
+                        if (FirstRoomItems.Contains("Spike") && FirstItemIsFound == false)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You see a 3 inch Spike under the table. Do you want to pick it up?");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            Console.WriteLine("");
+                            if (Command == "Yes")
+                            {
+
+                                Char_Backpack.Add("Spike");
+                                FirstRoomItems.Remove("Spike");
+
+                                Console.WriteLine("You put the Spike in your backpack.");
+                                Console.WriteLine("");
+                                FirstItemIsFound = true;
+                            }
+                            else if (Command == "No")
+                            {
+                                Console.WriteLine("You leave the Spike under the table.");
+                                Console.WriteLine("");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Could not interpret action");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You go to the table and check but there is nothing here.");
+                        }
+                    }
+                    else if (Command == "Go East" || Command == "East" || Command == "Door")
+                    {
+                        while (FirstDoorOpen == false)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You approach the wooden door. The door is locked but the lock seems old.");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            Console.WriteLine("");
+                            if (Command == "Use Rusty Key" || Command == "Rusty Key")
+                            {
+                                if (Char_Backpack.Contains("Rusty Key"))
+                                {
+                                    Console.WriteLine("You unlocked the door");
+                                    Console.WriteLine("");
+                                    FirstDoorOpen = true;
+                                    FirstRoom = false;
+                                    SecondRoom = true;
+                                    Char_Backpack.Remove("Rusty Key");
+                                }
+                            }
+                            else if (Command == "Push" || Command == "Break")
+                            {
+                                if (Char_Strength >= 10)
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You smash the door open with your unbridled power.");
+                                    Console.WriteLine("");
+                                    FirstDoorOpen = true;
+                                    FirstRoom = false;
+                                    SecondRoom = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("The door is old but is sturdy enough to withstand the force of your impact.");
+                                    Console.WriteLine("");
+                                }
+
+                            }
+                            else if (Command == "Back")
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You go back to the middle of the room");
+                                Console.WriteLine("");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Does not recognize action. Please try again");
                                 Console.WriteLine("");
                             }
 
                         }
-                        else if (Command == "Back")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("You go back to the middle of the room");
-                            Console.WriteLine("");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Does not recognize action. Please try again");
-                            Console.WriteLine("");
-                        }
+                        Console.WriteLine("Go to second room");
+                        SecondRoom = true;
+
+                        //HÄR SKA NÄSTA RUM BÖRJA
 
                     }
-                    
-                    //HÄR SKA NÄSTA RUM BÖRJA
+                    else
+                    {
 
+                    }
                 }
-                else
+                while (SecondRoom == true)
                 {
-
+                    Console.WriteLine("");
+                    Console.WriteLine("Go to last room?");
+                    Command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (Command == "Yes")
+                    {
+                        FirstRoom = true;
+                        SecondRoom = false;
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Gay");
+                    }
+                    
                 }
-            }
-            Console.WriteLine("");
-                Console.WriteLine("Välkommen till nästa rum!");
-                Console.ReadLine();
+                
+            } while (EndGame == false);
 
 
+            //Console.WriteLine("Exists in Room 1: ");
+            //foreach (var item in FirstRoomItems)
+            //{
 
-                //Console.WriteLine("Exists in Room 1: ");
-                //foreach (var item in FirstRoomItems)
-                //{
+            //    Console.Write(item + Environment.NewLine);
+            //}
+            //Console.WriteLine("");
 
-                //    Console.Write(item + Environment.NewLine);
-                //}
-                //Console.WriteLine("");
 
-            
 
         }
 
