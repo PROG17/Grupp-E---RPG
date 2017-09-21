@@ -16,6 +16,7 @@ namespace RPG
             bool SecondRoom = false;
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
+            bool FirstRoomIronBarWindow = true;
             bool CheckChestOpen = false;
             bool EndGame = false;
             string Char_Name = "David";
@@ -46,7 +47,7 @@ namespace RPG
             Hero.AddInventory("Nail");
            // Hero.CheckBackPack();
             Console.ReadLine();
-
+List<string> backPack = Hero.GetBackPack();
             Console.Clear();
             Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 5);
             Console.WriteLine("Welcome {0} to the Age of Labyrinths. You have chosen to be a {1}.", Char_Name, Char_Voc);
@@ -57,11 +58,22 @@ namespace RPG
             Console.Clear();
             Console.SetCursorPosition(0, 30);
             Console.WriteLine("You wake up in a room. It have a wooden door and one window that seems to be blocked by iron bars.");
-            Console.ReadLine();
+            Console.WriteLine("To the east you see a door that's shut. Besides it you see a table with some debris under it.");
+            Console.WriteLine("It seems that someone have taken most of your belongings from your backpack.");
+            Console.WriteLine("Maybe there's something left somewhere in this room.");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            do
+            {
 
 
-            List<string> backPack = Hero.GetBackPack();
-            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                while (FirstRoom == true)
+                {
+                    //WriteTop(Char_Name, Char_Backpack.Count, Char_Voc, Char_Current_HP, Char_Max_HP);
+
+
+                    Command = FirstUpperCase(Console.ReadLine().ToLower());
                     if (Command == "Help")
                     {
                         Console.WriteLine("");
@@ -107,7 +119,7 @@ namespace RPG
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (backPack.Contains(Command))
                             {
-                                Hero.DropInventory(Command);
+                                backPack.Remove(Command);
                                 FirstRoomItems.Add(Command);
                                 Console.WriteLine("You put the " + Command + " on the floor.");
                                 Console.WriteLine("");
@@ -119,8 +131,11 @@ namespace RPG
                                 Console.WriteLine("Could not find " + Command + " in your inventory.");
                             }
                         }
+                        else
+                        {
+
+                        }
                     }
-                    
                     else if (Command == "Chest" || Command == "Go To Chest")
                     {
                         if (CheckChestOpen == true && ChestItem.Contains("Vial"))
@@ -131,7 +146,7 @@ namespace RPG
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (Command == "Yes")
                             {
-                                Hero.AddInventory("Vial");
+                                backPack.Add("Vial");
                                 ChestItem.Replace("Vial", "");
                                 Console.WriteLine("You picked up the vial.");
                                 Console.WriteLine("");
@@ -168,7 +183,7 @@ namespace RPG
                                 Command = FirstUpperCase(Console.ReadLine().ToLower());
                                 if (Command == "Yes")
                                 {
-                                    Hero.AddInventory("Vial");
+                                    backPack.Add("Vial");
                                     ChestItem.Replace("Vial", "");
                                     Console.WriteLine("You pick up the vial.");
                                     Console.WriteLine("");
@@ -196,7 +211,7 @@ namespace RPG
                                 Command = FirstUpperCase(Console.ReadLine().ToLower());
                                 if (Command == "Yes")
                                 {
-                                    Hero.AddInventory("Vial");
+                                    backPack.Add("Vial");
                                     ChestItem.Replace("Vial", "");
                                     Console.WriteLine("You pick up the vial.");
                                     Console.WriteLine("");
@@ -226,7 +241,7 @@ namespace RPG
                     else if (Command == "Window" || Command == "Go to Window")
                     {
                         Console.WriteLine("");
-                        Console.WriteLine("You look through the window and you see a giant white castle on a Green hill.");
+                        Console.WriteLine("You look past the iron bars through the window and you see a giant white castle on a Green hill.");
                         Console.WriteLine("The castle have Four towers that seems to stretch towards the heaven.");
                         Console.WriteLine("You also see Two mountains in the distance that makes the castle even more beautiful.");
                         Console.WriteLine("However you get the feeling that there's No one in the castle.");
@@ -235,10 +250,46 @@ namespace RPG
                         if (Command == "Open" || Command == "Open Window")
                         {
                             Console.WriteLine("");
-                            Console.WriteLine("The window is closed and can't be opened.");
+                            Console.WriteLine("The window is closed and can't be opened. Even if you could open it it's blocked by iron bars.");
+                            Console.WriteLine("Going back to the middle of the room.");
+                            Console.WriteLine("");
+
+                        }
+                        else if (Command == "Iron Bar" && FirstRoomIronBarWindow == false || Command == "Iron Bars" && FirstRoomIronBarWindow == false)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You've already taken one of the iron bars. Besides you couldn't even take another one.");
+                        }
+                        else if (Command == "Iron Bar" && FirstRoomIronBarWindow == true || Command == "Iron Bars" && FirstRoomIronBarWindow == true)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You take a look at the iron bars and you notice that one of the bars is loose.");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (Command == "Get Iron Bar" || Command == "Pick Up Iron Bar" || Command == "Get Iron Bar" || Command == "Pull Iron Bar")
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You successfully pulled the iron bar from the window and put it in your backpack.");
+                                Console.WriteLine("");
+                                backPack.Add("Iron Bar");
+                                FirstRoomIronBarWindow = false;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You move away from the window.");
+                                Console.WriteLine("");
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You move away from the window.");
                             Console.WriteLine("");
                         }
-                    } 
+                    }
                     else if (Command == "Table" || Command == "Go To Table")
                     {
                         if (FirstRoomItems.Contains("Rusty Key") && FirstItemIsFound == false)
@@ -252,7 +303,7 @@ namespace RPG
                             if (Command == "Yes")
                             {
 
-                                Hero.AddInventory("Rusty Key");
+                                backPack.Add("Rusty Key");
                                 FirstRoomItems.Remove("Rusty Key");
 
                                 Console.WriteLine("You put the rusty key in your backpack.");
@@ -288,6 +339,7 @@ namespace RPG
                             {
                                 Console.WriteLine("");
                                 Console.WriteLine("You approach the wooden door. The door is locked but the lock seems old.");
+                                Console.WriteLine("To go away from the door, write back");
                                 Console.WriteLine("");
                                 Command = FirstUpperCase(Console.ReadLine().ToLower());
                                 Console.WriteLine("");
@@ -300,7 +352,7 @@ namespace RPG
                                         FirstDoorOpen = true;
                                         FirstRoom = false;
                                         SecondRoom = true;
-                                        Hero.DropInventory("Rusty Key");
+                                        backPack.Remove("Rusty Key");
                                     }
                                 }
                                 else if (Command == "Push" || Command == "Break")
@@ -349,7 +401,7 @@ namespace RPG
                         Console.WriteLine("Does not understand input. Try again.");
                         Console.WriteLine("");
                     }
-                
+                }
                 while (SecondRoom == true)
                 {
                     Console.WriteLine("");
@@ -369,7 +421,7 @@ namespace RPG
 
                 }
 
-             while (EndGame == false);
+            } while (EndGame == false);
 
 
             //Console.WriteLine("Exists in Room 1: ");
