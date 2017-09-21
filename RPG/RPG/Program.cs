@@ -31,24 +31,24 @@ namespace RPG
             // Warlock som defaul
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
-            if (Char_Voc != "Barbarian" && Char_Voc != "Knight" && Char_Voc != "Thief" && Char_Voc != "Warlock" )
+            if (Char_Voc != "Barbarian" && Char_Voc != "Knight" && Char_Voc != "Thief" && Char_Voc != "Warlock")
             {
                 Char_Voc = "Warlock";
             }
-            
+
 
             var Hero = new Character(Char_Name, Char_Voc);
             // Hero.SetStats(Char_Voc);
 
-            Console.WriteLine("Strengh: " + Hero.Char_Strength + "\n" + "Agility: " +  Hero.Char_Agility + "\n" + "Intellignece: " + Hero.Char_Intelligence + "\n" + "Hp: " + Hero.Hp);
+            Console.WriteLine("Strengh: " + Hero.Char_Strength + "\n" + "Agility: " + Hero.Char_Agility + "\n" + "Intellignece: " + Hero.Char_Intelligence + "\n" + "Hp: " + Hero.Hp);
             Console.WriteLine();
 
 
-           // Hero.CheckBackPack();
+            // Hero.CheckBackPack();
             Hero.AddInventory("Nail");
-           // Hero.CheckBackPack();
+            // Hero.CheckBackPack();
             Console.ReadLine();
-List<string> backPack = Hero.GetBackPack();
+            List<string> backPack = Hero.GetBackPack();
             Console.Clear();
             Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 5);
             Console.WriteLine("Welcome {0} to the Age of Labyrinths. You have chosen to be a {1}.", Char_Name, Char_Voc);
@@ -326,7 +326,7 @@ List<string> backPack = Hero.GetBackPack();
                             Console.WriteLine("You go to the table and check but there is nothing here.");
                         }
                     }
-                    else if (Command == "Go East" || Command == "East" || Command == "Door")
+                    else if (Command == "Go East" || Command == "East" || Command == "Door" || Command == "Inspect Door")
                     {
                         if (FirstDoorOpen == true)
                         {
@@ -334,59 +334,47 @@ List<string> backPack = Hero.GetBackPack();
                             Console.WriteLine("Go to second room");
                             SecondRoom = true;
                         }
-                        else
+                        else if (FirstDoorOpen == false)
                         {
-                            while (FirstDoorOpen == false)
-                            {
-                                Console.WriteLine("");
-                                Console.WriteLine("You approach the wooden door. The door is locked but the lock seems old.");
-                                Console.WriteLine("To go away from the door, write back");
-                                Console.WriteLine("");
-                                Command = FirstUpperCase(Console.ReadLine().ToLower());
-                                Console.WriteLine("");
-                                if (Command == "Use Rusty Key" || Command == "Rusty Key")
-                                {
-                                    if (backPack.Contains("Rusty Key"))
-                                    {
-                                        Console.WriteLine("You unlocked the door");
-                                        Console.WriteLine("");
-                                        FirstDoorOpen = true;
-                                        FirstRoom = false;
-                                        SecondRoom = true;
-                                        backPack.Remove("Rusty Key");
-                                    }
-                                }
-                                else if (Command == "Push" || Command == "Break")
-                                {
-                                    if (Hero.Char_Strength >= 10)
-                                    {
-                                        Console.WriteLine("");
-                                        Console.WriteLine("You smash the door open with your unbridled power.");
-                                        Console.WriteLine("");
-                                        FirstDoorOpen = true;
-                                        FirstRoom = false;
-                                        SecondRoom = true;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("The door is old but is sturdy enough to withstand the force of your impact.");
-                                        Console.WriteLine("");
-                                    }
 
+                            Console.WriteLine("");
+                            Console.WriteLine("You approach the wooden door. The door is locked but the lock seems old.");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            Console.WriteLine("");
+                            if (Command == "Use Rusty Key" || Command == "Rusty Key")
+                            {
+                                if (backPack.Contains("Rusty Key"))
+                                {
+                                    Console.WriteLine("You unlocked the door");
+                                    Console.WriteLine("");
+                                    FirstDoorOpen = true;
+                                    FirstRoom = false;
+                                    SecondRoom = true;
+                                    backPack.Remove("Rusty Key");
                                 }
-                                else if (Command == "Back")
+                            }
+                            else if (Command == "Push" || Command == "Break")
+                            {
+                                if (Hero.Char_Strength >= 10)
                                 {
                                     Console.WriteLine("");
-                                    Console.WriteLine("You go back to the middle of the room");
+                                    Console.WriteLine("You smash the door open with your unbridled power.");
                                     Console.WriteLine("");
-                                    break;
+                                    FirstDoorOpen = true;
+                                    FirstRoom = false;
+                                    SecondRoom = true;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Does not recognize action. Please try again");
+                                    Console.WriteLine("The door is old but is sturdy enough to withstand the force of your impact.");
                                     Console.WriteLine("");
                                 }
-
+                            }
+                            else
+                            {
+                                Console.WriteLine("Does not recognize action. Please try again");
+                                Console.WriteLine("");
                             }
                         }
                     }
@@ -405,7 +393,7 @@ List<string> backPack = Hero.GetBackPack();
                 }
                 while (SecondRoom == true)    //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
-                    
+
                     Console.Clear();
                     Console.SetCursorPosition(0, 30);
                     Console.WriteLine("You have entered a hallway. In the middle of the room you see an ancient Vase on a piedestal.");
