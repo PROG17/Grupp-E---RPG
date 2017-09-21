@@ -408,7 +408,7 @@ namespace RPG
                 while (SecondRoom == true)    //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
                     Console.Clear();
-                        Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 5);
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 5);
                     Console.WriteLine("THE HALLWAY");
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
                     Console.WriteLine("The Second Room");  //ska ta bort sen
@@ -421,7 +421,7 @@ namespace RPG
                     {
                         Console.WriteLine("\nWith your great perception you see that the Vase has some kind of lever. \nBetter be careful...\n");
                     }
-                    Console.WriteLine("By the East wall stands a statue of a knight in battle.\nHis sword is raised, but he seems to be missing something...");
+                    Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
                     Console.WriteLine("To the North you see an open door.");
                     Console.WriteLine("To the West you see the room you woke up in.");
                     Console.WriteLine("");
@@ -447,6 +447,50 @@ namespace RPG
                             else
                             {
                                 Console.WriteLine("The Vase is broken...");
+                            }
+                        }
+
+                        else if (Command == "Statue")
+                        {
+                            Console.WriteLine("You walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
+                            Console.WriteLine("There is a Plate with an inscription at the foot of the Statue.");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (Command == "Plate" || Command == "Read Plate" || Command == "Inscription" || Command == "Read")
+                            {
+                                Console.Clear();
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 11);
+                                Console.WriteLine("+-------------------------------------------------------------------+");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 10);
+                                Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 9);
+                                Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 8);
+                                Console.WriteLine("|: |                                                             | :|");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 7);
+                                Console.WriteLine("| :|               Sine auxilio,  Et non morieris                |: |");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 6);
+                                Console.WriteLine("|: |                                                             | :|");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 5);
+                                Console.WriteLine("| :|                                                             |: |");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 4);
+                                Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 3);
+                                Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 2);
+                                Console.WriteLine("+-------------------------------------------------------------------+");
+
+                                Console.ReadLine();
+                                Console.Clear();
+                                Console.SetCursorPosition(0, 30);
+                                Console.WriteLine("You walk back to the center of the room.");
+                            }
+                            else if (Command == "No")
+                            {
+                                Console.WriteLine("You walk back to the center of the room.");
+                            }
+                            else {
+                                Console.WriteLine("?");
+                                Console.WriteLine("You walk back to the center of the room.");
                             }
                         }
 
@@ -482,7 +526,7 @@ namespace RPG
                             }
                             else if (!SecondRoomItems.Contains("Vase Shards")) { }
                             else { Console.WriteLine("There are Shards on the floor from the Vase"); }
-                            Console.WriteLine("By the East wall stands a statue of a knight in battle.\nHis sword is raised, but he seems to be missing something...\n");
+                            Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
                             Console.WriteLine("To the North you see an open door.");
                             Console.WriteLine("To the West you see the room you woke up in.");
 
