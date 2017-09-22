@@ -416,282 +416,289 @@ namespace RPG
 
                     Console.Clear();
                     Console.SetCursorPosition(0, 30);
-                    Console.WriteLine("You have entered a hallway. By the south wall you see an ancient Vase on a piedestal.");
-                    if (Hero.Char_Intelligence == 10)
+                    if (vaseBroken == false)
                     {
-                        Console.WriteLine("\nWith your great perception you see that the Vase has some kind of lever. \nBetter be careful...\n");
-                    }
-                    Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
-                    Console.WriteLine("To the North you see an open door.");
-                    Console.WriteLine("To the West you see the room you woke up in.");
-                    Console.WriteLine("");
-                    Console.WriteLine("");
-                    Console.WriteLine("");
-
-                    while (true)
-                    {
-                        Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        if (Command == "Vase" || Command == "Ancient Vase" || Command == "Take Vase" || Command == "Use Vase" || Command == "Use Ancient Vase")
+                        Console.WriteLine("You have entered the hallway. By the south wall you see an ancient Vase on a piedestal.");
+                        if (Hero.Char_Intelligence == 10)
                         {
-                            if (vaseBroken == false)
-                            {
-                                Random arrowRnd = new Random();
-                                int arrowDamage = arrowRnd.Next(20, 50);
-                                Console.WriteLine("\nThe Vase is a trap! ");
-                                Console.WriteLine($"Arrows shoot out from the south and you loose {arrowDamage} HP!");
-                                Hero.Hp -= arrowDamage;
-                                Console.WriteLine("Your Current HP is " + Hero.Hp + ".\nThe Vase broke in to Shards\n");
-                                SecondRoomItems.Add("Vase Shards");
-                                vaseBroken = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine("The Vase is broken...");
-                            }
+                            Console.WriteLine("\nWith your great perception you see that the Vase has some kind of lever. \nBetter be careful...\n");
                         }
+                        else { Console.WriteLine("You have entered the hallway. By the south wall you see a piedestal."); }
+                        Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
+                        Console.WriteLine("To the North you see an open door.");
+                        Console.WriteLine("To the West you see the room you woke up in.");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
 
-                        else if (Command == "Statue")
+                        while (true)
                         {
-                            Console.WriteLine("You walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
-                            Console.WriteLine("There is a Plate with an inscription at the foot of the Statue.");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
-                            if (Command == "Plate" || Command == "Read Plate" || Command == "Inscription" || Command == "Read")
+                            if (Command == "Vase" || Command == "Ancient Vase" || Command == "Take Vase" || Command == "Use Vase" || Command == "Use Ancient Vase")
                             {
-                                Console.Clear();
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 11);
-                                Console.WriteLine("+-------------------------------------------------------------------+");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 10);
-                                Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 9);
-                                Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 8);
-                                Console.WriteLine("|: |                                                             | :|");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 7);
-                                Console.WriteLine("| :|               Sine auxilio,  Et non morieris                |: |");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 6);
-                                Console.WriteLine("|: |                                                             | :|");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 5);
-                                Console.WriteLine("| :|                                                             |: |");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 4);
-                                Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 3);
-                                Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
-                                Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 2);
-                                Console.WriteLine("+-------------------------------------------------------------------+");
-
-                                Console.ReadLine();
-                                Console.Clear();
-                                Console.SetCursorPosition(0, 30);
-                                Console.WriteLine("You walk back to the center of the room.");
-                            }
-                            else if (Command == "No")
-                            {
-                                Console.WriteLine("You walk back to the center of the room.");
-                            }
-                            else {
-                                Console.WriteLine("?");
-                                Console.WriteLine("You walk back to the center of the room.");
-                            }
-                        }
-
-                        else if (Command == "West" || Command == "Go West")
-                        {
-                            SecondRoom = false;
-                            FirstRoom = true;
-                            break;
-                        }
-                        else if (Command == "North" || Command == "Go North")
-                        {
-                            SecondRoom = false;
-                            ThirdRoom = true;
-                            break;
-                        }
-
-                        else if (Command == "Help")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("Here is a few commands that you can write in this game.");
-                            Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
-                            Console.WriteLine("Backpack - To show current items in your backpack.");
-                            Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Look")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("You are in a hallway, and there is a piedestal by the South wall.");
-                            if (vaseBroken == false)
-                            {
-                                Console.WriteLine("On the piedestal stands an ancient Vase.");
-                            }
-                            else if (!SecondRoomItems.Contains("Vase Shards")) { }
-                            else { Console.WriteLine("There are Shards on the floor from the Vase"); }
-                            Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
-                            Console.WriteLine("To the North you see an open door.");
-                            Console.WriteLine("To the West you see the room you woke up in.");
-
-
-                            Console.WriteLine("");
-                            Console.WriteLine("");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
-                        {
-                            Console.WriteLine("");
-                            if (backPack.Count == 0)
-                            {
-                                Console.WriteLine("You have no items in your backpack.");
-                                Console.Write("");
-                            }
-                            else
-                            {
-                                for (int i = 0; i < backPack.Count; i++)
+                                if (vaseBroken == false)
                                 {
-                                    Console.WriteLine(i + 1 + ": " + backPack[i]);
-                                }
-                                Console.WriteLine("Press <Enter> to go back");
-                            }
-                            Console.WriteLine("");
-                            Command = FirstUpperCase(Console.ReadLine().ToLower());
-                            if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
-                            {
-                                Console.WriteLine("");
-                                Console.WriteLine("Which item do you want to drop?");
-                                Console.WriteLine("");
-                                Command = FirstUpperCase(Console.ReadLine().ToLower());
-                                if (backPack.Contains(Command))
-                                {
-                                    backPack.Remove(Command);
-                                    SecondRoomItems.Add(Command);
-                                    Console.WriteLine("You put the " + Command + " on the floor.");
-                                    Console.WriteLine("");
-
+                                    Random arrowRnd = new Random();
+                                    int arrowDamage = arrowRnd.Next(20, 50);
+                                    Console.WriteLine("\nThe Vase is a trap! \n");
+                                    Console.WriteLine($"Arrows shoot out from the south wall and you loose {arrowDamage} HP!");
+                                    Hero.Hp -= arrowDamage;
+                                    Console.WriteLine("Your Current HP is " + Hero.Hp + ".\nThe Vase broke in to Shards\n");
+                                    SecondRoomItems.Add("Vase Shards");
+                                    vaseBroken = true;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("");
-                                    Console.WriteLine("Could not find " + Command + " in your inventory.");
+                                    Console.WriteLine("The Vase is broken...");
                                 }
                             }
-                        }
-                        else if (Command == "Vase Shards" || Command == " Take Vase Shards" || Command == "Use Vase Shards" || Command == "Get Vase Shards")
-                        {
-                            if (SecondRoomItems.Contains("Vase Shards"))
-                            {
-                                Console.WriteLine("\nDo you want to take the Vase Shards from the ground?");
-                                Command = FirstUpperCase(Console.ReadLine().ToLower());
-                                if (Command == "Yes")
-                                {
-                                    backPack.Add("Vase Shards");
-                                    SecondRoomItems.Remove("Vase Shards");
-                                    Console.WriteLine("You pick up the Vase Shards.");
-                                    Console.WriteLine("");
 
+                            else if (Command == "Statue")
+                            {
+                                Console.WriteLine("You walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
+                                Console.WriteLine("There is a Plate with an inscription at the foot of the Statue.");
+                                Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                if (Command == "Plate" || Command == "Read Plate" || Command == "Inscription" || Command == "Read")
+                                {
+                                    Console.Clear();
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 11);
+                                    Console.WriteLine("+-------------------------------------------------------------------+");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 10);
+                                    Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 9);
+                                    Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 8);
+                                    Console.WriteLine("|: |                                                             | :|");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 7);
+                                    Console.WriteLine("| :|               Sine auxilio,  Et non morieris                |: |");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 6);
+                                    Console.WriteLine("|: |                                                             | :|");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 5);
+                                    Console.WriteLine("| :|                                                             |: |");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 4);
+                                    Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 3);
+                                    Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                                    Console.SetCursorPosition(Console.WindowWidth / 2 - 35, Console.WindowHeight / 2 - 2);
+                                    Console.WriteLine("+-------------------------------------------------------------------+");
+
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    Console.SetCursorPosition(0, 30);
+                                    Console.WriteLine("You walk back to the center of the room.");
                                 }
                                 else if (Command == "No")
                                 {
-                                    Console.WriteLine("");
-                                    Console.WriteLine("You left the Vase Shards on the floor.");
-                                    Console.WriteLine("");
+                                    Console.WriteLine("You walk back to the center of the room.");
                                 }
-
                                 else
                                 {
-                                    Console.WriteLine("Does not recognize action. Please try again");
-                                    Console.WriteLine("");
+                                    Console.WriteLine("?");
+                                    Console.WriteLine("You walk back to the center of the room.");
                                 }
-
-                            }
-                            else if (backPack.Contains("Vase Shards"))
-                            {
-                                Console.WriteLine("You can't use Vase Shards here");
                             }
 
-                            else
+                            else if (Command == "West" || Command == "Go West")
                             {
-                                Console.WriteLine("Does not recognize action. Please try again");
+                                SecondRoom = false;
+                                FirstRoom = true;
+                                break;
+                            }
+                            else if (Command == "North" || Command == "Go North")
+                            {
+                                SecondRoom = false;
+                                ThirdRoom = true;
+                                break;
+                            }
+
+                            else if (Command == "Help")
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Here is a few commands that you can write in this game.");
+                                Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
+                                Console.WriteLine("Backpack - To show current items in your backpack.");
+                                Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
                                 Console.WriteLine("");
                             }
+                            else if (Command == "Look")
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You are in the hallway, and there is a piedestal by the South wall.");
+                                if (vaseBroken == false)
+                                {
+                                    Console.WriteLine("On the piedestal stands an ancient Vase.");
+                                    if (Hero.Char_Intelligence == 10)
+                                    {
+                                        Console.WriteLine("Something feels strange about the Vase");
+                                    }
+                                    else if (!SecondRoomItems.Contains("Vase Shards")) { }
+                                    else { Console.WriteLine("There are Shards on the floor from the Vase"); }
+                                    Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
+                                    Console.WriteLine("To the North you see an open door.");
+                                    Console.WriteLine("To the West you see the room you woke up in.");
+
+
+                                    Console.WriteLine("");
+                                    Console.WriteLine("");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
+                                {
+                                    Console.WriteLine("");
+                                    if (backPack.Count == 0)
+                                    {
+                                        Console.WriteLine("You have no items in your backpack.");
+                                        Console.Write("");
+                                    }
+                                    else
+                                    {
+                                        for (int i = 0; i < backPack.Count; i++)
+                                        {
+                                            Console.WriteLine(i + 1 + ": " + backPack[i]);
+                                        }
+                                        Console.WriteLine("Press <Enter> to go back");
+                                    }
+                                    Console.WriteLine("");
+                                    Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                    if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
+                                    {
+                                        Console.WriteLine("");
+                                        Console.WriteLine("Which item do you want to drop?");
+                                        Console.WriteLine("");
+                                        Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                        if (backPack.Contains(Command))
+                                        {
+                                            backPack.Remove(Command);
+                                            SecondRoomItems.Add(Command);
+                                            Console.WriteLine("You put the " + Command + " on the floor.");
+                                            Console.WriteLine("");
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("Could not find " + Command + " in your inventory.");
+                                        }
+                                    }
+                                }
+                                else if (Command == "Vase Shards" || Command == " Take Vase Shards" || Command == "Use Vase Shards" || Command == "Get Vase Shards" || Command == "Shards")
+                                {
+                                    if (SecondRoomItems.Contains("Vase Shards"))
+                                    {
+                                        Console.WriteLine("\nDo you want to take the Vase Shards from the ground?");
+                                        Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                        if (Command == "Yes")
+                                        {
+                                            backPack.Add("Vase Shards");
+                                            SecondRoomItems.Remove("Vase Shards");
+                                            Console.WriteLine("You pick up the Vase Shards.");
+                                            Console.WriteLine("");
+
+                                        }
+                                        else if (Command == "No")
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("You left the Vase Shards on the floor.");
+                                            Console.WriteLine("");
+                                        }
+
+                                        else
+                                        {
+                                            Console.WriteLine("Does not recognize action. Please try again");
+                                            Console.WriteLine("");
+                                        }
+
+                                    }
+                                    else if (backPack.Contains("Vase Shards"))
+                                    {
+                                        Console.WriteLine("You can't use Vase Shards here");
+                                    }
+
+                                    else
+                                    {
+                                        Console.WriteLine("Does not recognize action. Please try again");
+                                        Console.WriteLine("");
+                                    }
+                                }
+                            }
                         }
-                    }
+                    } while (EndGame == false) ;
+
+
+                    //Console.WriteLine("Exists in Room 1: ");
+                    //foreach (var item in FirstRoomItems)
+                    //{
+
+                    //    Console.Write(item + Environment.NewLine);
+                    //}
+                    //Console.WriteLine("");
+
                 }
-            } while (EndGame == false);
 
 
-            //Console.WriteLine("Exists in Room 1: ");
-            //foreach (var item in FirstRoomItems)
-            //{
+                public static void GetHelpCommads()
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Here is a few commands that you can write in this game.");
+                    Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
+                    Console.WriteLine("Backpack - To show current items in your backpack.");
+                    Console.WriteLine("Look - To scan the room");
+                    Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
+                    Console.WriteLine("You can always get this help messages by typing \"Help\"");
+                    Console.WriteLine("");
 
-            //    Console.Write(item + Environment.NewLine);
-            //}
-            //Console.WriteLine("");
+                }
 
-        }
+                public static string WelcomeName(string name) //Detta körs vid starten och sparar ditt namn
+                {
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine("Welcome to the Age of Labyrinths.");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("Please select a name for your character: ");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 1);
+                    name = Console.ReadLine().ToLower();
+                    return name;
 
+                }
+                public static string WelcomeVoc(string type)//Detta körs vid starten och sparar ditt voc (ifall du skriver fel blir det WL
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine("Welcome to the Age of Labyrinths.");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlock");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 1);
+                    type = Console.ReadLine().ToLower();
+                    return type;
 
-        public static void GetHelpCommads()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("Here is a few commands that you can write in this game.");
-            Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
-            Console.WriteLine("Backpack - To show current items in your backpack.");
-            Console.WriteLine("Look - To scan the room");
-            Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-            Console.WriteLine("You can always get this help messages by typing \"Help\"");
-            Console.WriteLine("");
+                }
 
-        }
+                static string FirstUpperCase(string text)//Gör om all input till konsolen (BANAN) till bara stor förstabokstav (Banan)
+                {
+                    text = new CultureInfo("en-US").TextInfo.ToTitleCase(text);
+                    return text;
+                }
+                //Här nedan är bordern med stats och namn som inte är inlagt ännu. Vill få denna att limmas fast längst upp i konsolfönstret
+                public static void WriteTop(string Char_Name, int Char_Backpack, string Char_Voc, int Char_Current_HP, int Char_Max_HP)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Console.SetCursorPosition(0 + i, 0);
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.Write(" ");
 
-        public static string WelcomeName(string name) //Detta körs vid starten och sparar ditt namn
-        {
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome to the Age of Labyrinths.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
-            Console.WriteLine("Please select a name for your character: ");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 1);
-            name = Console.ReadLine().ToLower();
-            return name;
+                    }
 
-        }
-        public static string WelcomeVoc(string type)//Detta körs vid starten och sparar ditt voc (ifall du skriver fel blir det WL
-        {
-            Console.Clear();
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome to the Age of Labyrinths.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
-            Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlock");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 1);
-            type = Console.ReadLine().ToLower();
-            return type;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.SetCursorPosition(5, 0);
+                    Console.Write("Name: " + Char_Name + " the " + Char_Voc);
+                    Console.SetCursorPosition(35, 0);
+                    Console.Write("HP: " + Char_Current_HP + "/" + Char_Max_HP);
+                    Console.SetCursorPosition(55, 0);
+                    Console.Write("Items in backpack: " + Char_Backpack);
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
 
-        }
-
-        static string FirstUpperCase(string text)//Gör om all input till konsolen (BANAN) till bara stor förstabokstav (Banan)
-        {
-            text = new CultureInfo("en-US").TextInfo.ToTitleCase(text);
-            return text;
-        }
-        //Här nedan är bordern med stats och namn som inte är inlagt ännu. Vill få denna att limmas fast längst upp i konsolfönstret
-        public static void WriteTop(string Char_Name, int Char_Backpack, string Char_Voc, int Char_Current_HP, int Char_Max_HP)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                Console.SetCursorPosition(0 + i, 0);
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.Write(" ");
-
+                }
             }
-
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.SetCursorPosition(5, 0);
-            Console.Write("Name: " + Char_Name + " the " + Char_Voc);
-            Console.SetCursorPosition(35, 0);
-            Console.Write("HP: " + Char_Current_HP + "/" + Char_Max_HP);
-            Console.SetCursorPosition(55, 0);
-            Console.Write("Items in backpack: " + Char_Backpack);
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-
-        }
     }
-}
