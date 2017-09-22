@@ -399,7 +399,108 @@ namespace RPG
                             }
                         }
                     }
+                    else if (Command == "Chest" || Command == "Go To Chest")
+                    {
+                        if (CheckChestOpen == true && ChestItem.Contains("Vial"))
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("The chest is opened wide. There is a vial in here. Do you want to pick it up?");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (Command == "Yes")
+                            {
+                                backPack.Add("Vial");
+                                backPack.Remove("Vial");
+                                Console.WriteLine("You picked up the vial.");
+                                Console.WriteLine("");
+                            }
+                            else if (Command == "No")
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You left the vial in the chest and walk away.");
+                                Console.WriteLine("");
+                            }
+                            else
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Do not understand input. Going back to the middle of the room.");
+                                Console.WriteLine("");
+                            }
+                        }
 
+
+                        else if (CheckChestOpen == false)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("The chest is beautifully ornated with purple lion emblems on the sides.");
+                            Console.WriteLine("You examine it more closely but it seems that you can't open it without a key.");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (Command == "Use Lion Key" || Command == "Lion Key")
+                            {
+                                CheckChestOpen = true;
+                                Console.WriteLine("");
+                                Console.WriteLine("You open the chest with the lion key!");
+                                Console.WriteLine("There is a vial in here. Do you want to pick it up?");
+                                Console.WriteLine("");
+                                Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                if (Command == "Yes")
+                                {
+                                    backPack.Add("Vial");
+                                    backPack.Remove("Vial");
+                                    Console.WriteLine("You pick up the vial.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "No")
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You left the vial in the chest and walk away.");
+                                    Console.WriteLine("");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("Do not understand input. Going back to the middle of the room.");
+                                    Console.WriteLine("");
+                                }
+                            }
+                            else if (Command == "Use Iron Bar" && backPack.Contains("Iron Bar") || Command == "Iron Bar" && backPack.Contains("Iron Bar") || Command == "Iron Pipe" && backPack.Contains("Iron Bar"))
+                            {
+                                CheckChestOpen = true;
+                                Console.WriteLine("");
+                                Console.WriteLine("You pry open the chest with the iron bar!");
+                                Console.WriteLine("There is a vial in here. Do you want to pick it up?");
+                                Console.WriteLine("");
+                                Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                if (Command == "Yes")
+                                {
+                                    backPack.Add("Vial");
+                                    backPack.Remove("Vial");
+                                    Console.WriteLine("You pick up the vial.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "No")
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You left the vial in the chest and walk away.");
+                                    Console.WriteLine("");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("Do not understand input. Going back to the middle of the room.");
+                                    Console.WriteLine("");
+                                }
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Does not understand input. Going back to the middle of the room");
+                                Console.WriteLine("");
+                            }
+                        }
+                    }
 
 
                     else if (Command == "Go West" || Command == "West" || Command == "Go South" || Command == "South" ||
