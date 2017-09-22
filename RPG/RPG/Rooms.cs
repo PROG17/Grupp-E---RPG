@@ -67,13 +67,16 @@ namespace RPG
             List<string> returnItems = new List<string>();
             if (roomNumber == 1)
             {
-                Console.WriteLine("You are in bedroom");
-
-                Console.WriteLine("To the east you see a door that's shut. Besides it you see a table with some debris under it.");
-                Console.WriteLine("It seems that someone have taken most of your belongings from your backpack.");
+                Console.WriteLine(
+                            "You are in a square room. It has a wooden door and one window that seems to be blocked by iron bars.");
+                Console.WriteLine(
+                    "To the east you see a door that's shut. Besides it you see a table with some debris on it.");
+                Console.WriteLine(
+                    "It seems that someone have taken most of your belongings from your backpack.");
                 Console.WriteLine("Maybe there's something left somewhere in this room.");
-
-                Console.WriteLine("Use \"Look\" command to see whats here");
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("");
             }
 
             if (roomNumber == 2)

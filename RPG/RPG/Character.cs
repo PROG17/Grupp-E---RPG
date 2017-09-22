@@ -12,7 +12,9 @@ namespace RPG
         private string name;
         private string character;
         List<string> Char_Backpack = new List<string>();
+        
 
+        
         // Properties för alla stats
         public int Char_Strength { get; set; }
         public int Char_Agility { get; set; }
@@ -26,7 +28,6 @@ namespace RPG
             this.character = Character;
 
             // När en ny hjälte skapas fylls även hans väska med två items
-            Char_Backpack.Add("Rusty key");
             Char_Backpack.Add("Bread");
 
             // Sätter hjältens stats beroend på val av karaktär
@@ -71,8 +72,8 @@ namespace RPG
         // Vid anrop skriver stats ut
         public void TypeStats()
         {
-            Console.WriteLine("Helth: " + Hp);
-            Console.WriteLine("Strenght: " + Char_Strength);
+            Console.WriteLine("Health: " + Hp);
+            Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
             Console.WriteLine("Intelligence: " + Char_Intelligence);
         }
@@ -106,13 +107,39 @@ namespace RPG
         }
 
         // skriver ut väskans innehåll
-        public void ShowInentory()
+        public void ShowInventory()
         {
-            foreach (var item in Char_Backpack)
+            Console.WriteLine("");
+            if (Char_Backpack.Count == 0)
             {
-                Console.WriteLine(item);
+                Console.WriteLine("You have no items in your backpack.");
+                Console.Write("");
             }
+            else
+            {
+                Console.WriteLine("\nINVENTORY");
+                Console.WriteLine("-----------------------------------------\n");
+                for (int i = 0; i < Char_Backpack.Count; i++)
+                {
+                    Console.WriteLine(i + 1 + ": " + Char_Backpack[i] + "\n");
+                }
+                Console.Write("-----------------------------------------");
+                Console.WriteLine("\n");
+            }
+            
         }
+
+        public static string FirstToUpper()
+        {
+            string text = Console.ReadLine();
+            if (text.Length > 1)
+            {
+                text = text.First().ToString().ToUpper() + text.Substring(1).ToLower();
+            }
+
+            return text;
+        }
+
 
     }
 }
