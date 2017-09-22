@@ -12,11 +12,11 @@ namespace RPG
 
         public static void Main(string[] args)
         {
-            bool FirstRoom = false;
+            bool FirstRoom = true;
             bool SecondRoom = false;
             bool ThirdRoom = false;
-            bool forthRoom = true;
-            bool fithRoom = false;
+            bool fourthRoom = false;
+            bool fifthRoom = false;
 
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
@@ -63,7 +63,6 @@ namespace RPG
 
                     var firstRoom = new Rooms(1);
                     firstRoom.RoomInfo();
-                    Console.ReadLine();
                     Command = FirstUpperCase(Console.ReadLine().ToLower());
                     if (Command == "Help")
                     {
@@ -439,8 +438,7 @@ namespace RPG
                         {
                             Console.WriteLine("You have entered the hallway. By the south wall you see a piedestal.");
                         }
-                        Console.WriteLine(
-                            "By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
+                        Console.WriteLine("By the East wall stands a Statue of a knight in battle.\nHe holds a sword in his right hand.\n");
                         Console.WriteLine("To the North you see an open door.");
                         Console.WriteLine("To the West you see the room you woke up in.");
                         Console.WriteLine("");
@@ -472,7 +470,7 @@ namespace RPG
                                 }
                             }
 
-                            else if (Command == "Statue")
+                            else if (Command == "Statue" || Command == "East" || Command == "Go East")
                             {
                                 Console.WriteLine(
                                     "You walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
@@ -501,11 +499,20 @@ namespace RPG
                                     Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
                                         Console.WindowHeight / 2 - 7);
                                     Console.WriteLine(
-                                        "| :|               Sine auxilio,  Et non morieris                |: |");
+                                        "| :|               SINE GLADIO,  ET NON MORIERIS                 |: |");
                                     Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
                                         Console.WindowHeight / 2 - 6);
-                                    Console.WriteLine(
-                                        "|: |                                                             | :|");
+                                    if (Char_Voc == "Knight")
+                                    {
+                                        Console.WriteLine(
+                                       "|: |              WITHOUT THE SWORD, YOU WILL DIE                | :|");
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(
+                                            "|: |                                                             | :|");
+                                    }
                                     Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
                                         Console.WindowHeight / 2 - 5);
                                     Console.WriteLine(
@@ -534,7 +541,7 @@ namespace RPG
                                 }
                                 else
                                 {
-                                    Console.WriteLine("?");
+                                    Console.WriteLine("\n?\n");
                                     Console.WriteLine("You walk back to the center of the room.");
                                 }
                             }
@@ -548,7 +555,7 @@ namespace RPG
                             else if (Command == "North" || Command == "Go North")
                             {
                                 SecondRoom = false;
-                                ThirdRoom = true;
+                                fourthRoom = true;     //SKA VARA THIRDROOM EGENTLIGEN!
                                 break;
                             }
 
@@ -666,18 +673,18 @@ namespace RPG
                                             if (Command == "Go west")
                                             {
                                                 ThirdRoom = false;
-                                                forthRoom = true;
+                                                fourthRoom = true;
                                             }
                                             if (Command == "Go east")
                                             {
                                                 ThirdRoom = false;
-                                                fithRoom = true;
+                                                fifthRoom = true;
 
                                             }
 
                                         }
 
-                                        while (forthRoom == true)
+                                        while (fourthRoom == true)
                                         {
                                             // Skriver vilket rum man är i
                                             Console.Write("Yor are i the ");
@@ -746,7 +753,7 @@ namespace RPG
                                             else if (Command == "Go east")
                                             {
                                                 Console.WriteLine("You are leaving the trophy room");
-                                                forthRoom = false;
+                                                fourthRoom = false;
                                                 ThirdRoom = true;
                                             }
 
@@ -759,7 +766,7 @@ namespace RPG
 
                                         }
 
-                                        while (fithRoom == true)
+                                        while (fifthRoom == true)
                                         {
 
                                         }
@@ -781,7 +788,7 @@ namespace RPG
                         }
                     }
                 }
-                while (forthRoom == true)
+                while (fourthRoom == true)
                 {
                     // Skriver vilket rum man är i
                     Console.Write("Yor are i the ");
@@ -847,7 +854,7 @@ namespace RPG
                     else if (Command == "Go east")
                     {
                         Console.WriteLine("You are leaving the trophy room");
-                        forthRoom = false;
+                        fourthRoom = false;
                         ThirdRoom = true;
                     }
 
