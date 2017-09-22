@@ -415,8 +415,7 @@ namespace RPG
                         Console.WriteLine("");
                     }
                 }
-                while (SecondRoom == true
-                ) //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
+                while (SecondRoom == true) //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 5);
@@ -782,7 +781,83 @@ namespace RPG
                         }
                     }
                 }
+                while (forthRoom == true)
+                {
+                    // Skriver vilket rum man är i
+                    Console.Write("Yor are i the ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Thropy Room");
+                    Console.ResetColor();
 
+                    // Hämtar ett kommando från metod
+                    Command = GetCommand();
+
+                    // Du skickas till lämplig if-sats beroende på kommandot
+                    if (Command == "Status")
+                    {
+                        // Skriver ut dina stats
+                        Hero.TypeStats();
+                    }
+                    else if (Command == "Backpack")
+                    {
+                        // Skrier ut ditt inventory
+                        Hero.ShowInentory();
+                    }
+                    else if (Command == "Look")
+                    {
+                        // Får ny information om rummet
+                        List<string> itemsOnFloor = roomFour.RoomInfo(); // Om man har droppat något från sin väska i rummet får man möjligheten att plocka upp det på en gång
+                        if (itemsOnFloor != null)
+                        {
+                            foreach (var thing in itemsOnFloor)
+                            {
+                                // Allt man plockar upp läggs i ditt inventory
+                                Hero.AddInventory(thing);
+                            }
+                        }
+
+                        // Om man väljer att plocka ner skölden hamnar den i inventory
+                        string item = roomFour.RoomActin();
+                        Hero.AddInventory(item);
+
+                    }
+
+                    // Droppar item från inventory 
+                    else if (Command == "Drop")
+                    {
+                        // Inventory skrivs ut och du väljer vad du vill droppa
+                        Console.WriteLine("What item do you want to drop?");
+                        Hero.ShowInentory();
+                        string itemToDrop = FirstToUpper();
+
+                        // Kollar att du har föremålet du vill droppa
+                        if (Hero.CheckBackPack(itemToDrop))
+                        {
+                            // Föremålet droppas och läggstill i nuvarande rummets itemlista
+                            Hero.DropInventory(itemToDrop);
+                            roomFour.AddRoomItem(itemToDrop);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No such item in your inventory");
+                        }
+
+                    }
+                    // Lämnar rummet
+                    else if (Command == "Go east")
+                    {
+                        Console.WriteLine("You are leaving the trophy room");
+                        forthRoom = false;
+                        ThirdRoom = true;
+                    }
+
+                    // Går ej att gå hit
+                    else if (Command == "Go north" || Command == "Go west" || Command == "Go south")
+                    {
+                        Console.WriteLine("Cant go there, the only exit is to the east");
+                    }
+
+                }
 
             } while (EndGame == false);
 
