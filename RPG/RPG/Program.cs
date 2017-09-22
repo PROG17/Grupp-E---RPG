@@ -12,23 +12,27 @@ namespace RPG
 
         public static void Main(string[] args)
         {
-            bool FirstRoom = true;
+            bool FirstRoom = false;
             bool SecondRoom = false;
             bool ThirdRoom = false;
+            bool forthRoom = true;
+            bool fithRoom = false;
+
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
             bool FirstRoomIronBarWindow = true;
             bool CheckChestOpen = false;
             bool EndGame = false;
+
             string Char_Name = "David";
             string Char_Voc = "Cool";
             string Command = "";
+
             List<string> FirstRoomItems = new List<string>();
             FirstRoomItems.Add("Rusty Key");
             string ChestItem = "Vial";
 
-            // Sätter namn om karaktär 
-            // Warlock som defaul
+            // Sätter namn och karaktär, Warlock som defaul
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
             if (Char_Voc != "Barbarian" && Char_Voc != "Knight" && Char_Voc != "Thief" && Char_Voc != "Warlock")
@@ -36,44 +40,27 @@ namespace RPG
                 Char_Voc = "Warlock";
             }
 
+            WelcomeMessage(Char_Name, Char_Voc);
 
             var Hero = new Character(Char_Name, Char_Voc);
-            // Hero.SetStats(Char_Voc);
+            var roomOne = new Rooms(1);
+            var roomTwo = new Rooms(2);
+            var roomThree = new Rooms(3);
+            var roomFour = new Rooms(4);
+            var roomFive = new Rooms(5);
 
-            Console.WriteLine("Strengh: " + Hero.Char_Strength + "\n" + "Agility: " + Hero.Char_Agility + "\n" + "Intellignece: " + Hero.Char_Intelligence + "\n" + "Hp: " + Hero.Hp);
-            Console.WriteLine();
-
-
-            // Hero.CheckBackPack();
-            Hero.AddInventory("Nail");
-            // Hero.CheckBackPack();
-            Console.ReadLine();
             List<string> backPack = Hero.GetBackPack();
-            Console.Clear();
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome {0} to the Age of Labyrinths. You have chosen to be a {1}.", Char_Name, Char_Voc);
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 17, Console.WindowHeight / 2 - 3);
-            Console.WriteLine("Press enter to start your adventure.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 + 19, Console.WindowHeight / 2 - 3);
-            Console.ReadLine();
-            Console.Clear();
-            Console.SetCursorPosition(0, 30);
-            Console.WriteLine("You wake up in a room. It have a wooden door and one window that seems to be blocked by iron bars.");
-            Console.WriteLine("To the east you see a door that's shut. Besides it you see a table with some debris under it.");
-            Console.WriteLine("It seems that someone have taken most of your belongings from your backpack.");
-            Console.WriteLine("Maybe there's something left somewhere in this room.");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
+
+
             do
             {
-
-
                 while (FirstRoom == true)
                 {
                     //WriteTop(Char_Name, Char_Backpack.Count, Char_Voc, Char_Current_HP, Char_Max_HP);
 
-
+                    var firstRoom = new Rooms(1);
+                    firstRoom.RoomInfo();
+                    Console.ReadLine();
                     Command = FirstUpperCase(Console.ReadLine().ToLower());
                     if (Command == "Help")
                     {
@@ -439,30 +426,197 @@ namespace RPG
                     }
 
                 }
+
+                while (ThirdRoom == true)
+                {
+                   Command = GetCommand();
+
+                    if (Command == "Go west")
+                    {
+                        ThirdRoom = false;
+                        forthRoom = true;
+                    }
+                    if (Command == "Go east")
+                    {
+                        ThirdRoom = false;
+                        fithRoom = true;
+
+                    }
+
+                }
+
+                while (forthRoom == true)
+                {
+                    // Skriver vilket rum man är i
+                    Console.Write("Yor are i the ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Thropy Room");
+                    Console.ResetColor();
+                    
+                    // Hämtar ett kommando från metod
+                    Command = GetCommand();
+
+                    // Du skickas till lämplig if-sats beroende på kommandot
+                    if (Command == "Status")
+                    {
+                        // Skriver ut dina stats
+                        Hero.TypeStats();
+                    }
+                    else if (Command == "Backpack")
+                    {
+                        // Skrier ut ditt inventory
+                        Hero.ShowInentory();
+                    }
+                    else if (Command == "Look")
+                    {
+                        // Får ny information om rummet
+                        List<string> itemsOnFloor = roomFour.RoomInfo(); // Om man har droppat något från sin väska i rummet får man möjligheten att plocka upp det på en gång
+                        if (itemsOnFloor != null)
+                        {
+                            foreach (var thing in itemsOnFloor)
+                            {
+                                // Allt man plockar upp läggs i ditt inventory
+                                Hero.AddInventory(thing);
+                            }
+                        }
+                        
+                        // Om man väljer att plocka ner skölden hamnar den i inventory
+                        string item = roomFour.RoomActin();
+                        Hero.AddInventory(item);
+
+                    }
+
+                    // Droppar item från inventory 
+                    else if (Command == "Drop")
+                    {
+                        // Inventory skrivs ut och du väljer vad du vill droppa
+                        Console.WriteLine("What item do you want to drop?");
+                        Hero.ShowInentory();
+                        string itemToDrop = FirstToUpper();
+                        
+                        // Kollar att du har föremålet du vill droppa
+                        if (Hero.CheckBackPack(itemToDrop))
+                        {
+                            // Föremålet droppas och läggstill i nuvarande rummets itemlista
+                            Hero.DropInventory(itemToDrop);
+                            roomFour.AddRoomItem(itemToDrop);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No such item in your inventory");
+                        }
+
+                    }
+                    // Lämnar rummet
+                    else if (Command == "Go east")
+                    {
+                        Console.WriteLine("You are leaving the trophy room");
+                        forthRoom = false;
+                        ThirdRoom = true;
+                    }
+
+                    // Går ej att gå hit
+                    else if (Command == "Go north" || Command == "Go west" || Command == "Go south")
+                    {
+                        Console.WriteLine("Cant go there, the only exit is to the east");
+                    }
+
+                }
+
+                while (fithRoom == true)
+                {
+                    
+                }
+
             } while (EndGame == false);
-
-
-            //Console.WriteLine("Exists in Room 1: ");
-            //foreach (var item in FirstRoomItems)
-            //{
-
-            //    Console.Write(item + Environment.NewLine);
-            //}
-            //Console.WriteLine("");
 
         }
 
-        public static void GetHelpCommads()
+        // Sätter första bokstaven til STOR och resten till små. Förstod inte riktigt den andra metoden vi använder så gjorde en egen ;P
+        public static string FirstToUpper()
         {
-            Console.WriteLine("");
-            Console.WriteLine("Here is a few commands that you can write in this game.");
-            Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
-            Console.WriteLine("Backpack - To show current items in your backpack.");
-            Console.WriteLine("Look - To scan the room");
-            Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-            Console.WriteLine("You can always get this help messages by typing \"Help\"");
-            Console.WriteLine("");
+            string text = Console.ReadLine();
+            if (text.Length > 1)
+            {
+                text = text.First().ToString().ToUpper() + text.Substring(1).ToLower();
+            }
+            
+            return text;
+        }
 
+        // Alla kommandon du kan skriva från main programmet.
+        public static string GetCommand()
+        {
+            List<string> allCommands = new List<string>();
+            allCommands.Add("Go north");
+            allCommands.Add("Go south");
+            allCommands.Add("Go east");
+            allCommands.Add("Go south");
+            allCommands.Add("Backpack");
+            allCommands.Add("Look");
+            allCommands.Add("Take");
+            allCommands.Add("Place");
+            allCommands.Add("Drop");
+            allCommands.Add("Status");
+            allCommands.Add("Back");
+            allCommands.Add("Help");
+
+            // Loopen kollar att det du skriver är tillåtet
+            do
+            {
+                Console.WriteLine();
+                Console.Write(": ");
+                string command = Console.ReadLine();
+                Console.WriteLine();
+
+                if (command != "")
+                {
+                    command = command.First().ToString().ToUpper() + command.Substring(1).ToLower();
+                }
+
+
+                if (allCommands.Contains(command))
+                {
+                    if (command == "Help")
+                    {
+                        foreach (var item in allCommands)
+                        {
+                            Console.WriteLine(item);
+                        }
+                    }
+                    else
+                    {
+                        return command;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Unknowned command");
+                    Console.WriteLine("To get a list of all commands type: Help");
+                    Console.WriteLine();
+                }
+            } while (true);
+
+
+
+        }
+        // Intro texten nu i egen metod för att kunna förmiska det
+        public static void WelcomeMessage(string name, string character)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 5);
+            Console.WriteLine("Welcome {0} to the Age of Labyrinths. You have chosen to be a {1}.", name, character);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 17, Console.WindowHeight / 2 - 3);
+            Console.WriteLine("Press enter to start your adventure.");
+            Console.SetCursorPosition(Console.WindowWidth / 2 + 19, Console.WindowHeight / 2 - 3);
+            Console.ReadLine();
+            Console.Clear();
+            Console.SetCursorPosition(0, 30);
+
+            Console.WriteLine("You wake up in a room. It have a wooden door and one window that seems to be blocked by iron bars.");
+            Console.WriteLine("");
+            Console.WriteLine("");
         }
 
         public static string WelcomeName(string name) //Detta körs vid starten och sparar ditt namn
@@ -476,6 +630,7 @@ namespace RPG
             return name;
 
         }
+
         public static string WelcomeVoc(string type)//Detta körs vid starten och sparar ditt voc (ifall du skriver fel blir det WL
         {
             Console.Clear();
@@ -494,6 +649,8 @@ namespace RPG
             text = new CultureInfo("en-US").TextInfo.ToTitleCase(text);
             return text;
         }
+
+
         //Här nedan är bordern med stats och namn som inte är inlagt ännu. Vill få denna att limmas fast längst upp i konsolfönstret
         public static void WriteTop(string Char_Name, int Char_Backpack, string Char_Voc, int Char_Current_HP, int Char_Max_HP)
         {
