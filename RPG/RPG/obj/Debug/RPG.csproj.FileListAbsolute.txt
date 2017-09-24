@@ -26,3 +26,10 @@ C:\Users\Samulf\source\repos\Grupp-E---RPG\RPG\RPG\obj\Debug\RPG.pdb
 C:\Users\Samulf\source\repos\Grupp-E---RPG\RPG\RPG\bin\Debug\RPG.exe.config
 C:\Users\Samulf\source\repos\Grupp-E---RPG\RPG\RPG\bin\Debug\RPG.exe
 C:\Users\Samulf\source\repos\Grupp-E---RPG\RPG\RPG\bin\Debug\RPG.pdb
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\bin\Debug\RPG.exe.config
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\bin\Debug\RPG.exe
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\bin\Debug\RPG.pdb
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\obj\Debug\RPG.csprojResolveAssemblyReference.cache
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\obj\Debug\RPG.csproj.CoreCompileInputs.cache
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\obj\Debug\RPG.exe
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG2\RPG\RPG\obj\Debug\RPG.pdb

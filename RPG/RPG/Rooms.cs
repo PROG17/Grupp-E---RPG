@@ -16,7 +16,7 @@ namespace RPG
         List<string> roomItems = new List<string>();
 
         // Bools för olika event i alla rum
-        private bool sheildIsMissing = false;
+        private bool shieldIsMissing = false;
         
 
         // När man skapar ett nytt rum får det ett rumsnummer 
@@ -68,11 +68,11 @@ namespace RPG
             if (roomNumber == 1)
             {
                 Console.WriteLine(
-                            "You are in a square room. It has a wooden door and one window that seems to be blocked by iron bars.");
+                            "You are in a square room. It has a wooden Door and a Window that seems to be blocked by Iron Bars.");
                 Console.WriteLine(
-                    "To the east you see a door that's shut. Besides it you see a table with some debris on it.");
-                Console.WriteLine(
-                    "It seems that someone have taken most of your belongings from your backpack.");
+                    "To the East you see a Door that's shut. Besides it you see a Table with some debris on it.");
+                // Console.WriteLine("It seems that someone have taken most of your belongings from your backpack.");
+                Console.WriteLine("You also see a beautifully ordinated Chest.");
                 Console.WriteLine("Maybe there's something left somewhere in this room.");
                 Console.WriteLine("");
                 Console.WriteLine("");
@@ -89,11 +89,11 @@ namespace RPG
             }
             if (roomNumber == 4)
             {
-                Console.WriteLine("This is a big room with lots of trofies on the walls! \nA big carpet on the floor, mirror on the wall and a big Painting");
-                if (sheildIsMissing == false) 
+                Console.WriteLine("This is a big room with lots of trophies on the walls! \nA big Carpet on the floor, Mirror on the wall and a big Painting");
+                if (shieldIsMissing == false) 
                 {
-                    Console.WriteLine("But the one thing that really draws to your attantion is a Big ");
-                    Console.WriteLine("Silver Shield");
+                    Console.WriteLine("But the one thing that really draws to your attantion is a big ");
+                    Console.WriteLine("silver Shield");
                     Console.ResetColor();
                 }
                 
@@ -150,13 +150,13 @@ namespace RPG
                     Console.WriteLine("What item do you want to take a close look at?");
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    if (sheildIsMissing)
+                    if (shieldIsMissing)
                     {
                         Console.WriteLine("Carpet - Painting - Mirror");
                     }
                     else
                     {
-                        Console.WriteLine("Carpet - Painting - Mirror - Sheild");
+                        Console.WriteLine("Carpet - Painting - Mirror - Shield");
                     }
                     
                     Console.ResetColor();
@@ -164,8 +164,7 @@ namespace RPG
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Back");
                     Console.ResetColor();
-
-                    command = Console.ReadLine();
+                    
                     command = command.First().ToString().ToUpper() + command.Substring(1).ToLower();
 
                     if (command == "Carpet")
@@ -180,18 +179,18 @@ namespace RPG
                     {
                         Console.WriteLine("You can see yourself");
                     }
-                    if (command == "Sheild")
+                    if (command == "Shield")
                     {
-                        Console.WriteLine("You look closely at the shelad and realise that you can take it with you!");
+                        Console.WriteLine("You look closely at the Shield and realise that you can take it with you!");
                         Console.WriteLine("Do you want to take it with you?");
                         string action = GetCommand();
                         if (action == "yes" || action == "take")
                         {
-                            sheildIsMissing = true;
-                            RemoveRoomItem("Sheild");
-                            return "Sheild";
+                            shieldIsMissing = true;
+                            RemoveRoomItem("Shield");
+                            return "Shield";
                         }
-                        Console.WriteLine("You left the sheild on the wall");
+                        Console.WriteLine("You left the Shield on the wall");
                     }
 
                 } while (command != "Back");
@@ -218,14 +217,14 @@ namespace RPG
 
             do
             {
-                string choise = Console.ReadLine().ToLower();
+                string choice = Console.ReadLine().ToLower();
                 
-                if (Commands.Contains(choise))
+                if (Commands.Contains(choice))
                 {
-                    return choise;
+                    return choice;
                 }
 
-                if (choise == "help")
+                if (choice == "help" || choice == "Help")
                 {
                     Console.WriteLine();
                     foreach (var itemCommand in Commands)
@@ -237,7 +236,7 @@ namespace RPG
 
                 else
                 {
-                    Console.WriteLine("Unknowned command");
+                    Console.WriteLine("Unknown command");
                     Console.WriteLine("Type help to see avalible commands");
                 }
             } while (true);
