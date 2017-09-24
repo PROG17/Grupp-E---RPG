@@ -173,7 +173,7 @@ namespace RPG
                     }
                     if (command == "Painting")
                     {
-                        Console.WriteLine("You are looking at the painting and it seems to be somthing behind it...");
+                        Console.WriteLine("You are looking at the painting and it seems to be something behind it...");
                     }
                     if (command == "Mirror")
                     {
