@@ -560,7 +560,7 @@ namespace RPG
                         else if (Command == "Statue" || Command == "East" || Command == "Go East")
                         {
                             Console.WriteLine(
-                                "You walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
+                                "\nYou walk up to the Statue.\nThe knight has a Sword and armor, but no Shield... ");
                             Console.WriteLine("There is a Plate with an inscription at the foot of the Statue.");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (Command == "Plate" || Command == "Read Plate" || Command == "Inscription" ||
@@ -752,140 +752,127 @@ namespace RPG
                                         Console.WriteLine("Does not recognise action. Please try again");
                                         Console.WriteLine("");
                                     }
-
-                                    while (ThirdRoom == true)
-                                    {
-                                        Command = GetCommand();
-
-                                        if (Command == "Go west")
-                                        {
-                                            ThirdRoom = false;
-                                            fourthRoom = true;
-                                        }
-                                        if (Command == "Go east")
-                                        {
-                                            ThirdRoom = false;
-                                            fifthRoom = true;
-
-                                        }
-
-                                    }
-
-                                    while (fourthRoom == true)
-                                    {
-                                        // Skriver vilket rum man är i
-                                        Console.Write("Yor are i the ");
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.WriteLine("Trophy Room");
-                                        Console.ResetColor();
-
-                                        // Hämtar ett kommando från metod
-                                        Command = GetCommand();
-
-                                        // Du skickas till lämplig if-sats beroende på kommandot
-                                        if (Command == "Status")
-                                        {
-                                            // Skriver ut dina stats
-                                            Hero.TypeStats();
-                                        }
-                                        else if (Command == "Backpack")
-                                        {
-                                            // Skrier ut ditt inventory
-                                            Hero.ShowInventory();
-                                        }
-                                        else if (Command == "Look")
-                                        {
-                                            // Får ny information om rummet
-                                            List<string>
-                                                itemsOnFloor =
-                                                    roomFour
-                                                        .RoomInfo(); // Om man har droppat något från sin väska i rummet får man möjligheten att plocka upp det på en gång
-                                            if (itemsOnFloor != null)
-                                            {
-                                                foreach (var thing in itemsOnFloor)
-                                                {
-                                                    // Allt man plockar upp läggs i ditt inventory
-                                                    Hero.AddInventory(thing);
-                                                }
-                                            }
-
-                                            // Om man väljer att plocka ner skölden hamnar den i inventory
-                                            string item = roomFour.RoomActin();
-                                            Hero.AddInventory(item);
-
-                                        }
-
-                                        // Droppar item från inventory 
-                                        else if (Command == "Drop")
-                                        {
-                                            // Inventory skrivs ut och du väljer vad du vill droppa
-                                            Console.WriteLine("What item do you want to drop?");
-                                            Hero.ShowInventory();
-                                            string itemToDrop = FirstToUpper();
-
-                                            // Kollar att du har föremålet du vill droppa
-                                            if (Hero.CheckBackPack(itemToDrop))
-                                            {
-                                                // Föremålet droppas och läggstill i nuvarande rummets itemlista
-                                                Hero.DropInventory(itemToDrop);
-                                                roomFour.AddRoomItem(itemToDrop);
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("No such item in your inventory");
-                                            }
-
-                                        }
-                                        // Lämnar rummet
-                                        else if (Command == "Go east")
-                                        {
-                                            Console.WriteLine("You are leaving the trophy room");
-                                            fourthRoom = false;
-                                            ThirdRoom = true;
-                                        }
-
-                                        // Går ej att gå hit
-                                        else if (Command == "Go north" || Command == "Go west" ||
-                                                 Command == "Go south")
-                                        {
-                                            Console.WriteLine("Cant go there, the only exit is to the east");
-                                        }
-
-                                    }
-
-                                    while (fifthRoom == true)
-                                    {
-
-                                    }
                                 }
-
-                                while (EndGame == false) ;
-                            }
-                            else if (backPack.Contains("Vase Shards"))
-                            {
-                                Console.WriteLine("You can't use Vase Shards here");
-                            }
-
-                            else
-                            {
-                                Console.WriteLine("Does not recognize action. Please try again");
-                                Console.WriteLine("");
                             }
                         }
                     }
                 }
-            
-            while (ThirdRoom == true)
-                {
 
-                Command = FirstUpperCase(Console.ReadLine().ToLower());
-                if (Command == "Help")
-                {
+                //while (ThirdRoom == true)
+                //{
+                //    Command = GetCommand();
 
-                    Help();
+                //    if (Command == "Go west")
+                //    {
+                //        ThirdRoom = false;
+                //        fourthRoom = true;
+                //    }
+                //    if (Command == "Go east")
+                //    {
+                //        ThirdRoom = false;
+                //        fifthRoom = true;
+
+                //    }
+
+                //}
+
+                while (fourthRoom == true)
+                {
+                    // Skriver vilket rum man är i
+                    Console.Write("Yor are i the ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Trophy Room");
+                    Console.ResetColor();
+
+                    // Hämtar ett kommando från metod
+                    Command = GetCommand();
+
+                    // Du skickas till lämplig if-sats beroende på kommandot
+                    if (Command == "Status")
+                    {
+                        // Skriver ut dina stats
+                        Hero.TypeStats();
+                    }
+                    else if (Command == "Backpack")
+                    {
+                        // Skrier ut ditt inventory
+                        Hero.ShowInventory();
+                    }
+                    else if (Command == "Look")
+                    {
+                        // Får ny information om rummet
+                        List<string>
+                            itemsOnFloor =
+                                roomFour
+                                    .RoomInfo(); // Om man har droppat något från sin väska i rummet får man möjligheten att plocka upp det på en gång
+                        if (itemsOnFloor != null)
+                        {
+                            foreach (var thing in itemsOnFloor)
+                            {
+                                // Allt man plockar upp läggs i ditt inventory
+                                Hero.AddInventory(thing);
+                            }
+                        }
+
+                        // Om man väljer att plocka ner skölden hamnar den i inventory
+                        string item = roomFour.RoomActin();
+                        Hero.AddInventory(item);
+
+                    }
+
+                    // Droppar item från inventory 
+                    else if (Command == "Drop")
+                    {
+                        // Inventory skrivs ut och du väljer vad du vill droppa
+                        Console.WriteLine("What item do you want to drop?");
+                        Hero.ShowInventory();
+                        string itemToDrop = FirstToUpper();
+
+                        // Kollar att du har föremålet du vill droppa
+                        if (Hero.CheckBackPack(itemToDrop))
+                        {
+                            // Föremålet droppas och läggstill i nuvarande rummets itemlista
+                            Hero.DropInventory(itemToDrop);
+                            roomFour.AddRoomItem(itemToDrop);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No such item in your inventory");
+                        }
+
+                    }
+                    // Lämnar rummet
+                    else if (Command == "Go east")
+                    {
+                        Console.WriteLine("You are leaving the trophy room");
+                        fourthRoom = false;
+                        ThirdRoom = true;
+                    }
+
+                    // Går ej att gå hit
+                    else if (Command == "Go north" || Command == "Go west" ||
+                             Command == "Go south")
+                    {
+                        Console.WriteLine("Cant go there, the only exit is to the east");
+                    }
+
                 }
-                else if (Command == "Look")
+
+                while (fifthRoom == true)
                 {
+
+                }
+
+
+                while (ThirdRoom == true)                 ///////////////////////////    ROOM 3        /////////////////////////////
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine("THE LABORATORY");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("The Third Room"); //ska ta bort sen
+                    Console.ReadLine();
+
                     Console.WriteLine("");
                     Console.WriteLine("As soon as you enter this room you are met with the most intoxicating smell that you'll dream of.");
                     Console.WriteLine("The room is quite foggy so it takes a while to see that there's only a table in the room," +
@@ -896,165 +883,256 @@ namespace RPG
                         Console.WriteLine("There seems to be a green gas emerging behind a cupboard.");
                     }
 
-                    Console.WriteLine("");
-                    Console.WriteLine("");
-                }
-                else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
-                {
-                    Hero.ShowInventory();
-                }
-                else if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
-                {
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Which item do you want to drop?");
-                    Console.WriteLine("");
-                    Command = FirstUpperCase(Console.ReadLine().ToLower());
-                    if (backPack.Contains(Command))
+                    while (true)
                     {
-                        backPack.Remove(Command);
-                        ThirdRoomItems.Add(Command);
-                        Console.WriteLine("You put the " + Command + " on the floor.");
-                        Console.WriteLine("");
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("Could not find " + Command + " in your inventory.");
-                    }
-                }
-                else if (Command == "Go West" || Command == "West")
-                {
-                    ThirdRoom = false;
-                    fourthRoom = true;
-                    Console.WriteLine("You go to the west");
-                }
-                else if (Command == "Cupboard" && HiddenDoorOpen == true)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("You go to the cupboard and push it backwards and it reveals a small passageway to the east.");
-                    Console.WriteLine("");
-                }
-                else if (Command == "East" && HiddenDoorOpen == true || Command == "Go East" && HiddenDoorOpen == true)
-                {
-                    ThirdRoom = false;
-                    fifthRoom = true;
-                    Console.WriteLine("You go to the east");
-                }
-                else if (Command == "East" && HiddenDoorOpen == false || Command == "Go East" && HiddenDoorOpen == false)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("You see some kitchen furniture infront of a wall. You can't go this way.");
-                    Console.WriteLine("");
-                }
-                else if (Command == "South" || Command == "Go South")
-                {
-                    ThirdRoom = false;
-                    SecondRoom = true;
-                    Console.WriteLine("You go to the south.");
-                }
-                else if (Command == "North" || Command == "Go North")
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("You cannot go to the north, it's blocked by a wall.");
-                    Console.WriteLine("");
-                }
-                else if (Command == "Table" || Command == "Go To Table"
-                    || Command == "Alchemy Table" || Command == "Go To Alchemy Table")
-                {
-                    bool AlchemyTable = true;
-                    if (CauldronIsFull == true)
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("You approach the table and it seems to be a table of an alchemist.");
-                        Console.WriteLine("The smell that's filling this room seems to come from a cauldron.");
-                        Console.WriteLine("There are two cauldrons on the alchemy table.");
-                        Console.WriteLine("The cauldron to the right seems to release the scent into the room," +
-                            " whilst the other is scentless.");
-                        Console.WriteLine("");
-                    }
-                    else
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("You approach the table and it seems to be a table of an alchemist.");
-                        Console.WriteLine("The smell that's filling this room seems to come from a cauldron.");
-                        Console.WriteLine("There are two cauldrons on the alchemy table.");
-                        Console.WriteLine("Both of the cauldrons are empty.");
-                        Console.WriteLine("");
-                    }
-
-                    while (AlchemyTable == true)
-                    {
-
                         Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        if (Command == "Drink" && CauldronIsFull == true || Command == "Take A Sip" && CauldronIsFull == true)
+                        if (Command == "Help")
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("You must use a container to drink from.");
-                            Console.WriteLine("");
 
+                            Help();
                         }
-                        else if (Command == "Drink" && CauldronIsFull == false || Command == "Take A Sip" && CauldronIsFull == false)
+                        else if (Command == "Look")
                         {
                             Console.WriteLine("");
-                            Console.WriteLine("There is not any liquid left in the cauldrons.");
+                            Console.WriteLine("As soon as you enter this room you are met with the most intoxicating smell that you'll dream of.");
+                            Console.WriteLine("The room is quite foggy so it takes a while to see that there's only a table in the room," +
+                                " and a door to the west.");
+                            Console.WriteLine("The smell seems to originate from the table.");
+                            if (HiddenDoorOpen == true)
+                            {
+                                Console.WriteLine("There seems to be a green gas emerging behind a cupboard.");
+                            }
+
+                            Console.WriteLine("");
                             Console.WriteLine("");
                         }
-                        else if (Command == "Use Vial" && backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Vial" && backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Fill Vial" && backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Fill" && backPack.Contains("Vial") && CauldronIsFull == true)
+                        else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
                         {
-                            bool UsingAlchTable = true;
-                            while (UsingAlchTable == true)
+                            Hero.ShowInventory();
+                        }
+                        else if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
+                        {
+
+                            Console.WriteLine("");
+                            Console.WriteLine("Which item do you want to drop?");
+                            Console.WriteLine("");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (backPack.Contains(Command))
+                            {
+                                backPack.Remove(Command);
+                                ThirdRoomItems.Add(Command);
+                                Console.WriteLine("You put the " + Command + " on the floor.");
+                                Console.WriteLine("");
+
+                            }
+                            else
                             {
                                 Console.WriteLine("");
-                                Console.WriteLine("The right cauldron is filled with white liquid." +
-                                    " It also releases a scent that's almost irresistable.");
-                                Console.WriteLine("The left cauldron is green and almost looks ominous. " +
-                                    "It doesn't smell like anything.");
-                                if (Hero.Char_Intelligence >= 10)
-                                {
-                                    Console.WriteLine("Due to your high intelligence you figure out that the right cauldron might be " +
-                                        "really dangerous to consume...");
-                                }
-                                Console.WriteLine("Which one do you want to use the vial on?");
+                                Console.WriteLine("Could not find " + Command + " in your inventory.");
+                            }
+                        }
+                        else if (Command == "Go West" || Command == "West")
+                        {
+                            ThirdRoom = false;
+                            fourthRoom = true;
+                            break;
+                            Console.WriteLine("You go to the west");
+                        }
+                        else if (Command == "Cupboard" && HiddenDoorOpen == true)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You go to the Cupboard and push it backwards and it reveals a small passageway to the East.");
+                            Console.WriteLine("");
+                        }
+                        else if (Command == "East" && HiddenDoorOpen == true || Command == "Go East" && HiddenDoorOpen == true)
+                        {
+                            ThirdRoom = false;
+                            fifthRoom = true;
+                            break;
+                            Console.WriteLine("You go to the East");
+                        }
+                        else if (Command == "East" && HiddenDoorOpen == false || Command == "Go East" && HiddenDoorOpen == false)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You see some kitchen furniture in front of a wall. You can't go this way.");
+                            Console.WriteLine("");
+                        }
+                        else if (Command == "South" || Command == "Go South")
+                        {
+                            ThirdRoom = false;
+                            SecondRoom = true;
+                            break;
+                            Console.WriteLine("You go to the south.");
+                        }
+                        else if (Command == "North" || Command == "Go North")
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You cannot go to the north, it's blocked by a wall.");
+                            Console.WriteLine("");
+                        }
+                        else if (Command == "Table" || Command == "Go To Table"
+                            || Command == "Alchemy Table" || Command == "Go To Alchemy Table")
+                        {
+                            bool AlchemyTable = true;
+                            if (CauldronIsFull == true)
+                            {
                                 Console.WriteLine("");
-                                Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                Console.WriteLine("You approach the Table and it seems to be a Table of an alchemist.");
+                                Console.WriteLine("The smell that's filling this room seems to come from a cauldron.");
+                                Console.WriteLine("There are two cauldrons on the alchemy table.");
+                                Console.WriteLine("The cauldron to the right seems to release the scent into the room," +
+                                    " whilst the other is scentless.");
+                                Console.WriteLine("");
+                            }
+                            else
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("You approach the table and it seems to be a table of an alchemist.");
+                                Console.WriteLine("The smell that's filling this room seems to come from a cauldron.");
+                                Console.WriteLine("There are two cauldrons on the alchemy table.");
+                                Console.WriteLine("Both of the cauldrons are empty.");
+                                Console.WriteLine("");
+                            }
 
-                                if (Command == "Right")
+                            while (AlchemyTable == true)
+                            {
+
+                                Command = FirstUpperCase(Console.ReadLine().ToLower());
+                                if (Command == "Drink" && CauldronIsFull == true || Command == "Take A Sip" && CauldronIsFull == true)
                                 {
                                     Console.WriteLine("");
-                                    Console.WriteLine("You fill the vial with the white liquid. " +
-                                        "As you are done, all the liquid in the cauldrons vanish.");
+                                    Console.WriteLine("You must use a container to drink from.");
                                     Console.WriteLine("");
-                                    backPack.Remove("Vial");
-                                    backPack.Add("Vial filled with white liquid");
-                                    CauldronIsFull = false;
-                                    AlchemyTable = false;
-                                    UsingAlchTable = false;
+
+                                }
+                                else if (Command == "Drink" && CauldronIsFull == false || Command == "Take A Sip" && CauldronIsFull == false)
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("There is not any liquid left in the cauldrons.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Use Vial" && backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Vial" && backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Fill Vial" && backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Fill" && backPack.Contains("Vial") && CauldronIsFull == true)
+                                {
+                                    bool UsingAlchTable = true;
+                                    while (UsingAlchTable == true)
+                                    {
+                                        Console.WriteLine("");
+                                        Console.WriteLine("The right cauldron is filled with white liquid." +
+                                            " It also releases a scent that's almost irresistable.");
+                                        Console.WriteLine("The left cauldron is green and almost looks ominous. " +
+                                            "It doesn't smell like anything.");
+                                        if (Hero.Char_Intelligence >= 10)
+                                        {
+                                            Console.WriteLine("Due to your high intelligence you figure out that the right cauldron might be " +
+                                                "really dangerous to consume...");
+                                        }
+                                        Console.WriteLine("Which one do you want to use the vial on?");
+                                        Console.WriteLine("");
+                                        Command = FirstUpperCase(Console.ReadLine().ToLower());
+
+                                        if (Command == "Right")
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("You fill the vial with the white liquid. " +
+                                                "As you are done, all the liquid in the cauldrons vanish.");
+                                            Console.WriteLine("");
+                                            backPack.Remove("Vial");
+                                            backPack.Add("Vial filled with white liquid");
+                                            CauldronIsFull = false;
+                                            AlchemyTable = false;
+                                            UsingAlchTable = false;
+                                        }
+                                        else if (Command == "Left")
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("You fill the vial with the green liquid. " +
+                                                "As you are done, all the liquid in the cauldrons vanish.");
+                                            Console.WriteLine("");
+                                            backPack.Remove("Vial");
+                                            backPack.Add("Vial filled with green liquid");
+                                            CauldronIsFull = false;
+                                            AlchemyTable = false;
+                                            UsingAlchTable = false;
+                                        }
+                                        else if (Command == "Back")
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("You move away from the alchemy table.");
+                                            Console.WriteLine("");
+                                            UsingAlchTable = false;
+                                        }
+
+                                        else
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("Does not understand input. Try again.");
+                                            Console.WriteLine("");
+                                        }
+                                    }
+                                }
+                                else if (Command == "Use Vial" && backPack.Contains("Vial")
+                                    || Command == "Vial" && backPack.Contains("Vial")
+                                    || Command == "Fill Vial" && backPack.Contains("Vial")
+                                    || Command == "Fill" && backPack.Contains("Vial"))
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("There is no liquid left in the cauldrons to fill the container with.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Use Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Fill Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
+                                    || Command == "Fill" && !backPack.Contains("Vial") && CauldronIsFull == true)
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You don't have a container to fill.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Use Vial" && !backPack.Contains("Vial")
+                                    || Command == "Vial" && !backPack.Contains("Vial")
+                                    || Command == "Fill Vial" && !backPack.Contains("Vial")
+                                    || Command == "Fill" && !backPack.Contains("Vial"))
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("You don't have a container to fill. But even so, there isn't even any liquid left here.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Right" && CauldronIsFull == true)
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("The right cauldron is filled with white liquid. It also releases a scent that's almost irresistable.");
+                                    Console.WriteLine("");
+
+                                }
+                                else if (Command == "Right")
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("The cauldron is empty.");
+                                    Console.WriteLine("");
+                                }
+                                else if (Command == "Left" && CauldronIsFull == true)
+                                {
+                                    Console.WriteLine("");
+                                    Console.WriteLine("The left cauldron is green and almost looks ominous. It doesn't smell like anything.");
+                                    Console.WriteLine("");
                                 }
                                 else if (Command == "Left")
                                 {
                                     Console.WriteLine("");
-                                    Console.WriteLine("You fill the vial with the green liquid. " +
-                                        "As you are done, all the liquid in the cauldrons vanish.");
+                                    Console.WriteLine("The cauldron is empty.");
                                     Console.WriteLine("");
-                                    backPack.Remove("Vial");
-                                    backPack.Add("Vial filled with green liquid");
-                                    CauldronIsFull = false;
-                                    AlchemyTable = false;
-                                    UsingAlchTable = false;
                                 }
                                 else if (Command == "Back")
                                 {
                                     Console.WriteLine("");
                                     Console.WriteLine("You move away from the alchemy table.");
                                     Console.WriteLine("");
-                                    UsingAlchTable = false;
+                                    AlchemyTable = false;
                                 }
-
                                 else
                                 {
                                     Console.WriteLine("");
@@ -1062,87 +1140,29 @@ namespace RPG
                                     Console.WriteLine("");
                                 }
                             }
-                        }
-                        else if (Command == "Use Vial" && backPack.Contains("Vial")
-                            || Command == "Vial" && backPack.Contains("Vial")
-                            || Command == "Fill Vial" && backPack.Contains("Vial")
-                            || Command == "Fill" && backPack.Contains("Vial"))
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("There is no liquid left in the cauldrons to fill the container with.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Use Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Fill Vial" && !backPack.Contains("Vial") && CauldronIsFull == true
-                            || Command == "Fill" && !backPack.Contains("Vial") && CauldronIsFull == true)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("You don't have a container to fill.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Use Vial" && !backPack.Contains("Vial")
-                            || Command == "Vial" && !backPack.Contains("Vial")
-                            || Command == "Fill Vial" && !backPack.Contains("Vial")
-                            || Command == "Fill" && !backPack.Contains("Vial"))
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("You don't have a container to fill. But even so, there isn't even any liquid left here.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Right" && CauldronIsFull == true)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The right cauldron is filled with white liquid. It also releases a scent that's almost irresistable.");
-                            Console.WriteLine("");
 
-                        }
-                        else if (Command == "Right")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The cauldron is empty.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Left" && CauldronIsFull == true)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The left cauldron is green and almost looks ominous. It doesn't smell like anything.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Left")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The cauldron is empty.");
-                            Console.WriteLine("");
-                        }
-                        else if (Command == "Back")
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("You move away from the alchemy table.");
-                            Console.WriteLine("");
-                            AlchemyTable = false;
                         }
                         else
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("Does not understand input. Try again.");
-                            Console.WriteLine("");
+
                         }
                     }
 
                 }
-                else
+                while (fourthRoom == true)    ///////////////////////////////////////////     ROOM 4    /////////////////////////////////
                 {
+                    Console.Clear();
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine("THE TROPHY ROOM");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("The Fourth Room"); //ska ta bort sen
+                    Console.ReadLine();
 
-                }
 
-            }
-                while (fourthRoom == true)
-                {
                     // Skriver vilket rum man är i
-                    Console.Write("Yor are i the ");
+                    Console.Write("Yor are in the ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Thropy Room");
+                    Console.WriteLine("Trophy Room");
                     Console.ResetColor();
 
                     // Hämtar ett kommando från metod
@@ -1214,7 +1234,7 @@ namespace RPG
                     }
 
                 }
-        
+
 
             } while (EndGame == false);
 

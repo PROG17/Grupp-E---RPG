@@ -190,7 +190,7 @@ namespace RPG
                             RemoveRoomItem("Shield");
                             return "Shield";
                         }
-                        Console.WriteLine("You left the Shield on the wall");
+                        else { Console.WriteLine("You left the Shield on the wall"); }
                     }
 
                 } while (command != "Back");
