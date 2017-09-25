@@ -79,6 +79,11 @@ namespace RPG
             Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
             Console.WriteLine("Intelligence: " + Char_Intelligence);
+            foreach (var item in Char_Buffs)
+            {
+                Console.WriteLine("Active buff: " + item);
+            }
+            
         }
 
         // Lägger till i hjältens väska

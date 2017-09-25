@@ -65,9 +65,10 @@ namespace RPG
 
             do
             {
+                WriteTop(Char_Name, backPack.Count, Char_Voc, Hero.Hp_Current, Hero.Hp);
                 while (FirstRoom == true)
                 {
-                    //WriteTop(Char_Name, Char_Backpack.Count, Char_Voc, Char_Current_HP, Char_Max_HP);
+                    
 
                     var firstRoom = new Rooms(1);
 
@@ -86,7 +87,8 @@ namespace RPG
                     {
                         FirstDoorOpen = true;
                         FirstRoom = false;
-                        SecondRoom = true;
+                        fifthRoom = true;
+                        Buffs.Add("Goblinoid");
                     }
                     else if (Command == "Look")
                     {
@@ -124,8 +126,20 @@ namespace RPG
                             Console.WriteLine("Could not find " + Command + " in your inventory.");
                         }
                     }
-
-
+                    else if (Command == "Use")
+                    {
+                        Hero.ShowInventory();
+                        Console.WriteLine("Which item do you want to use?\n");
+                        Command = FirstUpperCase(Console.ReadLine().ToLower());
+                        if (backPack.Contains(Command))
+                        {
+                            Hero.UseItem(Command);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You don't have that in your inventory.\n");
+                        }
+                    }
                     else if (Command == "Chest" || Command == "Go To Chest")
                     {
                         if (CheckChestOpen == true && ChestItem.Contains("Vial"))
@@ -830,6 +844,20 @@ namespace RPG
                                 Console.WriteLine("Could not find " + Command + " in your inventory.");
                             }
                         }
+                        else if (Command == "Use")
+                        {
+                            Hero.ShowInventory();
+                            Console.WriteLine("Which item do you want to use?\n");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (backPack.Contains(Command))
+                            {
+                                Hero.UseItem(Command);
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have that in your inventory.\n");
+                            }
+                        }
                         else if (Command == "Go West" || Command == "West")
                         {
                             ThirdRoom = false;
@@ -1202,6 +1230,10 @@ namespace RPG
                         {
                             Hero.ShowInventory();
                         }
+                        else if (Command == "Status")
+                        {
+                            Hero.TypeStats();
+                        }
                         else if (Command == "Use")
                         {
                             Hero.ShowInventory();
@@ -1317,6 +1349,10 @@ namespace RPG
                         else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
                         {
                             Hero.ShowInventory();
+                        }
+                        else if (Command == "Status")
+                        {
+                            Hero.TypeStats();
                         }
                         else if (Command == "Use")
                         {
@@ -1577,6 +1613,7 @@ namespace RPG
             Console.Write("Items in backpack: " + Char_Backpack);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(0, Console.WindowHeight/2);
 
         }
     }
