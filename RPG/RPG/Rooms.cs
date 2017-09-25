@@ -30,11 +30,8 @@ namespace RPG
         {
             if (!roomItems.Contains(item))
             {
-                if (roomNumber == 1) { roomItems.Add(item); }
-                if (roomNumber == 2) { roomItems.Add(item); }
-                if (roomNumber == 3) { roomItems.Add(item); }
-                if (roomNumber == 4) { roomItems.Add(item); }
-                if (roomNumber == 5) { roomItems.Add(item); }
+                roomItems.Add(item);
+            
             }
            
         }
@@ -42,11 +39,8 @@ namespace RPG
         // Plockar bort items ur respektives lista
         public void RemoveRoomItem(string item)
         {
-            if (roomNumber == 1) { roomItems.Remove(item); }
-            if (roomNumber == 2) { roomItems.Remove(item); }
-            if (roomNumber == 3) { roomItems.Remove(item); }
-            if (roomNumber == 4) { roomItems.Remove(item); }
-            if (roomNumber == 5) { roomItems.Remove(item); }
+          roomItems.Remove(item);
+      
         }
 
         // Skriver ut alla items i rummet

@@ -1102,10 +1102,6 @@ namespace RPG
                     {
                         Command = FirstUpperCase(Console.ReadLine().ToLower());
 
-
-                        // Hämtar ett kommando från metod
-                        //Command = GetCommand();
-
                         // Du skickas till lämplig if-sats beroende på kommandot
                         if (Command == "Status")
                         {
@@ -1142,7 +1138,8 @@ namespace RPG
                             // Inventory skrivs ut och du väljer vad du vill droppa
                             Console.WriteLine("What item do you want to drop?");
                             Hero.ShowInventory();
-                            string itemToDrop = FirstToUpper();
+                            string itemToDrop = Console.ReadLine();
+                            FirstUpperCase(itemToDrop);
 
                             // Kollar att du har föremålet du vill droppa
                             if (Hero.CheckBackPack(itemToDrop))
@@ -1408,24 +1405,14 @@ namespace RPG
 
 
         // Sätter första bokstaven til STOR och resten till små. Förstod inte riktigt den andra metoden vi använder så gjorde en egen ;P
-        public static string FirstToUpper()
-        {
-            string text = Console.ReadLine();
-            if (text.Length > 1)
-            {
-                text = text.First().ToString().ToUpper() + text.Substring(1).ToLower();
-            }
-
-            return text;
-        }
+      
         public static void Help()
         {
             Console.WriteLine("");
             Console.WriteLine("Here is a few commands that you can write in this game.");
             Console.WriteLine("Go North/Go South/Go East/Go West - To move through the game.");
             Console.WriteLine("Backpack - To show current items in your backpack.");
-            Console.WriteLine(
-                "Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
+            Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
             Console.WriteLine("If you want more information about commands, type Command. Otherwise, type Back.\n");
             string command = Console.ReadLine().ToLower();
             if (command == "command")
@@ -1440,13 +1427,13 @@ namespace RPG
         }
 
         // Alla kommandon du kan skriva från main programmet.
-        public static string GetCommand()
+        public static void GetCommand()
         {
             List<string> allCommands = new List<string>();
-            allCommands.Add("Go north");
-            allCommands.Add("Go south");
-            allCommands.Add("Go east");
-            allCommands.Add("Go south");
+            allCommands.Add("Go North");
+            allCommands.Add("Go South");
+            allCommands.Add("Go East");
+            allCommands.Add("Go South");
             allCommands.Add("Backpack");
             allCommands.Add("Look");
             allCommands.Add("Take");
@@ -1456,61 +1443,15 @@ namespace RPG
             allCommands.Add("Back");
             allCommands.Add("Help");
 
-            // Loopen kollar att det du skriver är tillåtet
-            //do
-            //{
-            //Console.WriteLine();
-            //Console.Write(": ");
-            //string command = Console.ReadLine();
-            //Console.WriteLine();
-
-            //if (command != "")
-            //{
-            //    command = command.First().ToString().ToUpper() + command.Substring(1).ToLower();
-            //}
-            //////////////////////////////////////////////
-            ////Console.WriteLine("Exists in Room 1: ");
-            ////foreach (var item in FirstRoomItems)
-            ////{
-
-            ////    Console.Write(item + Environment.NewLine);
-            ////}
-            ////Console.WriteLine("");
-            //////////////////////////////////////////////
-            //if (allCommands.Contains(command))
-            //{
-            //    if (command == "Help")
-            //    {
-            //        foreach (var item in allCommands)
-            //        {
-            //            Console.WriteLine(item);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        return command;
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine();
-            //    Console.WriteLine("Unknowned command");
-            //    Console.WriteLine("To get a list of all commands type: Help");
-            //    Console.WriteLine();
-            //}
             Console.WriteLine();
             for (int i = 0; i < allCommands.Count; i++)
             {
                 Console.WriteLine(allCommands[i]);
             }
             Console.WriteLine();
-            return allCommands[0];
-
-            //} while (true);
-
-
-
+           
         }
+
         // Intro texten nu i egen metod för att kunna förmiska det
         public static void WelcomeMessage(string name, string character)
         {
@@ -1524,7 +1465,7 @@ namespace RPG
             Console.Clear();
             Console.SetCursorPosition(0, 30);
         }
-
+        
         public static string WelcomeName(string name) //Detta körs vid starten och sparar ditt namn
         {
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
