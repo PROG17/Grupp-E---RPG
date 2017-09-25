@@ -145,193 +145,179 @@ namespace RPG
         }
 
         // Alla händelser som sker i ett rum 
-        public void RoomAction(Character hero)
+        public void RoomAction(Character hero, string command)
         {
             if (roomNumber == 1)
             {
 
-                do
+                if (command == "Chest")
                 {
-                    Console.WriteLine("What item do you want to take a close look at?");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Chest - window - Table - Door");
-                    Console.ResetColor();
-                    Console.Write("To do nothing type: ");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Back");
-                    Console.ResetColor();
-
-                    command = FirstUpperCase(Console.ReadLine().ToLower());
-
-                    if (command == "Chest")
+                    if (CheckChestOpen == true)
                     {
-                        if (CheckChestOpen == true)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The Chest is opened wide. There chest is empty");
-                            Console.WriteLine("");
+                        Console.WriteLine("");
+                        Console.WriteLine("The Chest is opened wide. There chest is empty");
+                        Console.WriteLine("");
 
-                        }
-
-                        else if (CheckChestOpen == false)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine("The Chest is beautifully ornated with purple lion emblems on the sides.");
-                            Console.WriteLine("You examine it more closely but it seems that you can't open it without a key.");
-                            Console.WriteLine("");
-                            Console.WriteLine("Try to open chest? Yes/No?");
-                            command = GetCommand();
-
-                            if (command == "Yes" && (hero.CheckBackPack("Lion Key") || hero.CheckBackPack("Iron Bar")))
-                            {
-                                CheckChestOpen = true;
-                                Console.WriteLine("");
-                                if (hero.CheckBackPack("Lion Key"))
-                                {
-                                    Console.WriteLine("You open the Chest with the Lion Key!");
-                                    hero.DropInventory("Lion Key");
-                                    
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You pry open the Chest with the Iron Bar!");
-                                }
-                                Console.WriteLine("There is a Vial in here. You placed it in your backpack!");
-                                Console.WriteLine("");
-                                hero.AddInventory("Vial");
-
-                            }
-                            else if (command != "Yes")
-                            {
-                                Console.WriteLine("You left the chest unopend...");
-                            }
-                            else
-                            {
-                                Console.WriteLine("You are missing an requierd item to open the chest");
-                            }
-
-                        }
                     }
 
-                    if (command == "Window")
+                    else if (CheckChestOpen == false)
                     {
-                        castleSeen = true;
                         Console.WriteLine("");
-                        Console.WriteLine("You look past the Iron Bars through the Window and you see a giant white castle on a green hill.");
-                        Console.WriteLine("The castle have four towers that seems to stretch towards the heaven.");
-                        Console.WriteLine("You also see two mountains in the distance that makes the castle even more beautiful.");
-                        Console.WriteLine("However you get the feeling that there's no one in the castle.");
+                        Console.WriteLine("The Chest is beautifully ornated with purple lion emblems on the sides.");
+                        Console.WriteLine("You examine it more closely but it seems that you can't open it without a key.");
                         Console.WriteLine("");
-
-                        Console.WriteLine("Do you want to open the widom? Yes/No");
+                        Console.WriteLine("Try to open chest? Yes/No?");
                         command = GetCommand();
 
+                        if (command == "Yes" && (hero.CheckBackPack("Lion Key") || hero.CheckBackPack("Iron Bar")))
+                        {
+                            CheckChestOpen = true;
+                            Console.WriteLine("");
+                            if (hero.CheckBackPack("Lion Key"))
+                            {
+                                Console.WriteLine("You open the Chest with the Lion Key!");
+                                hero.DropInventory("Lion Key");
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("You pry open the Chest with the Iron Bar!");
+                            }
+                            Console.WriteLine("There is a Vial in here. You placed it in your backpack!");
+                            Console.WriteLine("");
+                            hero.AddInventory("Vial");
+
+                        }
+                        else if (command != "Yes")
+                        {
+                            Console.WriteLine("You left the chest unopend...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You are missing an requierd item to open the chest");
+                        }
+
+                    }
+                }
+
+                if (command == "Window")
+                {
+                    castleSeen = true;
+                    Console.WriteLine("");
+                    Console.WriteLine("You look past the Iron Bars through the Window and you see a giant white castle on a green hill.");
+                    Console.WriteLine("The castle have four towers that seems to stretch towards the heaven.");
+                    Console.WriteLine("You also see two mountains in the distance that makes the castle even more beautiful.");
+                    Console.WriteLine("However you get the feeling that there's no one in the castle.");
+                    Console.WriteLine("");
+
+                    Console.WriteLine("Do you want to open the widom? Yes/No");
+                    command = GetCommand();
+
+                    if (command == "Yes")
+                    {
+
+                        Console.WriteLine("");
+                        Console.WriteLine("The Window is closed and can't be opened. Even if you could open it it's blocked by Iron Bars.");
+
+                        if (ironBar == true)
+                        {
+                            Console.WriteLine("You also see that one of the iorn bars is loos and you try to take it with you.");
+                            Console.WriteLine("");
+
+                            if (hero.Char_Strength > 7)
+                            {
+                                Console.WriteLine("With your mighy strengh it was no problem and the Iorn Bar was added to your backpack");
+                                hero.AddInventory("Iron Bar");
+                                ironBar = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You seem to be too weak to take it. If only you hade somthing that made you stronger...");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Eaven tho one of the iron bars are missing");
+                        }
+
+                    }
+
+                }
+
+                if (command == "Table")
+                {
+                    if (KeyFound == false)
+                    {
+                        KeyFound = true;
+                        Console.WriteLine("");
+                        Console.WriteLine("You look through the debris and the only thing worth noticing is a Rusty Key.");
+                        Console.WriteLine("Maybe this can be useful.");
+                        Console.WriteLine("You took the Rusty Key and placed it in your backpack");
+                        hero.AddInventory("Rusty Key");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("All you see is the old table, but nothing more on it.");
+                    }
+                }
+
+                if (command == "Door")
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("You approach the wooden Door.");
+
+                    if (doorOpend == false)
+                    {
+                        Console.WriteLine("The Door is locked but the lock seems old.");
+                        Console.WriteLine("");
+                        Console.WriteLine("Try opening the door? Yes/No");
+                        command = GetCommand();
                         if (command == "Yes")
                         {
-                            
-                            Console.WriteLine("");
-                            Console.WriteLine("The Window is closed and can't be opened. Even if you could open it it's blocked by Iron Bars.");
-
-                            if (ironBar == true)
+                            if (hero.CheckBackPack("Rusty Key"))
                             {
-                                Console.WriteLine("You also see that one of the iorn bars is loos and you try to take it with you.");
+                                Console.WriteLine("You opend the door with the Rusty Key");
+                                hero.DropInventory("Rusy Key");
+                                doorOpend = true;
+                                doorOpenWithKey = true;
+                            }
+                            else if (!hero.CheckBackPack("Rusty Key"))
+                            {
+                                Console.WriteLine("You tried to open the door but you did not have the right key so you tried to push it open");
+                            }
+
+                            if (hero.Char_Strength > 11)
+                            {
+                                Console.WriteLine("You smash the Door open with your unbridled power.");
+                                doorOpend = true;
+                                doorOpenWithForce = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("The Door is old but is sturdy enough to withstand the force of your impact.");
                                 Console.WriteLine("");
-
-                                if (hero.Char_Strength > 7)
-                                {
-                                    Console.WriteLine("With your mighy strengh it was no problem and the Iorn Bar was added to your backpack");
-                                    hero.AddInventory("Iron Bar");
-                                    ironBar = false;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You seem to be too weak to take it. If only you hade somthing that made you stronger...");
-                                }
                             }
-                            else
-                            {
-                                Console.WriteLine("Eaven tho one of the iron bars are missing");
-                            }
-
-                        }
-
-                    }
-
-                    if (command == "Table")
-                    {
-                        if (KeyFound == false)
-                        {
-                            KeyFound = true;
-                            Console.WriteLine("");
-                            Console.WriteLine("You look through the debris and the only thing worth noticing is a Rusty Key.");
-                            Console.WriteLine("Maybe this can be useful.");
-                            Console.WriteLine("You took the Rusty Key and placed it in your backpack");
-                            hero.AddInventory("Rusty Key");
-                            Console.WriteLine("");
                         }
                         else
                         {
-                            Console.WriteLine("All you see is the old table, but nothing more on it.");
+                            Console.WriteLine("You left the door closed...");
                         }
-                    }
 
-                    if (command == "Door")
+                    }
+                    else
                     {
-                        Console.WriteLine("");
-                        Console.WriteLine("You approach the wooden Door.");
-
-                        if (doorOpend == false)
+                        if (doorOpenWithKey == true)
                         {
-                            Console.WriteLine("The Door is locked but the lock seems old.");
-                            Console.WriteLine("");
-                            Console.WriteLine("Try opening the door? Yes/No");
-                            command = GetCommand();
-                            if (command == "Yes")
-                            {
-                                if (hero.CheckBackPack("Rusty Key"))
-                                {
-                                    Console.WriteLine("You opend the door with the Rusty Key");
-                                    hero.DropInventory("Rusy Key");
-                                    doorOpend = true;
-                                    doorOpenWithKey = true;
-                                }
-                                else if (!hero.CheckBackPack("Rusty Key"))
-                                {
-                                    Console.WriteLine("You tried to open the door but you did not have the right key so you tried to push it open");
-                                }
-
-                                if (hero.Char_Strength > 11)
-                                {
-                                    Console.WriteLine("You smash the Door open with your unbridled power.");
-                                    doorOpend = true;
-                                    doorOpenWithForce = true;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("The Door is old but is sturdy enough to withstand the force of your impact.");
-                                    Console.WriteLine("");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("You left the door closed...");
-                            }
-                            
+                            Console.WriteLine("The door is alrady open");
                         }
-                        else
+                        else if (doorOpenWithForce == true)
                         {
-                            if (doorOpenWithKey == true)
-                            {
-                                Console.WriteLine("The door is alrady open");
-                            }
-                            else if (doorOpenWithForce == true)
-                            {
-                                Console.WriteLine("The door is smashed to pieces");
-                            }
+                            Console.WriteLine("The door is smashed to pieces");
                         }
                     }
+                }
 
-                } while (command != "Back");
 
 
             }
@@ -398,7 +384,7 @@ namespace RPG
                         {
                             shieldIsMissing = true;
                             RemoveRoomItem("Shield");
-                            
+
                         }
                         else { Console.WriteLine("You left the Shield on the wall"); }
                     }
@@ -408,9 +394,9 @@ namespace RPG
             }
             if (roomNumber == 5)
             {
-                
+
             }
-            
+
 
         }
 

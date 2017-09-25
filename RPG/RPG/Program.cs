@@ -88,7 +88,12 @@ namespace RPG
                     else if (Command == "Look")
                     {
                         roomOne.RoomInfo();
-                        roomOne.RoomAction(Hero);
+                        
+                    }
+
+                    else if (Command == "Door" || Command == "Table" || Command == "Window" || Command == "Chest")
+                    {
+                        roomOne.RoomAction(Hero, Command);
                     }
 
                     else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
@@ -167,6 +172,7 @@ namespace RPG
                         Console.WriteLine("");
                     }
                 }
+
                 while (SecondRoom == true) //////////////////////////////////////Rum 2 //////////////////////////////////////////////////
                 {
                     Console.Clear();
@@ -770,10 +776,6 @@ namespace RPG
 
 
                     // Skriver vilket rum man är i
-                    Console.Write("Yor are in the ");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Trophy Room");
-                    Console.ResetColor();
                     roomFour.RoomInfo();
 
                     while (true)
@@ -822,6 +824,10 @@ namespace RPG
                             }
                         }
 
+                        else if (Command == "Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror")
+                        {
+                            roomFour.RoomAction(Hero, Command);
+                        }
                         else if (Command == "Look")
                         {
                             // Får ny information om rummet
@@ -834,10 +840,7 @@ namespace RPG
                                     Hero.AddInventory(thing);
                                 }
                             }
-
-                            // Om man väljer att plocka ner skölden hamnar den i inventory
-                            roomFour.RoomAction(Hero);
-                            
+                            Console.WriteLine(""); // Skriv vad man ser i rummet
 
                         }
 
