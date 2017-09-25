@@ -107,6 +107,7 @@ namespace RPG
             bool Ex = Char_Backpack.Contains(item);
             return Ex;
         }
+
         public void HpHeal(int heal)
         {
             int HealedHp = Hp - Hp_Current;
@@ -121,6 +122,7 @@ namespace RPG
                 Console.WriteLine("You gain " + heal + " health.\n");
             }
         }
+
         public int AttackDamage(string name)
         {
             Random PlayerHit = new Random();
@@ -128,6 +130,7 @@ namespace RPG
             Console.WriteLine("You deal " + PlayerDamage + " damage to " + name + ".\n");
             return PlayerDamage;
         }
+
         public void HpDamage(int dmg, string cause)
         {
 
@@ -154,10 +157,12 @@ namespace RPG
         {
             return Char_Backpack;
         }
+
         public List<string> GetBuffs()
         {
             return Char_Buffs;
         }
+
         public void UseItem(string item)
         {
             if (Char_Backpack.Contains(item))
