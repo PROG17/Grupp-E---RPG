@@ -40,3 +40,10 @@ C:\Users\Samulf\Source\Repos\Grupp-E---RPG3\RPG\RPG\obj\Debug\RPG.csprojResolveA
 C:\Users\Samulf\Source\Repos\Grupp-E---RPG3\RPG\RPG\obj\Debug\RPG.csproj.CoreCompileInputs.cache
 C:\Users\Samulf\Source\Repos\Grupp-E---RPG3\RPG\RPG\obj\Debug\RPG.exe
 C:\Users\Samulf\Source\Repos\Grupp-E---RPG3\RPG\RPG\obj\Debug\RPG.pdb
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\bin\Debug\RPG.exe.config
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\bin\Debug\RPG.exe
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\bin\Debug\RPG.pdb
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\obj\Debug\RPG.csprojResolveAssemblyReference.cache
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\obj\Debug\RPG.csproj.CoreCompileInputs.cache
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\obj\Debug\RPG.exe
+C:\Users\Samulf\Source\Repos\Grupp-E---RPG4\RPG\RPG\obj\Debug\RPG.pdb
