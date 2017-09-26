@@ -49,7 +49,7 @@ namespace RPG
             else if (vocation == "Knight")
             {
                 Char_Strength = 8;
-                Char_Agility = 8;
+                Char_Agility = 7;
                 Char_Intelligence = 8;
                 Hp = 115;
                 Hp_Current = 115;
@@ -75,7 +75,7 @@ namespace RPG
         // Vid anrop skriver stats ut
         public void TypeStats()
         {
-            Console.WriteLine("Health: " + Hp);
+            Console.WriteLine("Health: " + Hp_Current);
             Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
             Console.WriteLine("Intelligence: " + Char_Intelligence);

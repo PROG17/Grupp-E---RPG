@@ -134,7 +134,7 @@ namespace RPG
                     Console.WriteLine(item);
                     Console.WriteLine("Do you want to pick it up?");
                     string action = GetCommand();
-                    if (action == "yes" || action == "take")
+                    if (action == "Yes" || action == "Take")
                     {
                         returnItems.Add(item);
                     }
@@ -346,10 +346,10 @@ namespace RPG
                 }
                 if (command == "Painting")
                 {
-                    Console.WriteLine("You are looking at the painting and it seems to be some kide of castle");
-
+                    
                     if (paintingOnFloor == false)
                     {
+                        Console.WriteLine("You are looking at the painting and it seems to be some kide of castle");
                         Console.WriteLine("And it looke like there is someting behind it...");
                         Console.WriteLine("Take down the painting? Yes/No");
                         command = GetCommand();
@@ -357,18 +357,20 @@ namespace RPG
                         if (command == "Yes" || command == "Take")
                         {
                             paintingOnFloor = true;
-                            if (hero.Char_Intelligence < 7)
+                            if (hero.Char_Agility < 8)
                             {
                                 Console.WriteLine("OH CLUMSY YOU!");
-                                Console.WriteLine("You dropped the painting on your head and lost 20 helth...");
-                                hero.Hp -= 20;
+
+                                hero.HpDamage(20, "Painting");
 
                             }
                             else
                             {
+
                                 Console.WriteLine("You placed the paning on the floor");
                             }
-                            Console.WriteLine("Behind it you see a hole in the wall. Guess the painting WAS hiding something");
+                            Console.WriteLine(
+                                "Behind it you see a hole in the wall. Guess the painting WAS hiding something");
                             Console.WriteLine("Do you dare place your hand in the hole? Yes/No");
                             command = GetCommand();
                             if (command == "Yes" || command == "Take")
@@ -385,30 +387,30 @@ namespace RPG
 
 
                         }
-                        else
+                    }
+                    else
+                    {
+                        Console.WriteLine("The paining is laying on the floor and you can see the hole that the paining was covering");
+                        if (LionKeyTaken == false)
                         {
-                            Console.WriteLine("The paining is laying on the floor and you can see the hole that the paining was covering");
-                            if (LionKeyTaken == false)
+                            Console.WriteLine("There could still be something in there...");
+                            Console.WriteLine("Do you dare place your hand in the hole this time? Yes/No");
+                            command = GetCommand();
+                            if (command == "Yes" || command == "Take")
                             {
-                                Console.WriteLine("There could still be something in there...");
-                                Console.WriteLine("Do you dare place your hand in the hole this time? Yes/No");
-                                command = GetCommand();
-                                if (command == "Yes" || command == "Take")
-                                {
-                                    Console.WriteLine("You reach in and manage to grab a Key!");
-                                    Console.WriteLine("The key is golden and have a Lions head on it.");
-                                    hero.AddInventory("Lion Key");
-                                    LionKeyTaken = true;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You left the hole untuched. But you can always come back...");
-                                }
+                                Console.WriteLine("You reach in and manage to grab a Key!");
+                                Console.WriteLine("The key is golden and have a Lions head on it.");
+                                hero.AddInventory("Lion Key");
+                                LionKeyTaken = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You left the hole untuched. But you can always come back...");
                             }
                         }
-
                     }
-
+                
+            
 
 
                 }
@@ -416,7 +418,7 @@ namespace RPG
                 {
                     if (LookedInMirror == false)
                     {
-                        hero.Char_Intelligence += 3;
+                        hero.Char_Agility += 3;
                         LookedInMirror = true;
                     }
                     Console.WriteLine("You see yourself and you are looking good!");
