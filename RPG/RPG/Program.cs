@@ -17,6 +17,7 @@ namespace RPG
             bool ThirdRoom = false;
             bool fourthRoom = false;
             bool fifthRoom = false;
+
             bool FifthRoomFight = true;
             bool firstEnter = true;
             bool fifthEnter = false;
@@ -849,6 +850,18 @@ namespace RPG
 
                         else if (Command == "Shield"  || Command == "Silver Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror")
                         {
+                            if (Command == "Painting")
+                            {
+                                if (roomOne.castleSeen == true)
+                                {
+                                    Console.WriteLine("The painting is a resebles the castle you saw from the window in the first room");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("The painting resebles a big Castel");
+                                }
+                            }
+                            
                             roomFour.RoomAction(Hero, Command);
                         }
                         else if (Command == "Look")
@@ -875,8 +888,7 @@ namespace RPG
                             // ThirdRoom = true;
                             FirstRoom = true;
                             break;
-
-
+                            
                         }
 
                         // Går ej att gå hit
@@ -1139,17 +1151,13 @@ namespace RPG
             Console.WriteLine("Backpack - To show current items in your backpack.");
             Console.WriteLine("Help - To get room info and to be able to interact with the objects");
             Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-            Console.WriteLine("If you want more information about commands, type Command. Otherwise, type Back.\n");
+            Console.WriteLine("If you want more information about commands, type Command.\n");
             string command = Console.ReadLine().ToLower();
             if (command == "command")
             {
                 GetCommand();
             }
-            else
-            {
-
-            }
-
+            
         }
 
         // Alla kommandon du kan skriva från main programmet.

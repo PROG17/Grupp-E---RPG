@@ -15,15 +15,16 @@ namespace RPG
     {
         private string command;
         private int roomNumber;
-
-        private bool CheckChestOpen = false;
+        
         List<string> roomItems = new List<string>();
 
         // Bools för olika event i alla rum
-        private bool shieldIsMissing = false;
 
         #region First Room Bool
 
+        public bool castleSeen { get; set; }
+
+        private bool CheckChestOpen = false;
         private bool ironBar = true;
         private bool KeyFound = false;
         private bool doorOpenWithKey = false;
@@ -32,11 +33,12 @@ namespace RPG
         public bool doorOpend { get; set; }
         #endregion
 
-        #region Forth Room 
+        #region Forth Room Bools
 
         private bool paintingOnFloor = false;
         private bool LionKeyTaken = false;
         private bool LookedInMirror = false;
+        private bool shieldIsMissing = false;
 
         #endregion
 
@@ -212,6 +214,7 @@ namespace RPG
 
                 if (command == "Window")
                 {
+                    castleSeen = true;
                     Console.WriteLine("");
                     Console.WriteLine("You look past the Iron Bars through the Window and you see a giant white castle on a green hill.");
                     Console.WriteLine("The castle have four towers that seems to stretch towards the heaven.");
@@ -250,6 +253,10 @@ namespace RPG
                         }
 
                     }
+                    else
+                    {
+                        Console.WriteLine("You left the window");
+                    }
 
                 }
 
@@ -257,13 +264,24 @@ namespace RPG
                 {
                     if (KeyFound == false)
                     {
-                        KeyFound = true;
+                        
                         Console.WriteLine("");
                         Console.WriteLine("You look through the debris and the only thing worth noticing is a Rusty Key.");
                         Console.WriteLine("Maybe this can be useful.");
-                        Console.WriteLine("You took the Rusty Key and placed it in your backpack");
-                        hero.AddInventory("Rusty Key");
-                        Console.WriteLine("");
+                        Console.WriteLine("Do you want to pick it up? Yes/No");
+                        command = GetCommand();
+
+                        if (command == "Yes" || command == "Take")
+                        {
+                            KeyFound = true;
+                            hero.AddInventory("Rusty Key");
+                            Console.WriteLine("");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You left the table wíth the Rusty Key still on it");
+                        }
+                        
                     }
                     else
                     {
@@ -326,8 +344,7 @@ namespace RPG
                         }
                     }
                 }
-
-
+                
 
             }
             if (roomNumber == 2)
@@ -344,12 +361,12 @@ namespace RPG
                 {
                     Console.WriteLine("You'r standing on the carpet and lookig up in the ceiling, there is a huge chandelier and you are hoping it wont fall down on you.");
                 }
+
                 if (command == "Painting")
                 {
-                    
+                    // Itro text ligger i Program klassen
                     if (paintingOnFloor == false)
                     {
-                        Console.WriteLine("You are looking at the painting and it seems to be some kide of castle");
                         Console.WriteLine("And it looke like there is someting behind it...");
                         Console.WriteLine("Take down the painting? Yes/No");
                         command = GetCommand();
@@ -387,6 +404,10 @@ namespace RPG
 
 
                         }
+                        else
+                        {
+                            Console.WriteLine("You left the paining on the wall");
+                        }
                     }
                     else
                     {
@@ -410,10 +431,8 @@ namespace RPG
                         }
                     }
                 
-            
-
-
                 }
+
                 if (command == "Mirror")
                 {
                     if (LookedInMirror == false)
@@ -449,7 +468,7 @@ namespace RPG
                         }
                         else
                         {
-                            Console.WriteLine("The shield is missing... maby you have dropped it in another room");
+                            Console.WriteLine("The shield is missing... maby you have dropped it in another room or placed in somewhere");
                         }
                     }
 
