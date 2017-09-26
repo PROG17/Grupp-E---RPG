@@ -25,13 +25,20 @@ namespace RPG
 
         #region First Room Bool
 
-        private bool castleSeen = false;
         private bool ironBar = true;
         private bool KeyFound = false;
         private bool doorOpenWithKey = false;
         private bool doorOpenWithForce = false;
 
         public bool doorOpend { get; set; }
+        #endregion
+
+        #region Forth Room 
+
+        private bool paintingOnFloor = false;
+        private bool LionKeyTaken = false;
+        private bool LookedInMirror = false;
+
         #endregion
 
 
@@ -105,12 +112,10 @@ namespace RPG
             }
             if (roomNumber == 4)
             {
-                Console.WriteLine("This is a big room with lots of trophies on the walls! \nA big Carpet on the floor, Mirror on the wall and a big Painting");
+                Console.WriteLine("This is a big room with lots of trophies on the walls! \nA big Carpet on the floor, Mirror on the wall and a big Painting of a castle");
                 if (shieldIsMissing == false)
                 {
-                    Console.WriteLine("But the one thing that really draws to your attantion is a big ");
-                    Console.WriteLine("silver Shield");
-                    Console.ResetColor();
+                    Console.WriteLine("But the one thing that really draws to your attantion is a big Silver Shield");
                 }
 
                 List<string> returnItems = ItemsOnFloor();
@@ -138,9 +143,13 @@ namespace RPG
                     Console.WriteLine(item);
                     Console.WriteLine("Do you want to pick it up?");
                     string action = GetCommand();
-                    if (action == "yes" || action == "take")
+                    if (action == "Yes" || action == "Take")
                     {
                         returnItems.Add(item);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You left {0} on the floor", item);
                     }
 
                 }
@@ -212,7 +221,6 @@ namespace RPG
 
                 if (command == "Window")
                 {
-                    castleSeen = true;
                     Console.WriteLine("");
                     Console.WriteLine("You look past the Iron Bars through the Window and you see a giant white castle on a green hill.");
                     Console.WriteLine("The castle have four towers that seems to stretch towards the heaven.");
@@ -288,7 +296,7 @@ namespace RPG
                             if (hero.CheckBackPack("Rusty Key"))
                             {
                                 Console.WriteLine("You opened the door with the Rusty Key");
-                                hero.DropInventory("Rusty Key");
+                                hero.DropInventory("Rusy Key");
                                 doorOpend = true;
                                 doorOpenWithKey = true;
                             }
@@ -297,7 +305,7 @@ namespace RPG
                                 Console.WriteLine("You tried to open the door but you did not have the right key so you tried to push it open");
                             }
 
-                            if (hero.Char_Strength > 11)
+                            else if (hero.Char_Strength > 11)
                             {
                                 Console.WriteLine("You smash the Door open with your unbridled power.");
                                 doorOpend = true;
@@ -518,65 +526,120 @@ namespace RPG
             }
             if (roomNumber == 4)
             {
-                do
+                if (command == "Carpet")
                 {
-                    Console.WriteLine("What item do you want to take a close look at?");
-                    Console.ForegroundColor = ConsoleColor.Green;
-
-                    if (shieldIsMissing)
+                    Console.WriteLine("You'r standing on the carpet and lookig up in the ceiling, there is a huge chandelier and you are hoping it wont fall down on you.");
+                }
+                if (command == "Painting")
+                {
+                    
+                    if (paintingOnFloor == false)
                     {
-                        Console.WriteLine("Carpet - Painting - Mirror");
+                        Console.WriteLine("You are looking at the painting and it seems to be some kide of castle");
+                        Console.WriteLine("And it looke like there is someting behind it...");
+                        Console.WriteLine("Take down the painting? Yes/No");
+                        command = GetCommand();
+
+                        if (command == "Yes" || command == "Take")
+                        {
+                            paintingOnFloor = true;
+                            if (hero.Char_Agility < 8)
+                            {
+                                Console.WriteLine("OH CLUMSY YOU!");
+
+                                hero.HpDamage(20, "Painting");
+
+                            }
+                            else
+                            {
+
+                                Console.WriteLine("You placed the paning on the floor");
+                            }
+                            Console.WriteLine(
+                                "Behind it you see a hole in the wall. Guess the painting WAS hiding something");
+                            Console.WriteLine("Do you dare place your hand in the hole? Yes/No");
+                            command = GetCommand();
+                            if (command == "Yes" || command == "Take")
+                            {
+                                Console.WriteLine("You reach in and manage to grab a Key!");
+                                Console.WriteLine("The key is golden and have a Lions head on it.");
+                                hero.AddInventory("Lion Key");
+                                LionKeyTaken = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You left the hole untuched. But you can always come back...");
+                            }
+
+
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Carpet - Painting - Mirror - Shield");
-                    }
-
-                    Console.ResetColor();
-                    Console.Write("To do nothing type: ");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Back");
-                    Console.ResetColor();
-
-                    command = Console.ReadLine();
-                    command = command.First().ToString().ToUpper() + command.Substring(1).ToLower();
-
-                    if (command == "Carpet")
-                    {
-                        Console.WriteLine("You'r standing on the carpet");
-                    }
-                    if (command == "Painting")
-                    {
-                        if (castleSeen)
+                        Console.WriteLine("The paining is laying on the floor and you can see the hole that the paining was covering");
+                        if (LionKeyTaken == false)
                         {
-                            Console.WriteLine("The paining i a copy of the castle seen from the iron bard window");
+                            Console.WriteLine("There could still be something in there...");
+                            Console.WriteLine("Do you dare place your hand in the hole this time? Yes/No");
+                            command = GetCommand();
+                            if (command == "Yes" || command == "Take")
+                            {
+                                Console.WriteLine("You reach in and manage to grab a Key!");
+                                Console.WriteLine("The key is golden and have a Lions head on it.");
+                                hero.AddInventory("Lion Key");
+                                LionKeyTaken = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You left the hole untuched. But you can always come back...");
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("You are looking at the painting and it seems to be some kide of castle");
-                        }
-                        Console.WriteLine("And it looke like there is someting behind it...");
+                    }
+                
+            
 
-                    }
-                    if (command == "Mirror")
+
+                }
+                if (command == "Mirror")
+                {
+                    if (LookedInMirror == false)
                     {
-                        Console.WriteLine("You can see yourself");
+                        hero.Char_Agility += 3;
+                        LookedInMirror = true;
                     }
-                    if (command == "Shield")
+                    Console.WriteLine("You see yourself and you are looking good!");
+                }
+
+                if (command == "Shield" || command == "Silver Shield")
+                {
+                    if (shieldIsMissing == false)
                     {
                         Console.WriteLine("You look closely at the Shield and realise that you can take it with you!");
                         Console.WriteLine("Do you want to take it with you?");
                         string action = GetCommand();
-                        if (action == "yes" || action == "take")
+                        if (action == "Yes" || action == "Take")
                         {
                             shieldIsMissing = true;
                             RemoveRoomItem("Shield");
+                            hero.AddInventory("Shield");
+
 
                         }
                         else { Console.WriteLine("You left the Shield on the wall"); }
                     }
+                    else
+                    {
+                        if (hero.CheckBackPack("Shield"))
+                        {
+                            Console.WriteLine("You allready have the shield in your backpack");
+                        }
+                        else
+                        {
+                            Console.WriteLine("The shield is missing... maby you have dropped it in another room");
+                        }
+                    }
 
-                } while (command != "Back");
+                }
 
             }
             if (roomNumber == 5)

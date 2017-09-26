@@ -57,6 +57,7 @@ namespace RPG
 
             var Hero = new Character(Char_Name, Char_Voc);
             var Monster = new Monsters();
+
             var roomOne = new Rooms(1);
             var roomTwo = new Rooms(2);
             var roomThree = new Rooms(3);
@@ -70,7 +71,7 @@ namespace RPG
 
             do
             {
-                WriteTop(Char_Name, backPack.Count, Char_Voc, Hero.Hp_Current, Hero.Hp);
+              //  WriteTop(Char_Name, backPack.Count, Char_Voc, Hero.Hp_Current, Hero.Hp);
                 while (FirstRoom == true)
                 {
                     if (firstEnter == true)
@@ -635,6 +636,11 @@ namespace RPG
                             Hero.ShowInventory();
                         }
 
+                        else if (Command == "Status")
+                        {
+                            Hero.TypeStats();
+                        }
+
                         else if (Command == "Drop")
                         {
                             // Inventory skrivs ut och du väljer vad du vill droppa
@@ -672,7 +678,7 @@ namespace RPG
                             }
                         }
 
-                        else if (Command == "Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror")
+                        else if (Command == "Shield"  || Command == "Silver Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror")
                         {
                             roomFour.RoomAction(Hero, Command);
                         }
@@ -693,7 +699,7 @@ namespace RPG
                         }
 
                         // Lämnar rummet
-                        else if (Command == "Go East")
+                        else if (Command == "Go East" || Command == "East")
                         {
                             Console.WriteLine("You are leaving the trophy room");
                             fourthRoom = false;
