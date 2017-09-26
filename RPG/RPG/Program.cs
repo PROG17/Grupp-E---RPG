@@ -74,111 +74,121 @@ namespace RPG
                 //  WriteTop(Char_Name, backPack.Count, Char_Voc, Hero.Hp_Current, Hero.Hp);
                 while (FirstRoom == true)
                 {
+                    Console.Clear();
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
+                    Console.WriteLine(" THE GUESTROOM");
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
+                    Console.WriteLine("The First Room"); //ska ta bort sen
+                    Console.ReadLine();
                     if (firstEnter == true)
                     {
                         roomOne.RoomInfo();
                         firstEnter = false;
                     }
-
-                    Command = FirstUpperCase(Console.ReadLine().ToLower());
-                    if (Command == "Help")
+                    while (true)
                     {
-                        Help();
-                    }
-                    else if (Command == "Tre")
-                    {
-                        FirstRoom = false;
-                        ThirdRoom = true;
-                    }
-
-                    else if (Command == "Status")
-                    {
-                        Hero.TypeStats();
-                    }
-
-                    else if (Command == "Look")
-                    {
-                        roomOne.RoomInfo();
-
-                    }
-
-                    else if (Command == "Door" || Command == "Table" || Command == "Window" || Command == "Chest")
-                    {
-                        roomOne.RoomAction(Hero, Command);
-                    }
-
-                    else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
-                    {
-                        Hero.ShowInventory();
-                    }
-
-                    else if (Command == "Drop")
-                    {
-                        // Inventory skrivs ut och du väljer vad du vill droppa
-                        Console.WriteLine("What item do you want to drop?");
-                        Hero.ShowInventory();
-
-
-                        string itemToDrop = FirstUpperCase(Console.ReadLine().ToLower());
-
-                        // Kollar att du har föremålet du vill droppa
-                        if (Hero.CheckBackPack(itemToDrop))
-                        {
-                            // Föremålet droppas och läggstill i nuvarande rummets itemlista
-                            Hero.DropInventory(itemToDrop);
-                            roomOne.AddRoomItem(itemToDrop);
-                        }
-                        else
-                        {
-                            Console.WriteLine("No such item in your inventory");
-                        }
-                    }
-
-                    else if (Command == "Use")
-                    {
-                        Hero.ShowInventory();
-                        Console.WriteLine("Which item do you want to use?\n");
                         Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        if (backPack.Contains(Command))
+                        if (Command == "Help")
                         {
-                            Hero.UseItem(Command);
+                            Help();
                         }
+                        else if (Command == "Tre")
+                        {
+                            FirstRoom = false;
+                            ThirdRoom = true;
+                            break;
+                        }
+
+                        else if (Command == "Status")
+                        {
+                            Hero.TypeStats();
+                        }
+
+                        else if (Command == "Look")
+                        {
+                            roomOne.RoomInfo();
+
+                        }
+
+                        else if (Command == "Door" || Command == "Table" || Command == "Window" || Command == "Chest")
+                        {
+                            roomOne.RoomAction(Hero, Command);
+                        }
+
+                        else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
+                        {
+                            Hero.ShowInventory();
+                        }
+
+                        else if (Command == "Drop")
+                        {
+                            // Inventory skrivs ut och du väljer vad du vill droppa
+                            Console.WriteLine("What item do you want to drop?");
+                            Hero.ShowInventory();
+
+
+                            string itemToDrop = FirstUpperCase(Console.ReadLine().ToLower());
+
+                            // Kollar att du har föremålet du vill droppa
+                            if (Hero.CheckBackPack(itemToDrop))
+                            {
+                                // Föremålet droppas och läggstill i nuvarande rummets itemlista
+                                Hero.DropInventory(itemToDrop);
+                                roomOne.AddRoomItem(itemToDrop);
+                            }
+                            else
+                            {
+                                Console.WriteLine("No such item in your inventory");
+                            }
+                        }
+
+                        else if (Command == "Use")
+                        {
+                            Hero.ShowInventory();
+                            Console.WriteLine("Which item do you want to use?\n");
+                            Command = FirstUpperCase(Console.ReadLine().ToLower());
+                            if (backPack.Contains(Command))
+                            {
+                                Hero.UseItem(Command);
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have that in your inventory.\n");
+                            }
+                        }
+
+                        else if (Command == "Go East" || Command == "East")
+                        {
+                            if (roomOne.doorOpend == true)
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Go to second room");
+                                FirstRoom = false;
+                                SecondRoom = true;
+                                break;
+                            }
+                            else if (FirstDoorOpen == false)
+                            {
+
+                                Console.WriteLine("");
+                                Console.WriteLine("The door is still locked");
+                                Console.WriteLine("");
+                            }
+                        }
+
+                        else if (Command == "Go West" || Command == "Go South" || Command == "Go North" || Command == "West" || Command == "South" || Command == "North")
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You cannot go this way. The only way out seems to be to the East");
+                            Console.WriteLine("");
+                        }
+
                         else
                         {
-                            Console.WriteLine("You don't have that in your inventory.\n");
-                        }
-                    }
-
-                    else if (Command == "Go East" || Command == "East")
-                    {
-                        if (roomOne.doorOpend == true)
-                        {
                             Console.WriteLine("");
-                            Console.WriteLine("Go to second room");
-                            FirstRoom = false;
-                            SecondRoom = true;
-                        }
-                        else if (FirstDoorOpen == false)
-                        {
-
-                            Console.WriteLine("");
-                            Console.WriteLine("The door is still locked");
+                            Console.WriteLine("Does not understand input. \nType \"Help\" to get help");
                             Console.WriteLine("");
                         }
-                    }
-
-                    else if (Command == "Go West" || Command == "Go South" || Command == "Go North" || Command == "West" || Command == "South" || Command == "North")
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("You cannot go this way. The only way out seems to be to the East");
-                        Console.WriteLine("");
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("");
-                        Console.WriteLine("Does not understand input. \nType \"Help\" to get help");
-                        Console.WriteLine("");
                     }
                 }
 
@@ -839,7 +849,7 @@ namespace RPG
         {
             Console.Clear();
             Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome {0} to the Age of Labyrinths. You have chosen to be a {1}.", name, character);
+            Console.WriteLine("Welcome {0} to the Age of Labyrinth. You have chosen to be a {1}.", name, character);
             Console.SetCursorPosition(Console.WindowWidth / 2 - 17, Console.WindowHeight / 2 - 3);
             Console.WriteLine("Press enter to start your adventure.");
             Console.SetCursorPosition(Console.WindowWidth / 2 + 19, Console.WindowHeight / 2 - 3);
@@ -866,7 +876,7 @@ namespace RPG
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
             Console.WriteLine("Welcome to the Age of Labyrinths.");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
-            Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlok");
+            Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlock");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 1);
             type = Console.ReadLine().ToLower();
 
