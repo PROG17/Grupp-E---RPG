@@ -18,8 +18,8 @@ namespace RPG
         {
             if (name == "Goblin")
             {
-                Hp = 30;
-                Hp_Current = 30;
+                Hp = 50;
+                Hp_Current = 50;
                 Monster_Strength = 3;
             }
 
@@ -30,7 +30,7 @@ namespace RPG
             int MonsterDamage = 0;
             if (name == "Goblin")
             {
-                MonsterDamage = MonsterHit.Next(1, 10) + Monster_Strength;
+                MonsterDamage = MonsterHit.Next(10, 15) + Monster_Strength;
             }
 
             return MonsterDamage;

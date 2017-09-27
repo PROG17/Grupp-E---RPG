@@ -79,27 +79,32 @@ namespace RPG
         // Vid anrop skriver stats ut
         public void TypeStats()
         {
-            Console.WriteLine("Health: " + Hp_Current);
+            Console.WriteLine("\nHealth: " + Hp_Current);
             Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
-            Console.WriteLine("Intelligence: " + Char_Intelligence);
+            Console.WriteLine("Intelligence: \n" + Char_Intelligence);
             foreach (var item in Char_Buffs)
             {
-                Console.WriteLine("Active buff: " + item);
+                Console.WriteLine("Active buff: \n" + item);
             }
-            
+
         }
 
         // Lägger till i hjältens väska
         public void AddInventory(string item)
         {
-            Console.WriteLine("You added {0} to your inventory", item);
+            Console.WriteLine("\nYou added {0} to your inventory\n", item);
             Char_Backpack.Add(item);
 
         }
 
         // Plockar bort ur västa
-        public void DropInventory(string item)
+        public void UsedItem(string item)
+        {
+            Console.WriteLine("\n You use " + item + ".");
+            Char_Backpack.Remove(item);
+        }
+        public void DropToRoom(string item)
         {
             if (item == "Shield") { }
             else
@@ -108,6 +113,7 @@ namespace RPG
             }
             Char_Backpack.Remove(item);
         }
+
 
         // Kollar om väskan innehåller ett vist item och returnerar True eller false
         public bool CheckBackPack(string item)
@@ -122,12 +128,12 @@ namespace RPG
             Hp_Current += heal;
             if (Hp_Current >= Hp)
             {
-                Console.WriteLine("You gain " + HealedHp + " health.\n");
+                Console.WriteLine("\nYou gain " + HealedHp + " health.\n");
                 Hp_Current = Hp;
             }
             else
             {
-                Console.WriteLine("You gain " + heal + " health.\n");
+                Console.WriteLine("\nYou gain " + heal + " health.\n");
             }
         }
 
@@ -146,11 +152,8 @@ namespace RPG
 
             if (Hp_Current <= 0)
             {
-
                 Console.WriteLine("You loose " + dmg + " hitpoints by " + cause + ".");
                 Console.WriteLine("Health: " + Hp_Current);
-
-
             }
             else
             {
@@ -177,30 +180,38 @@ namespace RPG
             {
                 if (item == "Bread")
                 {
-                    HpHeal(20);
-                    Char_Backpack.Remove(item);
+                    if (Hp_Current >= Hp)
+                    {
+                        Console.WriteLine("\nYou already have full health. " + item + " was not used.\n");
+                    }
+                    else
+                    {
+                        HpHeal(20);
+                        Char_Backpack.Remove(item);
+                    }
+                    
                 }
                 else if (item == "Green Liquid Vial")
                 {
                     Char_Buffs.Add("Goblinoid");
-                    Console.WriteLine("You drink the green liquid and you feel strange... But you can't put your nose on what's wrong.\n");
+                    Console.WriteLine("\nYou drink the green liquid and you feel strange... But you can't put your nose on what's wrong.\n");
                     Char_Backpack.Remove(item);
                 }
                 else if (item == "White Liquid Vial")
                 {
-                    Console.WriteLine("You drink the white liquid and you feel a sharp pain in your stomach. " +
-                        "You feel that this was the wrong choice.");
+                    Console.WriteLine("\nYou drink the white liquid and you feel a sharp pain in your stomach. " +
+                        "You feel that this was the wrong choice.\n");
                     HpDamage(30, item);
                     Char_Backpack.Remove(item);
                 }
                 else if (item == "Rusty Key")
                 {
-                    Console.WriteLine("You must go to a door to use this key.\n");
+                    Console.WriteLine("\nYou must go to a door to use this key.\n");
                 }
             }
             else
             {
-                Console.WriteLine("You don't have that in your inventory.\n");
+                Console.WriteLine("\nYou don't have that in your inventory.\n");
             }
         }
 

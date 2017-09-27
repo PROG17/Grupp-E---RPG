@@ -59,6 +59,107 @@ namespace RPG
             Console.SetCursorPosition((Console.WindowWidth / 2) - 10, Console.WindowHeight / 2 - 2);
             Console.ForegroundColor = ConsoleColor.Black;
         }
+        public void Win()
+        {
+
+        }
+        public void GameOver()
+        {
+            Console.CursorVisible = false;
+            Console.Clear();
+            
+            var death = new[]
+            {
+                @"             ...",
+                @"           ;::::;",
+                @"          ;::::; :;",
+                @"        ;:::::'   :;",
+                @"       ;:::::;     ;.",
+                @"      ,:::::'       ;           OOO\",
+                @"      ::::::;       ;          OOOOO\",
+                @"      ;:::::;       ;         OOOOOOOO",
+                @"     ,;::::::;     ;'         / OOOOOOO",
+                @"   ;:::::::::`. ,,,;.        /  / DOOOOOO",
+                @"  .';:::::::::::::::::;,     /  /     DOOOO",
+                @" ,::::::;::::::;;;;::::;,   /  /        DOOO",
+                @";`::::::`'::::::;;;::::: ,#/  /          DOOO",
+                @":`:::::::`;::::::;;::: ;::#  /            DOOO",
+                @"::`:::::::`;:::::::: ;::::# /              DOO",
+                @"`:`:::::::`;:::::: ;::::::#/               DOO",
+                @" :::`:::::::`;; ;:::::::::##                OO",
+                @" ::::`:::::::`;::::::::;:::#                OO",
+                @" `:::::`::::::::::::; '`:;::#                O",
+                @" `:::::`::::::::;' /  / `:#",
+                @"  ::::::`:::::;'  /  /   `#",
+            };
+            var died = new[]
+            {
+                @"Y",
+                @"o",
+                @"u",
+                @"",
+                @"D",
+                @"i",
+                @"e",
+                @"d",
+                
+            };
+            var gameover = new[]
+            {
+                @"G",
+                @"a",
+                @"m",
+                @"e",
+                @"",
+                @"O",
+                @"v",
+                @"e",
+                @"r",
+            };
+            Console.ForegroundColor = ConsoleColor.Black;
+            for (int i = 0; i < death.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(death[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = 0; i < death.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(death[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            for (int i = 0; i < death.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(death[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.White;
+            for (int i = 0; i < death.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(death[i]);
+            }
+            Thread.Sleep(1000);
+            for (int i = 0; i < died.Length; i++)
+            {
+                Thread.Sleep(100);
+                Console.SetCursorPosition((Console.WindowWidth / 2 - 6) + i, (Console.LargestWindowHeight) / 2 - 2);
+                Console.Write(died[i]);
+            }
+            Thread.Sleep(2000);
+            for (int i = 0; i < gameover.Length; i++)
+            {
+                Thread.Sleep(100);
+                Console.SetCursorPosition((Console.WindowWidth / 2 - 5) + i, (Console.LargestWindowHeight) / 2 - 1);
+                Console.Write(gameover[i]);
+            }
+
+
+        }
         public void FadeInTitle()
         {
             var undertitle = new[]

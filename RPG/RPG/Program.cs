@@ -44,7 +44,8 @@ namespace RPG
             string ChestItem = "Vial";
 
             // Sätter namn och karaktär, Warlock som defaul
-            ///Ascii.WelcomeStart();
+            //Ascii.WelcomeStart();
+            
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
@@ -67,7 +68,6 @@ namespace RPG
             List<string> backPack = Hero.GetBackPack();
             List<string> Buffs = Hero.GetBuffs();
             List<string> MonsterLoot = Monster.GetMonsterLoot();
-            backPack.Add("Shield");
 
 
             do
@@ -77,10 +77,12 @@ namespace RPG
                 {
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
-                    Console.WriteLine(" THE GUESTROOM");
+                    Console.WriteLine("THE GUESTROOM");
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
                     Console.WriteLine("The First Room"); //ska ta bort sen
                     Console.ReadLine();
+                    Console.Clear();
+                    Console.SetCursorPosition(0, 30);
                     if (firstEnter == true)
                     {
                         roomOne.RoomInfo();
@@ -120,7 +122,10 @@ namespace RPG
                         {
                             Hero.ShowInventory();
                         }
-
+                        else if (backPack.Contains(Command))
+                        {
+                            Hero.UseItem(Command);
+                        }
                         else if (Command == "Drop")
                         {
                             // Inventory skrivs ut och du väljer vad du vill droppa
@@ -134,7 +139,7 @@ namespace RPG
                             if (Hero.CheckBackPack(itemToDrop))
                             {
                                 // Föremålet droppas och läggstill i nuvarande rummets itemlista
-                                Hero.DropInventory(itemToDrop);
+                                Hero.DropToRoom(itemToDrop);
                                 roomOne.AddRoomItem(itemToDrop);
                             }
                             else
@@ -278,7 +283,7 @@ namespace RPG
                             if (Hero.CheckBackPack(itemToDrop))
                             {
                                 // Föremålet droppas och läggstill i nuvarande rummets itemlista
-                                Hero.DropInventory(itemToDrop);
+                                Hero.DropToRoom(itemToDrop);
                                 roomTwo.AddRoomItem(itemToDrop);
                             }
                             else
@@ -495,7 +500,7 @@ namespace RPG
                             if (Hero.CheckBackPack(itemToDrop))
                             {
                                 // Föremålet droppas och läggstill i nuvarande rummets itemlista
-                                Hero.DropInventory(itemToDrop);
+                                Hero.DropToRoom(itemToDrop);
                                 roomFour.AddRoomItem(itemToDrop);
                             }
                             else
@@ -789,9 +794,7 @@ namespace RPG
             } while (EndGame == false);
             if (EndGame == true && Hero.Hp_Current == 0)
             {
-                Console.WriteLine("You are dead.");
-                Console.ReadLine();
-
+                Ascii.GameOver();
             }
             else
             {
@@ -869,11 +872,11 @@ namespace RPG
 
         public static string WelcomeName(string name) //Detta körs vid starten och sparar ditt namn
         {
+            //Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
+            //Console.WriteLine("Welcome to the Age of Labyrinth.");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome to the Age of Labyrinths.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
             Console.WriteLine("Please select a name for your character: ");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 1);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
             name = Console.ReadLine().ToLower();
             return name;
 
@@ -882,11 +885,11 @@ namespace RPG
         public static string WelcomeVoc(string type)//Detta körs vid starten och sparar ditt voc (ifall du skriver fel blir det WL
         {
             Console.Clear();
+            //Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
+            //Console.WriteLine("Welcome to the Age of Labyrinths.");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 5);
-            Console.WriteLine("Welcome to the Age of Labyrinths.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 3);
             Console.WriteLine("Please select a vocation: Barbarian, Knight, Thief, Warlock");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 + 1);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 1);
             type = Console.ReadLine().ToLower();
 
             return type;
