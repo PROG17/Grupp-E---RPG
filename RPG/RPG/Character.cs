@@ -21,7 +21,7 @@ namespace RPG
         public int Char_Intelligence { get; set; }
         public int Hp { get; set; }
         public int Hp_Current { get; set; }
-
+        public string Char_Vocation { get; set; }
         // Konstruktor som sätter Namn och class
         public Character(string Name, string Character)
         {
@@ -44,6 +44,7 @@ namespace RPG
                 Char_Intelligence = 6;
                 Hp = 110;
                 Hp_Current = 110;
+                Char_Vocation = vocation;
 
             }
             else if (vocation == "Knight")
@@ -53,6 +54,7 @@ namespace RPG
                 Char_Intelligence = 8;
                 Hp = 115;
                 Hp_Current = 115;
+                Char_Vocation = vocation;
             }
             else if (vocation == "Thief")
             {
@@ -61,6 +63,7 @@ namespace RPG
                 Char_Intelligence = 8;
                 Hp = 105;
                 Hp_Current = 105;
+                Char_Vocation = vocation;
             }
             else if (vocation == "Warlock")
             {
@@ -69,6 +72,7 @@ namespace RPG
                 Char_Intelligence = 10;
                 Hp = 100;
                 Hp_Current = 100;
+                Char_Vocation = vocation;
             }
         }
 
@@ -97,7 +101,11 @@ namespace RPG
         // Plockar bort ur västa
         public void DropInventory(string item)
         {
-            Console.WriteLine("You dropped {0} on the floor", item);
+            if (item == "Shield") { }
+            else
+            {
+                Console.WriteLine("You dropped {0} on the floor", item);
+            }
             Char_Backpack.Remove(item);
         }
 

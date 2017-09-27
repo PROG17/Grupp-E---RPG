@@ -19,7 +19,6 @@ namespace RPG
             FadeIn(company);
             FadeOut(company);
             FadeInTitle(); //String för titel finns i metoden
-
             
             Thread.Sleep(8000);
             Console.Clear();
