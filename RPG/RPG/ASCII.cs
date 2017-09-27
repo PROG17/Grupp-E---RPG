@@ -20,7 +20,7 @@ namespace RPG
             FadeOut(company);
             FadeInTitle(); //String för titel finns i metoden
 
-            Console.Read();
+            
             Thread.Sleep(8000);
             Console.Clear();
         }

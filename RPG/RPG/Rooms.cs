@@ -26,7 +26,7 @@ namespace RPG
 
         public bool castleSeen { get; set; }
 
-        private bool CheckChestOpen = false;
+        
         private bool ironBar = true;
         private bool KeyFound = false;
         private bool doorOpenWithKey = false;
@@ -41,6 +41,7 @@ namespace RPG
         private bool LionKeyTaken = false;
         private bool LookedInMirror = false;
         private bool shieldIsMissing = false;
+        
 
         #endregion
 

@@ -21,7 +21,7 @@ namespace RPG
 
             bool FifthRoomFight = true;
             bool firstEnter = true;
-            bool fifthEnter = false;
+            bool fifthEnter = true;
             bool FirstDoorOpen = false;
             bool FirstItemIsFound = false;
             bool FirstRoomIronBarWindow = true;
@@ -45,7 +45,7 @@ namespace RPG
             string ChestItem = "Vial";
 
             // Sätter namn och karaktär, Warlock som defaul
-            Ascii.WelcomeStart();
+            ///Ascii.WelcomeStart();
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
@@ -68,6 +68,7 @@ namespace RPG
             List<string> backPack = Hero.GetBackPack();
             List<string> Buffs = Hero.GetBuffs();
             List<string> MonsterLoot = Monster.GetMonsterLoot();
+            backPack.Add("Shield");
 
 
             do
@@ -157,8 +158,7 @@ namespace RPG
                             Console.WriteLine("");
                             Console.WriteLine("Go to second room");
                             FirstRoom = false;
-                            // SecondRoom = true;
-                            fourthRoom = true;
+                            SecondRoom = true;
 
                         }
                         else if (FirstDoorOpen == false)
@@ -547,8 +547,7 @@ namespace RPG
                         }
                         else if (Command == "East" && HiddenDoorOpen == true || Command == "Go East" && HiddenDoorOpen == true)
                         {
-                            ThirdRoom = false;
-                            fifthRoom = true;
+                            
                             Console.WriteLine("You go to the east.\n");
                             if (fifthEnter == true && Buffs.Contains("Goblinoid"))
                             {
@@ -556,7 +555,10 @@ namespace RPG
                                 Console.WriteLine("The sunlight is glowing through the opening and you feel you are close to escaping.");
                                 Console.WriteLine("Suddenly you notice a small green man hiding behind some barrels close to the ladder.");
                                 Console.WriteLine("Goblin: u druck teh green water, soon we brothas. - The goblin says before disappearing.\n");
+                                ThirdRoom = false;
+                                fifthRoom = true;
                                 fifthEnter = false;
+                                
                             }
                             else if (fifthEnter == true)
                             {
@@ -564,13 +566,17 @@ namespace RPG
                                 Console.WriteLine("The sunlight is glowing through the opening and you feel you are close to escaping.");
                                 Console.WriteLine("Suddenly you notice a small green man hiding behind some barrels close to the ladder.");
                                 Console.WriteLine("Goblin: You are not going to take my ladder!!! - The goblin screams and strikes at you.");
-
+                                ThirdRoom = false;
+                                fifthRoom = true;
+                                fifthEnter = false;
                             }
                             else if (fifthEnter == false && Buffs.Contains("Goblinoid"))
                             {
                                 Console.WriteLine("You crawl through a small opening and get inside a small room with a ladder going to the roof.");
                                 Console.WriteLine("The sunlight is glowing through the opening and you feel you are close to escaping.");
                                 Console.WriteLine("You also see some barrels besides the ladder, where you once saw a goblin.\n");
+                                ThirdRoom = false;
+                                fifthRoom = true;
                             }
                             else
                             {
@@ -580,8 +586,11 @@ namespace RPG
                                 {
                                     Console.WriteLine("You also see a dead goblin on the floor that you've slain.");
                                 }
-
+                                ThirdRoom = false;
+                                fifthRoom = true;
                             }
+                            ThirdRoom = false;
+                            fifthRoom = true;
                         }
                         else if (Command == "East" && HiddenDoorOpen == false || Command == "Go East" && HiddenDoorOpen == false)
                         {
@@ -821,8 +830,6 @@ namespace RPG
                         Monster.CreateMonster("Goblin");
                         while (FifthRoomFight == true)
                         {
-
-
                             Console.WriteLine("");
                             Console.WriteLine("Do you want to Hit/Fight or Run?\n");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
