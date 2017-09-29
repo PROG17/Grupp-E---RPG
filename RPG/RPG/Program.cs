@@ -44,7 +44,7 @@ namespace RPG
             string ChestItem = "Vial";
 
             // Sätter namn och karaktär, Warlock som defaul
-            //Ascii.WelcomeStart();
+          //  Ascii.WelcomeStart();
             
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
@@ -95,12 +95,12 @@ namespace RPG
                         {
                             Help();
                         }
-                        else if (Command == "Tre")
-                        {
-                            FirstRoom = false;
-                            ThirdRoom = true;
-                            break;
-                        }
+                        //else if (Command == "Tre")
+                        //{
+                        //    FirstRoom = false;
+                        //    ThirdRoom = true;
+                        //    break;
+                        //}
 
                         else if (Command == "Status")
                         {
@@ -109,7 +109,15 @@ namespace RPG
 
                         else if (Command == "Look")
                         {
-                            roomOne.RoomInfo();
+                            List<string> itemsOnFloor = roomOne.RoomInfo();
+                            if (itemsOnFloor != null)
+                            {
+                                foreach (var thing in itemsOnFloor)
+                                {
+                                    // Allt man plockar upp läggs i ditt inventory
+                                    Hero.AddInventory(thing);
+                                }
+                            }
 
                         }
 
@@ -171,7 +179,9 @@ namespace RPG
                             Console.WriteLine("Go to second room");
                             FirstRoom = false;
                             SecondRoom = true;
+                                break;
                             
+
 
                         }
                         else if (FirstDoorOpen == false)
@@ -242,6 +252,7 @@ namespace RPG
                         {
                             SecondRoom = false;
                             FirstRoom = true;
+                            roomOne.RoomInfo();
                             break;
                         }
                         else if (Command == "North" || Command == "Go North")
@@ -249,6 +260,11 @@ namespace RPG
                             SecondRoom = false;
                             ThirdRoom = true;
                             break;
+                        }
+
+                        else if (Command == "Go South" || Command == "South" || Command == "Go East" || Command == "East")
+                        {
+                            Console.WriteLine("Cant go that way.");
                         }
 
                         else if (Command == "Help")
@@ -261,7 +277,15 @@ namespace RPG
                         }
                         else if (Command == "Look")
                         {
-                            roomTwo.RoomInfo();
+                            List<string> itemsOnFloor = roomTwo.RoomInfo();
+                            if (itemsOnFloor != null)
+                            {
+                                foreach (var thing in itemsOnFloor)
+                                {
+                                    // Allt man plockar upp läggs i ditt inventory
+                                    Hero.AddInventory(thing);
+                                }
+                            }
                         }
 
 
@@ -321,11 +345,21 @@ namespace RPG
                         }
                         else if (Command == "Look")
                         {
-                            roomThree.RoomInfo();
                             if (Rooms.HiddenDoorOpen == true)
                             {
                                 Console.WriteLine("There seems to be a shining light emerging behind a cupboard.\n");
                             }
+
+                            List<string> itemsOnFloor = roomTwo.RoomInfo();
+                            if (itemsOnFloor != null)
+                            {
+                                foreach (var thing in itemsOnFloor)
+                                {
+                                    // Allt man plockar upp läggs i ditt inventory
+                                    Hero.AddInventory(thing);
+                                }
+                            }
+
                         }
                         else if (Command == "Inventory" || Command == "Backpack" || Command == "Inv")
                         {
@@ -438,7 +472,9 @@ namespace RPG
                         {
                             ThirdRoom = false;
                             SecondRoom = true;
-                            Console.WriteLine("You go to the south.");
+                            Console.WriteLine("You go to the hallway.");
+                            break;
+                            
                         }
                         else if (Command == "North" || Command == "Go North")
                         {
@@ -818,12 +854,8 @@ namespace RPG
             Console.WriteLine("Backpack - To show current items in your backpack.");
             Console.WriteLine("Help - To get room info and to be able to interact with the objects");
             Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-            Console.WriteLine("If you want more information about commands, type Command.\n");
-            string command = Console.ReadLine().ToLower();
-            if (command == "command")
-            {
-                GetCommand();
-            }
+          //  Console.WriteLine("If you want more information about commands, type Command.\n");
+            GetCommand();
 
         }
 
