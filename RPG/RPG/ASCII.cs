@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Media;
 
 namespace RPG
 {
@@ -11,6 +12,7 @@ namespace RPG
     {
         public void WelcomeStart()
         {
+          
             string presents = "Group E presents";
             string company = "A Easy Company© game";
             Console.CursorVisible = false;
@@ -22,7 +24,7 @@ namespace RPG
             
             Thread.Sleep(8000);
             Console.Clear();
-        }
+                    }
         public void FadeIn (string text)
         {
             Console.SetCursorPosition((Console.WindowWidth / 2) - 10, Console.WindowHeight / 2 - 2);

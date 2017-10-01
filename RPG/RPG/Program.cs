@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Media;
 
 namespace RPG
 {
@@ -43,8 +44,11 @@ namespace RPG
             FirstRoomItems.Add("Rusty Key");
             string ChestItem = "Vial";
 
+            SoundPlayer Song = new SoundPlayer(@"c:\Age of Labyrinth.WAV");   // Spelar upp låten
+            Song.PlayLooping();
+
             // Sätter namn och karaktär, Warlock som defaul
-            //  Ascii.WelcomeStart();
+            Ascii.WelcomeStart();
 
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
@@ -55,6 +59,7 @@ namespace RPG
             }
 
             WelcomeMessage(Char_Name, Char_Voc);
+            Song.Stop();   //Stoppar låten
 
             var Hero = new Character(Char_Name, Char_Voc);
             var Monster = new Monsters();
@@ -904,6 +909,9 @@ namespace RPG
             Console.SetCursorPosition(Console.WindowWidth / 2 + 19, Console.WindowHeight / 2 - 3);
             Console.ReadLine();
             Console.Clear();
+
+
+
             Console.SetCursorPosition(0, 30);
         }
 
