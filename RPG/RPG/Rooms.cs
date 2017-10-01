@@ -410,7 +410,7 @@ namespace RPG
                 {
                     if (vaseBroken == false)
                     {
-                        Console.WriteLine("Its is a beautifull ancient vase but it is really dusty...\nDo you want to pick it up? Yes/No");
+                        Console.WriteLine("It is a beautiful ancient vase but it is really dusty...\nDo you want to pick it up? Yes/No");
                         command = FirstUpperCase(Console.ReadLine());
                         if (command == "Yes" || command == "Take")
                         {
@@ -421,14 +421,14 @@ namespace RPG
                                 $"Arrows shoot out from the south wall and you loose {arrowDamage} HP!");
                             hero.Hp -= arrowDamage;
                             Console.WriteLine("Your Current HP is " + hero.Hp +
-                                              ".\nThe Vase broke in to Shards\n");
+                                              ".\nThe Vase broke in to Vase Shards\n");
 
                             vaseBroken = true;
                             AddRoomItem("Vase Shards");
                         }
                         else
                         {
-                            Console.WriteLine("You left the vase untuched");
+                            Console.WriteLine("You left the vase untouched");
                         }
                     }
                     else
@@ -443,50 +443,58 @@ namespace RPG
                     {
                         Console.WriteLine("\nYou walk up to the Statue.\nThe knight has a sword and armor, but no Shield... ");
                         Console.WriteLine("There is a Plate with an inscription at the foot of the Statue.");
-                        Console.WriteLine("You read...");
+                       
+                        command = FirstUpperCase(Console.ReadLine().ToLower());
+                        if (command == "Plate" || command == "Read")
+                        {
+                            Console.Clear();
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 11);
+                            Console.WriteLine("+-------------------------------------------------------------------+");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 10);
+                            Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 9);
+                            Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 8);
+                            Console.WriteLine("|: |                                                             | :|");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 7);
+                            Console.WriteLine("| :|                      MIHI OPUS EST CLYPEUS                  |: |");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 6);
+                            if (hero.Char_Vocation == "Knight")
+                            {
+                                Console.WriteLine("|: |                        I NEED MY SHIELD                     | :|");
 
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 11);
-                        //Console.WriteLine("+-------------------------------------------------------------------+");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 10);
-                        //Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 9);
-                        //Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 8);
-                        //Console.WriteLine("|: |                                                             | :|");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 7);
-                        //Console.WriteLine("| :|                      MIHI OPUS EST CLYPEUS                  |: |");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 6);
-                        //if (hero.Char_Vocation == "Knight")
-                        //{
-                        //    Console.WriteLine("|: |                        I NEED MY SHIELD                     | :|");
+                            }
+                            else
+                            {
+                                Console.WriteLine("|: |                                                             | :|");
+                            }
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 5);
+                            Console.WriteLine("| :|                                                             |: |");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 4);
+                            Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 3);
+                            Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
+                            Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
+                                Console.WindowHeight / 2 - 2);
+                            Console.WriteLine("+-------------------------------------------------------------------+");
+                                                        
+                            Console.ReadKey();
+                            Console.Clear();
+                            Console.SetCursorPosition(0, 30);
+                        }
 
-                        //}
-                        //else
-                        //{
-                        //    Console.WriteLine("|: |                                                             | :|");
-                        //}
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 5);
-                        //Console.WriteLine("| :|                                                             |: |");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 4);
-                        //Console.WriteLine("|{>/-------------------------------------------------------------/<}|");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 3);
-                        //Console.WriteLine("| = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = : = |");
-                        //Console.SetCursorPosition(Console.WindowWidth / 2 - 35,
-                        //    Console.WindowHeight / 2 - 2);
-                        //Console.WriteLine("+-------------------------------------------------------------------+");
+                        else { Console.WriteLine("\nYou walk back to the center of the room."); }
 
-                        //Console.SetCursorPosition(0, 30);
-
-                        if (hero.CheckBackPack("Shield"))
+                            if (hero.CheckBackPack("Shield"))
                         {
                             Console.WriteLine("\nDo you want to put the Shield on the statue? Yes/No\n");
                             command = FirstUpperCase(Console.ReadLine().ToLower());
@@ -505,7 +513,7 @@ namespace RPG
                         }
                         else
                         {
-                            Console.WriteLine("You should look around for that missing sheild...");
+                            Console.WriteLine("You should look around for that missing Shield...");
                         }
                     }
                     else
@@ -713,13 +721,13 @@ namespace RPG
                             else
                             {
                                 Console.WriteLine("");
-                                Console.WriteLine("You left the Culdrons and went back to the middle of the room.");
+                                Console.WriteLine("You left the Cauldrons and went back to the middle of the room.");
                                 Console.WriteLine("");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("You shuld find something that can stor the potions and come back...");
+                            Console.WriteLine("You shuld find something that can store the potions and come back...");
                         }
 
 
