@@ -44,8 +44,8 @@ namespace RPG
             string ChestItem = "Vial";
 
             // Sätter namn och karaktär, Warlock som defaul
-          //  Ascii.WelcomeStart();
-            
+            //  Ascii.WelcomeStart();
+
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
             Char_Voc = FirstUpperCase(WelcomeVoc(Char_Voc));
@@ -171,21 +171,21 @@ namespace RPG
                             }
                         }
 
-                    else if (Command == "Go East" || Command == "East")
-                    {
-                        if (roomOne.doorOpend == true)
+                        else if (Command == "Go East" || Command == "East")
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("Go to second room");
-                            FirstRoom = false;
-                            SecondRoom = true;
+                            if (roomOne.doorOpend == true)
+                            {
+                                Console.WriteLine("");
+                                Console.WriteLine("Go to second room");
+                                FirstRoom = false;
+                                SecondRoom = true;
                                 break;
-                            
 
 
-                        }
-                        else if (FirstDoorOpen == false)
-                        {
+
+                            }
+                            else if (FirstDoorOpen == false)
+                            {
 
                                 Console.WriteLine("");
                                 Console.WriteLine("The door is still locked");
@@ -343,6 +343,7 @@ namespace RPG
                         {
                             Help();
                         }
+
                         else if (Command == "Look")
                         {
                             if (Rooms.HiddenDoorOpen == true)
@@ -350,7 +351,7 @@ namespace RPG
                                 Console.WriteLine("There seems to be a shining light emerging behind a cupboard.\n");
                             }
 
-                            List<string> itemsOnFloor = roomTwo.RoomInfo();
+                            List<string> itemsOnFloor = roomThree.RoomInfo();
                             if (itemsOnFloor != null)
                             {
                                 foreach (var thing in itemsOnFloor)
@@ -375,11 +376,12 @@ namespace RPG
                             Console.WriteLine("");
                             Console.WriteLine("Which item do you want to drop?");
                             Console.WriteLine("");
+                            Hero.ShowInventory();
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (backPack.Contains(Command))
                             {
                                 backPack.Remove(Command);
-                                ThirdRoomItems.Add(Command);
+                                roomThree.AddRoomItem(Command);
                                 Console.WriteLine("You put the " + Command + " on the floor.");
                                 Console.WriteLine("");
 
@@ -417,7 +419,7 @@ namespace RPG
                         }
                         else if (Command == "East" && Rooms.HiddenDoorOpen == true || Command == "Go East" && Rooms.HiddenDoorOpen == true)
                         {
-                            
+
                             Console.WriteLine("You go to the east.\n");
                             if (fifthEnter == true && Buffs.Contains("Goblinoid"))
                             {
@@ -428,7 +430,7 @@ namespace RPG
                                 ThirdRoom = false;
                                 fifthRoom = true;
                                 fifthEnter = false;
-                                
+
                             }
                             else if (fifthEnter == true)
                             {
@@ -461,6 +463,8 @@ namespace RPG
                             }
                             ThirdRoom = false;
                             fifthRoom = true;
+                            break;
+
                         }
                         else if (Command == "East" && Rooms.HiddenDoorOpen == false || Command == "Go East" && Rooms.HiddenDoorOpen == false)
                         {
@@ -474,8 +478,9 @@ namespace RPG
                             SecondRoom = true;
                             Console.WriteLine("You go to the hallway.");
                             break;
-                            
+
                         }
+
                         else if (Command == "North" || Command == "Go North")
                         {
                             Console.WriteLine("");
@@ -854,7 +859,7 @@ namespace RPG
             Console.WriteLine("Backpack - To show current items in your backpack.");
             Console.WriteLine("Help - To get room info and to be able to interact with the objects");
             Console.WriteLine("Tip: Sometimes you can take items from the room you are in, so try write them and see what happens.");
-          //  Console.WriteLine("If you want more information about commands, type Command.\n");
+            //  Console.WriteLine("If you want more information about commands, type Command.\n");
             GetCommand();
 
         }
