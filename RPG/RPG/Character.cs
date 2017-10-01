@@ -191,13 +191,13 @@ namespace RPG
                     }
                     
                 }
-                else if (item == "Green Liquid Vial")
+                else if (item == "Green Vial")
                 {
                     Char_Buffs.Add("Goblinoid");
                     Console.WriteLine("\nYou drink the green liquid and you feel strange... But you can't put your nose on what's wrong.\n");
                     Char_Backpack.Remove(item);
                 }
-                else if (item == "White Liquid Vial")
+                else if (item == "White Vial")
                 {
                     Console.WriteLine("\nYou drink the white liquid and you feel a sharp pain in your stomach. " +
                         "You feel that this was the wrong choice.\n");

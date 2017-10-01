@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Media;
 
 namespace RPG
 {
@@ -12,7 +11,6 @@ namespace RPG
     {
         public void WelcomeStart()
         {
-          
             string presents = "Group E presents";
             string company = "A Easy Company© game";
             Console.CursorVisible = false;
@@ -21,11 +19,11 @@ namespace RPG
             FadeIn(company);
             FadeOut(company);
             FadeInTitle(); //String för titel finns i metoden
-            
+
             Thread.Sleep(8000);
             Console.Clear();
-                    }
-        public void FadeIn (string text)
+        }
+        public void FadeIn(string text)
         {
             Console.SetCursorPosition((Console.WindowWidth / 2) - 10, Console.WindowHeight / 2 - 2);
             Console.ForegroundColor = ConsoleColor.Black;
@@ -41,7 +39,7 @@ namespace RPG
             Thread.Sleep(500);
             Console.SetCursorPosition((Console.WindowWidth / 2) - 10, Console.WindowHeight / 2 - 2);
             Console.ForegroundColor = ConsoleColor.White;
-            
+
         }
         public void FadeOut(string text)
         {
@@ -63,13 +61,86 @@ namespace RPG
         }
         public void Win()
         {
+            Console.CursorVisible = false;
+            Console.Clear();
+            var win = new[]
+            {
+                @"    .",
+                @"   / \",
+                @"   | |",
+                @"   |.|",
+                @"   |.|",
+                @"   |:|      __      ",
+                @" ,_|:|_,   /  )      ",
+                @"   (Oo    / _I_",
+                @"    +\ \  || __| ",
+                @"       \ \||___|   ",
+                @"         \ /.:.\-\          ",
+                @"          |.:. /-----\              ",
+                @"          |___|::oOo::|",
+                @"          /   |:<_T_>:|",
+                @"         |_____\ ::: /",
+                @"           | |  \ \:/",
+                @"           | |   | |",
+                @"           \ /   | \___",
+                @"           / |   \_____\",
+                @"           `-'",
 
+
+            };
+            var wintext = new[]
+            {
+                @"Y",
+                @"o",
+                @"u",
+                @"",
+                @"W",
+                @"i",
+                @"n",
+                @"!",
+
+            };
+            Console.ForegroundColor = ConsoleColor.Black;
+            for (int i = 0; i < win.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(win[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = 0; i < win.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(win[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            for (int i = 0; i < win.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(win[i]);
+            }
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.White;
+            for (int i = 0; i < win.Length; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 20, (Console.WindowHeight / 2 - 14) + i);
+                Console.Write(win[i]);
+            }
+            Thread.Sleep(1000);
+            for (int i = 0; i < wintext.Length; i++)
+            {
+                Thread.Sleep(100);
+                Console.SetCursorPosition((Console.WindowWidth / 2 - 8) + i, (Console.LargestWindowHeight) / 2 - 2);
+                Console.Write(wintext[i]);
+            }
+            Console.ReadLine();
         }
         public void GameOver()
         {
             Console.CursorVisible = false;
             Console.Clear();
-            
+
             var death = new[]
             {
                 @"             ...",
@@ -104,7 +175,7 @@ namespace RPG
                 @"i",
                 @"e",
                 @"d",
-                
+
             };
             var gameover = new[]
             {
@@ -190,12 +261,12 @@ namespace RPG
             @"||   _________________________________<\            |||",
             @"<>   \________________________________[]########]   |||",
             @"||                                    </            |||",
-            @"<>           ___                      __            |||",      
-            @"||          / _ \                    / _|           |||",   
-            @"<>         / /_\ \ __ _  ___    ___ | |_            |||",                                 
-            @"||         |  _  |/ _` |/ _ \  / _ \|  _|           |||",                                
-            @"<>         | | | | (_| |  __/ | (_) | |             |||",                                
-            @"||         \_| |_/\__, |\___|  \___/|_|             |||",                                 
+            @"<>           ___                      __            |||",
+            @"||          / _ \                    / _|           |||",
+            @"<>         / /_\ \ __ _  ___    ___ | |_            |||",
+            @"||         |  _  |/ _` |/ _ \  / _ \|  _|           |||",
+            @"<>         | | | | (_| |  __/ | (_) | |             |||",
+            @"||         \_| |_/\__, |\___|  \___/|_|             |||",
             @"<>                 __/ |                            |||",
             @"||                |___/                             |||",
             @"<>  _           _                _       _   _      |||",
@@ -242,7 +313,7 @@ namespace RPG
             for (int i = 0; i < undertitle.Length; i++)
             {
                 Thread.Sleep(100);
-                Console.SetCursorPosition((Console.WindowWidth / 2 - 6) + i, (Console.LargestWindowHeight)/2);
+                Console.SetCursorPosition((Console.WindowWidth / 2 - 6) + i, (Console.LargestWindowHeight) / 2);
                 Console.Write(undertitle[i]);
             }
         }

@@ -48,7 +48,7 @@ namespace RPG
             Song.PlayLooping();
 
             // Sätter namn och karaktär, Warlock som defaul
-            Ascii.WelcomeStart();
+            //Ascii.WelcomeStart();
 
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
@@ -685,6 +685,13 @@ namespace RPG
                                 Console.WriteLine("Could not find " + Command + " in your inventory.");
                             }
                         }
+                        else if (Command == "Go West" || Command == "West")
+                        {
+                            //Console.WriteLine("You are leaving the trophy room");
+                            fifthRoom = false;
+                            ThirdRoom = true;
+                            break;
+                        }
                         else if (Command == "Barrel" || Command == "Barrels")
                         {
                             Console.WriteLine("");
@@ -702,6 +709,7 @@ namespace RPG
                             Console.WriteLine("");
                             Console.WriteLine("You climb up the ladder and reach the top. There is another room, and not the outside as you thought.");
                             Console.WriteLine("It seems like it will take a long time to get out of this labyrinth.");
+                            fifthRoom = false;
                             EndGame = true;
                         }
 
@@ -766,6 +774,13 @@ namespace RPG
                         else if (Command == "Status")
                         {
                             Hero.TypeStats();
+                        }
+                        else if (Command == "Go West" || Command == "West")
+                        {
+                            //Console.WriteLine("You are leaving the trophy room");
+                            fifthRoom = false;
+                            ThirdRoom = true;
+                            break;
                         }
                         else if (Command == "Use")
                         {
@@ -844,7 +859,7 @@ namespace RPG
             }
             else
             {
-                Console.WriteLine("You made it out. Congratulations!");
+                Ascii.Win();
                 Console.ReadLine();
             }
 

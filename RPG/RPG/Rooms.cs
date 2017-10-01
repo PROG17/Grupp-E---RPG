@@ -679,13 +679,17 @@ namespace RPG
                     else
                     {
                         Console.WriteLine("");
-                        Console.WriteLine("You approach the alchemist table and the smell from the culdrons is still in the air");
+                        Console.WriteLine("You approach the alchemist table and the smell from the cauldrons is still in the air");
                         Console.WriteLine("But both of the cauldrons are empty.");
                         Console.WriteLine("");
 
                         if (hero.CheckBackPack("Green Vial") || hero.CheckBackPack("White Vial"))
                         {
-                            Console.WriteLine("Maby you shuld try to use the vial in your backpack...");
+                            Console.WriteLine("Maybe you should try to use the vial in your backpack.");
+                        }
+                        else
+                        {
+
                         }
                     }
 
@@ -923,7 +927,7 @@ namespace RPG
             {
                 if (command == "Carpet")
                 {
-                    Console.WriteLine("You'r standing on the carpet and lookig up in the ceiling, there is a huge chandelier and you are hoping it won't fall down on you.");
+                    Console.WriteLine("You're standing on a carpet and looking up in the ceiling, there is a huge chandelier and you are hoping it won't fall down on you.");
                 }
 
                 if (command == "Painting")
@@ -975,7 +979,7 @@ namespace RPG
                     }
                     else
                     {
-                        Console.WriteLine("The paining is laying on the floor and you can see the hole that the paining was covering");
+                        Console.WriteLine("The painting is laying on the floor and you can see the hole that the paining was covering");
                         if (LionKeyTaken == false)
                         {
                             Console.WriteLine("There could still be something in there...");
@@ -983,14 +987,14 @@ namespace RPG
                             command = GetCommand();
                             if (command == "Yes" || command == "Take")
                             {
-                                Console.WriteLine("You reach in and manage to grab a Key!");
+                                Console.WriteLine("You reach in and manage to grab a key!");
                                 Console.WriteLine("The key is golden and have a Lions head on it.");
                                 hero.AddInventory("Lion Key");
                                 LionKeyTaken = true;
                             }
                             else
                             {
-                                Console.WriteLine("You left the hole untuched. But you can always come back...");
+                                Console.WriteLine("You left the hole untouched. But you can always come back...");
                             }
                         }
                     }
@@ -1022,17 +1026,17 @@ namespace RPG
 
 
                         }
-                        else { Console.WriteLine("You left the Shield on the wall"); }
+                        else { Console.WriteLine("You left the Shield on the wall."); }
                     }
                     else
                     {
                         if (hero.CheckBackPack("Shield"))
                         {
-                            Console.WriteLine("You allready have the shield in your backpack");
+                            Console.WriteLine("You already have the shield in your backpack.");
                         }
                         else
                         {
-                            Console.WriteLine("The shield is missing... maby you have dropped it in another room or placed in somewhere");
+                            Console.WriteLine("The shield is missing... maybw you have dropped it in another room or placed it somewhere.");
                         }
                     }
 
