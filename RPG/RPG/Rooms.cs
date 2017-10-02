@@ -152,11 +152,12 @@ namespace RPG
             }
             if (roomNumber == 3)
             {
+
                 Console.WriteLine("");
                 Console.WriteLine("As soon as you enter this room you are met with the most intoxicating smell that you'll dream of.");
                 Console.WriteLine("The room is quite foggy so it takes a while to see that there's only a Table in the room," +
                     " and a door to the west.");
-                Console.WriteLine("The smell seems to originate from the Table.");
+                Console.WriteLine("The smell seems to originate from the Table.\n");
 
                 List<string> returnItems = ItemsOnFloor();
                 return returnItems;
@@ -167,7 +168,7 @@ namespace RPG
                 Console.WriteLine("This is a big room with lots of trophies on the walls! \nA big Carpet on the floor, Mirror on the wall and a big Painting of a castle");
                 if (shieldIsMissing == false)
                 {
-                    Console.WriteLine("But the one thing that really draws to your attention is a big silver Shield");
+                    Console.WriteLine("But the one thing that really draws to your attention is a big silver Shield.\n");
                 }
 
                 List<string> returnItems = ItemsOnFloor();
@@ -286,28 +287,29 @@ namespace RPG
 
                         if (ironBar == true)
                         {
-                            Console.WriteLine("You also see that one of the iron bars is loose and you try to take it with you.\n");
-
-                            if (hero.Char_Strength > 7)
+                            Console.WriteLine("You also see that one of the iron bars is loose. Do you want to try and take it?\n");
+                            command = FirstUpperCase(Console.ReadLine().ToLower());
+                            
+                            if (hero.Char_Strength > 7 && command == "Yes")
                             {
-                                Console.WriteLine("With your mighty strenght it was no problem and the iron bar was added to your backpack.\n");
+                                Console.WriteLine("\nWith your mighty strength it was no problem and the iron bar was added to your backpack.\n");
                                 hero.AddInventory("Iron Bar");
                                 ironBar = false;
                             }
                             else
                             {
-                                Console.WriteLine("You seem to be too weak to take it. If only you were stronger...\n");
+                                Console.WriteLine("\nYou decide not to try and take the iron bar.\n");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("You can't take more iron bars.\n");
+                            Console.WriteLine("\nThere's no other iron bar that you can take away.\n");
                         }
 
                     }
                     else
                     {
-                        Console.WriteLine("You move away from the window.\n");
+                        Console.WriteLine("\nYou move away from the window.\n");
                     }
 
                 }
@@ -849,13 +851,13 @@ namespace RPG
                             else
                             {
                                 Console.WriteLine("");
-                                Console.WriteLine("You left the Cauldrons and went back to the middle of the room.");
+                                Console.WriteLine("You walk away from the cauldrons.");
                                 Console.WriteLine("");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("You shuld find something that can store the potions and come back...");
+                            Console.WriteLine("You should find something that can store the potions and come back...");
                         }
 
 

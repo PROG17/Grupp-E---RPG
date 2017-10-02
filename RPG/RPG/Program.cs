@@ -24,13 +24,8 @@ namespace RPG
             bool firstEnter = true;
             bool fifthEnter = true;
             bool FirstDoorOpen = false;
-            bool FirstItemIsFound = false;
-            bool FirstRoomIronBarWindow = true;
-            bool CheckChestOpen = false;
             //bool vaseBroken = false;
             bool EndGame = false;
-            bool CauldronIsFull = true;
-            bool ShieldOnStatue = false;
 
             string Char_Name = "David";
             string Char_Voc = "Cool";
@@ -42,13 +37,12 @@ namespace RPG
             List<string> ThirdRoomItems = new List<string>();
             List<string> FifthRoomItems = new List<string>();
             FirstRoomItems.Add("Rusty Key");
-            string ChestItem = "Vial";
 
             SoundPlayer Song = new SoundPlayer(@"c:\Age of Labyrinth.WAV");   // Spelar upp låten
             Song.PlayLooping();
 
             // Sätter namn och karaktär, Warlock som defaul
-            //Ascii.WelcomeStart();
+            Ascii.WelcomeStart();
 
             Console.CursorVisible = true;
             Char_Name = FirstUpperCase(WelcomeName(Char_Name));
@@ -83,8 +77,7 @@ namespace RPG
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
                     Console.WriteLine("THE GUESTROOM");
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
-                    Console.WriteLine("The First Room"); //ska ta bort sen
+                    
                     Console.ReadLine();
                     Console.Clear();
                     Console.SetCursorPosition(0, 30);
@@ -219,8 +212,7 @@ namespace RPG
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 5);
                     Console.WriteLine("THE HALLWAY");
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
-                    Console.WriteLine("The Second Room"); //ska ta bort sen
+                    Console.SetCursorPosition(0, 30);
                     Console.ReadLine();
 
                     Console.Clear();
@@ -330,11 +322,12 @@ namespace RPG
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
                     Console.WriteLine("THE LABORATORY");
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
-                    Console.WriteLine("The Third Room"); //ska ta bort sen
                     Console.ReadLine();
 
+                    Console.Clear();
+                    Console.SetCursorPosition(0, 30);
                     roomThree.RoomInfo();
+                   
                     if (Rooms.HiddenDoorOpen == true)
                     {
                         Console.WriteLine("There seems to be a green gas emerging behind a cupboard.");
@@ -512,10 +505,11 @@ namespace RPG
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 5);
                     Console.WriteLine("THE TROPHY ROOM");
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 9, Console.WindowHeight / 2 - 3);
-                    Console.WriteLine("The Fourth Room"); //ska ta bort sen
+                    Console.SetCursorPosition(0, 30);
                     Console.ReadLine();
-
+                    Console.Clear();
+                    Console.SetCursorPosition(0, 30);
+                    
 
                     // Skriver vilket rum man är i
                     roomFour.RoomInfo();
@@ -630,6 +624,7 @@ namespace RPG
 
                 while (fifthRoom == true)
                 {
+                    
 
                     if (Buffs.Contains("Goblinoid"))//Kräver att man ska dricka från gröna grytan i köksrummet
                     {
@@ -808,9 +803,8 @@ namespace RPG
                         else if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
                         {
 
-                            Console.WriteLine("");
-                            Console.WriteLine("Which item do you want to drop?");
-                            Console.WriteLine("");
+                            
+                            Console.WriteLine("\nWhich item do you want to drop?\n");
                             Command = FirstUpperCase(Console.ReadLine().ToLower());
                             if (backPack.Contains(Command))
                             {
@@ -828,20 +822,20 @@ namespace RPG
                         }
                         else if (Command == "Barrel" || Command == "Barrels")
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("You walk to the barrels where you saw the goblin from before.");
+                            
+                            Console.WriteLine("\nYou walk to the barrels where you saw the goblin from before.");
                             Console.WriteLine("You inspect the barrels but they are all empty.\n");
                         }
                         else if (Command == "Goblin" || Command == "Loot Goblin" || Command == "Loot")
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("You see a dead goblin on the floor.");
+                            
+                            Console.WriteLine("\nYou see a dead goblin on the floor.\n");
                             Monster.ShowMonsterLoot();
                         }
                         else if (MonsterLoot.Contains(Command))
                         {
                             backPack.Add(Command);
-                            Console.WriteLine("You add " + Command + " in your backpack.\n");
+                            Console.WriteLine("\nYou add " + Command + " in your backpack.\n");
                             MonsterLoot.Remove(Command);
                         }
                         else if (Command == "Ladder" || Command == "Go To Ladder" || Command == "Use Ladder")
@@ -909,6 +903,7 @@ namespace RPG
             allCommands.Add("Status");
             allCommands.Add("Back");
             allCommands.Add("Help");
+            allCommands.Add("Inspect");
 
             Console.WriteLine();
             for (int i = 0; i < allCommands.Count; i++)

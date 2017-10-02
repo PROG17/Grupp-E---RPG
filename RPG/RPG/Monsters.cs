@@ -57,7 +57,7 @@ namespace RPG
             Console.Write("Loot: ");
             foreach (var item in Monsterloot)
             {
-                Console.Write(item + " ");
+                Console.Write(item + "\n");
             }
             return Monsterloot;
         }

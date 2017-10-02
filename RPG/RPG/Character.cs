@@ -79,10 +79,12 @@ namespace RPG
         // Vid anrop skriver stats ut
         public void TypeStats()
         {
-            Console.WriteLine("\nHealth: " + Hp_Current);
+            Console.WriteLine("\nName: " + name);
+            Console.WriteLine("Class: " + Char_Vocation);
+            Console.WriteLine("Health: " + Hp_Current + "/" + Hp );
             Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
-            Console.WriteLine("Intelligence: " + Char_Intelligence);
+            Console.WriteLine("Intelligence: " + Char_Intelligence + "\n");
             foreach (var item in Char_Buffs)
             {
                 Console.WriteLine("Active buff: " + item);
