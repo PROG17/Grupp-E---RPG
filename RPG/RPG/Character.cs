@@ -82,10 +82,10 @@ namespace RPG
             Console.WriteLine("\nHealth: " + Hp_Current);
             Console.WriteLine("Strength: " + Char_Strength);
             Console.WriteLine("Agility: " + Char_Agility);
-            Console.WriteLine("Intelligence: \n" + Char_Intelligence);
+            Console.WriteLine("Intelligence: " + Char_Intelligence);
             foreach (var item in Char_Buffs)
             {
-                Console.WriteLine("Active buff: \n" + item);
+                Console.WriteLine("Active buff: " + item);
             }
 
         }
@@ -172,6 +172,10 @@ namespace RPG
         public List<string> GetBuffs()
         {
             return Char_Buffs;
+        }
+        public void Inspect()
+        {
+
         }
 
         public void UseItem(string item)

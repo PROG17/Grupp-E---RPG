@@ -126,7 +126,7 @@ namespace RPG
 
                         }
 
-                        else if (Command == "Door" || Command == "Table" || Command == "Window" || Command == "Chest")
+                        else if (Command == "Door" || Command == "Table" || Command == "Window" || Command == "Chest" || Command == "Inspect")
                         {
                             roomOne.RoomAction(Hero, Command);
                         }
@@ -247,7 +247,7 @@ namespace RPG
                     while (true)
                     {
                         Command = FirstUpperCase(Console.ReadLine().ToLower());
-                        if (Command == "Vase" || Command == "Statue" || Command == "Shield" || Command == "Vase Shards" || Command == "Use Vase" || Command == "Take Vase")
+                        if (Command == "Vase" || Command == "Statue" || Command == "Inspect" || Command == "Shield" || Command == "Vase Shards" || Command == "Use Vase" || Command == "Take Vase")
                         {
                             roomTwo.RoomAction(Hero, Command);
                         }
@@ -375,6 +375,7 @@ namespace RPG
                         {
                             Hero.TypeStats();
                         }
+
                         else if (Command == "Drop" || Command == "Remove" || Command.Contains("Drop"))
                         {
 
@@ -492,7 +493,7 @@ namespace RPG
                             Console.WriteLine("You cannot go to the north, it's blocked by a wall.");
                             Console.WriteLine("");
                         }
-                        else if (Command == "Table" || Command == "Go To Table" || Command == "Alchemy Table" || Command == "Go To Alchemy Table")
+                        else if (Command == "Table" || Command == "Go To Table" || Command == "Alchemy Table" || Command == "Go To Alchemy Table" || Command == "Inspect")
                         {
                             roomThree.RoomAction(Hero, Command);
                         }
@@ -570,7 +571,7 @@ namespace RPG
                             }
                         }
 
-                        else if (Command == "Shield" || Command == "Silver Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror")
+                        else if (Command == "Shield" || Command == "Silver Shield" || Command == "Carpet" || Command == "Painting" || Command == "Mirror" || Command == "Inspect") 
                         {
                             if (Command == "Painting")
                             {
@@ -649,6 +650,10 @@ namespace RPG
                         else if (Command == "Status")
                         {
                             Hero.TypeStats();
+                        }
+                        else if (Command == "Inspect")
+                        {
+                            roomFive.RoomAction(Hero, Command);
                         }
                         else if (Command == "Use")
                         {
@@ -774,6 +779,10 @@ namespace RPG
                         else if (Command == "Status")
                         {
                             Hero.TypeStats();
+                        }
+                        else if (Command == "Inspect")
+                        {
+                            roomFive.RoomAction(Hero, Command);
                         }
                         else if (Command == "Go West" || Command == "West")
                         {

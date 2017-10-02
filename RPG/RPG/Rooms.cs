@@ -339,7 +339,48 @@ namespace RPG
                         Console.WriteLine("\nAll you see is the old table with some debris on it. Nothing more interesting can be found here.\n");
                     }
                 }
+                if (command == "Inspect")
+                {
+                    Console.WriteLine("What do you want to inspect?");
+                    command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (command == "Bread" && hero.CheckBackPack("Bread"))
+                    {
+                        Console.WriteLine("\nIt seems to be white barley bread. It's still quite fresh and should be eaten when feeling down.");
+                        Console.WriteLine("Item effect: +20 hitpoints\n");
+                    }
+                    else if (command == "Green Vial" && hero.CheckBackPack("Green Vial"))
+                    {
+                        Console.WriteLine("\nThis green looking liquid that you got from the alchemy table looks like it came from a swamp.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+                    }
+                    else if (command == "White Vial" && hero.CheckBackPack("White Vial"))
+                    {
+                        Console.WriteLine("\nThe scent coming from the white liquid seems to penetrate the glass vial. The liquid is silky white.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
 
+                    }
+                    else if (command == "Vial" && hero.CheckBackPack("Vial"))
+                    {
+                        Console.WriteLine("\nYou got this item from a chest where you started. You can maybe use this if you want to drink something.\n");
+                    }
+                    else if (command == "Iron Bar" && hero.CheckBackPack("Iron Bar"))
+                    {
+                        Console.WriteLine("\nAn iron bar that you took from the first room. Maybe you can use this to open something by force.\n");
+                    }
+                    else if (command == "Rusty Key" && hero.CheckBackPack("Rusty Key"))
+                    {
+                        Console.WriteLine("\nThis key is covered in rust. Though you suspect that it still will work, if you can find the lock that match the key that is.\n");
+                    }
+                    else if (command == "Lion Key" && hero.CheckBackPack("Lion Key"))
+                    {
+                        Console.WriteLine("\nYou have not seen a more extravagant key in your life before. The base of this key is a lions head.\n");
+                    }
+                    else if (command == "Shield" && hero.CheckBackPack("Shield"))
+                    {
+                        Console.WriteLine("\nThis is a silver shield that looks like it was forged yesterday.");
+                        Console.WriteLine("Upon further inspection you realise that this shield should not be used in combat. and is only for decoration.\n");
+                    }
+                }
                 if (command == "Door")
                 {
                     charVoc = hero.Char_Vocation;           // Sätter Vocation lokalt. Utnyttjar att hero läses in i denna metod.
@@ -436,7 +477,48 @@ namespace RPG
                         Console.WriteLine("The Vase is broken...");
                     }
                 }
+                else if (command == "Inspect")
+                {
+                    Console.WriteLine("What do you want to inspect?");
+                    command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (command == "Bread" && hero.CheckBackPack("Bread"))
+                    {
+                        Console.WriteLine("\nIt seems to be white barley bread. It's still quite fresh and should be eaten when feeling down.");
+                        Console.WriteLine("Item effect: +20 hitpoints\n");
+                    }
+                    else if (command == "Green Vial" && hero.CheckBackPack("Green Vial"))
+                    {
+                        Console.WriteLine("\nThis green looking liquid that you got from the alchemy table looks like it came from a swamp.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+                    }
+                    else if (command == "White Vial" && hero.CheckBackPack("White Vial"))
+                    {
+                        Console.WriteLine("\nThe scent coming from the white liquid seems to penetrate the glass vial. The liquid is silky white.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
 
+                    }
+                    else if (command == "Vial" && hero.CheckBackPack("Vial"))
+                    {
+                        Console.WriteLine("\nYou got this item from a chest where you started. You can maybe use this if you want to drink something.\n");
+                    }
+                    else if (command == "Iron Bar" && hero.CheckBackPack("Iron Bar"))
+                    {
+                        Console.WriteLine("\nAn iron bar that you took from the first room. Maybe you can use this to open something by force.\n");
+                    }
+                    else if (command == "Rusty Key" && hero.CheckBackPack("Rusty Key"))
+                    {
+                        Console.WriteLine("\nThis key is covered in rust. Though you suspect that it still will work, if you can find the lock that match the key that is.\n");
+                    }
+                    else if (command == "Lion Key" && hero.CheckBackPack("Lion Key"))
+                    {
+                        Console.WriteLine("\nYou have not seen a more extravagant key in your life before. The base of this key is a lions head.\n");
+                    }
+                    else if (command == "Shield" && hero.CheckBackPack("Shield"))
+                    {
+                        Console.WriteLine("\nThis is a silver shield that looks like it was forged yesterday.");
+                        Console.WriteLine("Upon further inspection you realise that this shield should not be used in combat. and is only for decoration.\n");
+                    }
+                }
                 else if (command == "Statue" || command == "East" || command == "Go East")
                 {
                     if (ShieldOnStatue == false)
@@ -666,7 +748,49 @@ namespace RPG
 
             if (roomNumber == 3)
             {
-                if (command == "Table")
+                if (command == "Inspect")
+                {
+                    Console.WriteLine("What do you want to inspect?");
+                    command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (command == "Bread" && hero.CheckBackPack("Bread"))
+                    {
+                        Console.WriteLine("\nIt seems to be white barley bread. It's still quite fresh and should be eaten when feeling down.");
+                        Console.WriteLine("Item effect: +20 hitpoints\n");
+                    }
+                    else if (command == "Green Vial" && hero.CheckBackPack("Green Vial"))
+                    {
+                        Console.WriteLine("\nThis green looking liquid that you got from the alchemy table looks like it came from a swamp.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+                    }
+                    else if (command == "White Vial" && hero.CheckBackPack("White Vial"))
+                    {
+                        Console.WriteLine("\nThe scent coming from the white liquid seems to penetrate the glass vial. The liquid is silky white.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+
+                    }
+                    else if (command == "Vial" && hero.CheckBackPack("Vial"))
+                    {
+                        Console.WriteLine("\nYou got this item from a chest where you started. You can maybe use this if you want to drink something.\n");
+                    }
+                    else if (command == "Iron Bar" && hero.CheckBackPack("Iron Bar"))
+                    {
+                        Console.WriteLine("\nAn iron bar that you took from the first room. Maybe you can use this to open something by force.\n");
+                    }
+                    else if (command == "Rusty Key" && hero.CheckBackPack("Rusty Key"))
+                    {
+                        Console.WriteLine("\nThis key is covered in rust. Though you suspect that it still will work, if you can find the lock that match the key that is.\n");
+                    }
+                    else if (command == "Lion Key" && hero.CheckBackPack("Lion Key"))
+                    {
+                        Console.WriteLine("\nYou have not seen a more extravagant key in your life before. The base of this key is a lions head.\n");
+                    }
+                    else if (command == "Shield" && hero.CheckBackPack("Shield"))
+                    {
+                        Console.WriteLine("\nThis is a silver shield that looks like it was forged yesterday.");
+                        Console.WriteLine("Upon further inspection you realise that this shield should not be used in combat. and is only for decoration.\n");
+                    }
+                }
+                else if (command == "Table")
                 {
 
                     if (CauldronIsFull == true)
@@ -1000,7 +1124,48 @@ namespace RPG
                     }
 
                 }
+                if (command == "Inspect")
+                {
+                    Console.WriteLine("What do you want to inspect?");
+                    command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (command == "Bread" && hero.CheckBackPack("Bread"))
+                    {
+                        Console.WriteLine("\nIt seems to be white barley bread. It's still quite fresh and should be eaten when feeling down.");
+                        Console.WriteLine("Item effect: +20 hitpoints\n");
+                    }
+                    else if (command == "Green Vial" && hero.CheckBackPack("Green Vial"))
+                    {
+                        Console.WriteLine("\nThis green looking liquid that you got from the alchemy table looks like it came from a swamp.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+                    }
+                    else if (command == "White Vial" && hero.CheckBackPack("White Vial"))
+                    {
+                        Console.WriteLine("\nThe scent coming from the white liquid seems to penetrate the glass vial. The liquid is silky white.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
 
+                    }
+                    else if (command == "Vial" && hero.CheckBackPack("Vial"))
+                    {
+                        Console.WriteLine("\nYou got this item from a chest where you started. You can maybe use this if you want to drink something.\n");
+                    }
+                    else if (command == "Iron Bar" && hero.CheckBackPack("Iron Bar"))
+                    {
+                        Console.WriteLine("\nAn iron bar that you took from the first room. Maybe you can use this to open something by force.\n");
+                    }
+                    else if (command == "Rusty Key" && hero.CheckBackPack("Rusty Key"))
+                    {
+                        Console.WriteLine("\nThis key is covered in rust. Though you suspect that it still will work, if you can find the lock that match the key that is.\n");
+                    }
+                    else if (command == "Lion Key" && hero.CheckBackPack("Lion Key"))
+                    {
+                        Console.WriteLine("\nYou have not seen a more extravagant key in your life before. The base of this key is a lions head.\n");
+                    }
+                    else if (command == "Shield" && hero.CheckBackPack("Shield"))
+                    {
+                        Console.WriteLine("\nThis is a silver shield that looks like it was forged yesterday.");
+                        Console.WriteLine("Upon further inspection you realise that this shield should not be used in combat. and is only for decoration.\n");
+                    }
+                }
                 if (command == "Mirror")
                 {
                     if (LookedInMirror == false)
@@ -1045,7 +1210,48 @@ namespace RPG
             }
             if (roomNumber == 5)
             {
+                if (command == "Inspect")
+                {
+                    Console.WriteLine("What do you want to inspect?");
+                    command = FirstUpperCase(Console.ReadLine().ToLower());
+                    if (command == "Bread" && hero.CheckBackPack("Bread"))
+                    {
+                        Console.WriteLine("\nIt seems to be white barley bread. It's still quite fresh and should be eaten when feeling down.");
+                        Console.WriteLine("Item effect: +20 hitpoints\n");
+                    }
+                    else if (command == "Green Vial" && hero.CheckBackPack("Green Vial"))
+                    {
+                        Console.WriteLine("\nThis green looking liquid that you got from the alchemy table looks like it came from a swamp.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
+                    }
+                    else if (command == "White Vial" && hero.CheckBackPack("White Vial"))
+                    {
+                        Console.WriteLine("\nThe scent coming from the white liquid seems to penetrate the glass vial. The liquid is silky white.");
+                        Console.WriteLine("You are not sure what effect this item will give if consumed.\n");
 
+                    }
+                    else if (command == "Vial" && hero.CheckBackPack("Vial"))
+                    {
+                        Console.WriteLine("\nYou got this item from a chest where you started. You can maybe use this if you want to drink something.\n");
+                    }
+                    else if (command == "Iron Bar" && hero.CheckBackPack("Iron Bar"))
+                    {
+                        Console.WriteLine("\nAn iron bar that you took from the first room. Maybe you can use this to open something by force.\n");
+                    }
+                    else if (command == "Rusty Key" && hero.CheckBackPack("Rusty Key"))
+                    {
+                        Console.WriteLine("\nThis key is covered in rust. Though you suspect that it still will work, if you can find the lock that match the key that is.\n");
+                    }
+                    else if (command == "Lion Key" && hero.CheckBackPack("Lion Key"))
+                    {
+                        Console.WriteLine("\nYou have not seen a more extravagant key in your life before. The base of this key is a lions head.\n");
+                    }
+                    else if (command == "Shield" && hero.CheckBackPack("Shield"))
+                    {
+                        Console.WriteLine("\nThis is a silver shield that looks like it was forged yesterday.");
+                        Console.WriteLine("Upon further inspection you realise that this shield should not be used in combat. and is only for decoration.\n");
+                    }
+                }
             }
 
         }
